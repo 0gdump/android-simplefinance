@@ -1,13 +1,14 @@
 package open.zgdump.simplefinance.ui.main
 
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main_container.*
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
+import open.zgdump.simplefinance.Screens
 import open.zgdump.simplefinance.ui.global.MvpFragmentX
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
@@ -18,9 +19,14 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
         SupportAppNavigator(activity, R.id.fragmentContainer)
     }
 
+    private var coldStart = true
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        coldStart = savedInstanceState == null
+
+        navigationView.setCheckedItem(R.id.navHome)
         navigationView.setNavigationItemSelectedListener {
             navigateTo(it)
             drawerLayout.closeDrawers()
@@ -30,7 +36,15 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
 
     override fun onResume() {
         super.onResume()
+
+
         App.navigationHolder.setNavigator(navigator)
+        if (coldStart) {
+            Handler().post {
+                App.router.navigateTo(Screens.HomeScreen)
+            }
+        }
+
         setupToolbar()
     }
 
@@ -58,40 +72,37 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
         if (menuItem.itemId == navigationView.checkedItem?.itemId) return
         when (menuItem.itemId) {
             R.id.navHome -> {
-                Log.d("TEST", "navHome")
+                App.router.navigateTo(Screens.HomeScreen)
             }
             R.id.navAccounts -> {
-                Log.d("TEST", "navAccounts")
+                App.router.navigateTo(Screens.AccountsScreen)
             }
             R.id.navBudget -> {
-                Log.d("TEST", "navBudget")
-            }
-            R.id.navGroupMoney -> {
-                Log.d("TEST", "navGroupMoney")
+                App.router.navigateTo(Screens.BudgetScreen)
             }
             R.id.navIncome -> {
-                Log.d("TEST", "navIncome")
+                App.router.navigateTo(Screens.IncomesScreen)
             }
             R.id.navExpense -> {
-                Log.d("TEST", "navExpense")
+                App.router.navigateTo(Screens.ExpensesScreen)
             }
             R.id.navLoan -> {
-                Log.d("TEST", "navLoan")
+                App.router.navigateTo(Screens.LoansScreen)
             }
             R.id.navSms -> {
-                Log.d("TEST", "navSms")
+                App.router.navigateTo(Screens.SmsScreen)
             }
             R.id.navChart -> {
-                Log.d("TEST", "navChart")
+                App.router.navigateTo(Screens.ChartsScreen)
             }
             R.id.navCurrencies -> {
-                Log.d("TEST", "navCurrencies")
+                App.router.navigateTo(Screens.CurrenciesScreen)
             }
             R.id.navCategories -> {
-                Log.d("TEST", "navCategories")
+                App.router.navigateTo(Screens.CategoriesScreen)
             }
             R.id.navMore -> {
-                Log.d("TEST", "navMore")
+                App.router.navigateTo(Screens.MoreScreen)
             }
             else -> throw IllegalArgumentException()
         }
