@@ -3,6 +3,8 @@ package open.zgdump.simplefinance
 import android.app.Application
 import android.content.Context
 import android.content.res.Resources
+import androidx.room.Room
+import open.zgdump.simplefinance.repository.AppDatabase
 import open.zgdump.simplefinance.util.kotlin.initOnce
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
@@ -32,6 +34,11 @@ class App : Application() {
 
         val router
             get() = cicerone.router
+
+        // Backend
+
+        var db: AppDatabase by initOnce()
+            private set
     }
 
     override fun onCreate() {
@@ -40,6 +47,15 @@ class App : Application() {
         appContext = applicationContext
         instance = this
         res = resources
+
         cicerone = Cicerone.create()
+
+        db = Room
+            .databaseBuilder(
+                appContext,
+                AppDatabase::class.java,
+                "database"
+            )
+            .build()
     }
 }
