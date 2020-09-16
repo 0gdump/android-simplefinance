@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.repository
+package open.zgdump.simplefinance.repository.dao
 
 import androidx.room.*
 import open.zgdump.simplefinance.entity.Category
