@@ -1,10 +1,20 @@
 <resources>
 
-    <string name="app_name">Simple Finance</string>
+    <string name="appName">Simple Finance</string>
 
-    <string name="drawer_open">drawer_open</string>
-    <string name="drawer_close">drawer_close</string>
+    <string name="drawerOpen">drawer_open</string>
+    <string name="drawerClose">drawer_close</string>
 
-    <string name="nav_home">Главная</string>
+    <string name="navHome">Главная</string>
+    <string name="navAccounts">Счета</string>
+    <string name="navCategories">Категории</string>
+    <string name="navBudget">Бюджет</string>
+    <string name="navIncome">Доходы</string>
+    <string name="navExpense">Расходы</string>
+    <string name="navLoan">Кредиты, займы</string>
+    <string name="navSms">СМС</string>
+    <string name="navChart">Графики</string>
+    <string name="navCurrencies">Валюта</string>
+    <string name="navMore">Прочее</string>
 
 </resources>

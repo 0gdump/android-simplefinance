@@ -43,8 +43,8 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
             activity,
             drawerLayout,
             toolbar,
-            R.string.drawer_open,
-            R.string.drawer_close
+            R.string.drawerOpen,
+            R.string.drawerClose
         ).apply {
             drawerLayout.setDrawerListener(this)
             syncState()

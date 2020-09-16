@@ -1,9 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/navHome"
-        android:icon="@drawable/ic_home"
-        android:title="@string/nav_home" />
+    <group
+        android:id="@+id/navGroupMain"
+        android:checkableBehavior="single">
 
+        <item
+            android:id="@+id/navHome"
+            android:icon="@drawable/ic_home"
+            android:title="@string/navHome" />
+
+        <item
+            android:id="@+id/navAccounts"
+            android:icon="@drawable/ic_wallet"
+            android:title="@string/navAccounts" />
+
+        <item
+            android:id="@+id/navBudget"
+            android:icon="@drawable/ic_cash"
+            android:title="@string/navBudget" />
+    </group>
+
+    <group
+        android:id="@+id/navGroupMoney"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navIncome"
+            android:icon="@drawable/ic_money"
+            android:title="@string/navIncome" />
+
+        <item
+            android:id="@+id/navExpense"
+            android:icon="@drawable/ic_shopping_cart"
+            android:title="@string/navExpense" />
+
+        <item
+            android:id="@+id/navLoan"
+            android:icon="@drawable/ic_people"
+            android:title="@string/navLoan" />
+    </group>
+
+    <group
+        android:id="@+id/navGroupOther"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navSms"
+            android:icon="@drawable/ic_sms"
+            android:title="@string/navSms" />
+
+        <item
+            android:id="@+id/navChart"
+            android:icon="@drawable/ic_bar_chart"
+            android:title="@string/navChart" />
+    </group>
+
+    <group
+        android:id="@+id/navGroupOptions"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navCurrencies"
+            android:icon="@drawable/ic_euro"
+            android:title="@string/navCurrencies" />
+
+        <item
+            android:id="@+id/navCategories"
+            android:icon="@drawable/ic_list"
+            android:title="@string/navCategories" />
+
+        <item
+            android:id="@+id/navMore"
+            android:icon="@drawable/ic_more"
+            android:title="@string/navMore" />
+    </group>
 </menu>
