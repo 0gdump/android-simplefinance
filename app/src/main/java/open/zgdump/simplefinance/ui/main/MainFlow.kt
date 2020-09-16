@@ -4,32 +4,33 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main_container.*
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.Screens
+import open.zgdump.simplefinance.global.CiceroneNavigator
 import open.zgdump.simplefinance.ui.global.MvpFragmentX
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
 
 class MainFlow : MvpFragmentX(R.layout.fragment_main) {
 
-    private val navigator by lazy {
-        SupportAppNavigator(activity, R.id.fragmentContainer)
-    }
+    private val defaultNavigationItem = R.id.navHome
 
     private var coldStart = true
+    private val navigator by lazy {
+        CiceroneNavigator(activity, R.id.fragmentContainer)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         coldStart = savedInstanceState == null
 
-        navigationView.setCheckedItem(R.id.navHome)
         navigationView.setNavigationItemSelectedListener {
             navigateTo(it)
-            drawerLayout.closeDrawers()
+            Handler().post { drawerLayout.closeDrawer(GravityCompat.START) }
             true
         }
     }
@@ -37,14 +38,9 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
     override fun onResume() {
         super.onResume()
 
-
         App.navigationHolder.setNavigator(navigator)
-        if (coldStart) {
-            Handler().post {
-                App.router.navigateTo(Screens.HomeScreen)
-            }
-        }
 
+        setupNavigation()
         setupToolbar()
     }
 
@@ -68,8 +64,18 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
         }
     }
 
+    private fun setupNavigation() {
+        if (coldStart) {
+            Handler().post {
+                navigateTo(navigationView.menu.findItem(defaultNavigationItem))
+                navigationView.setCheckedItem(defaultNavigationItem)
+            }
+        }
+    }
+
     private fun navigateTo(menuItem: MenuItem) {
         if (menuItem.itemId == navigationView.checkedItem?.itemId) return
+        toolbar.title = menuItem.title
         when (menuItem.itemId) {
             R.id.navHome -> {
                 App.router.navigateTo(Screens.HomeScreen)
