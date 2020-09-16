@@ -8,23 +8,23 @@ import open.zgdump.simplefinance.global.RoomTablesNames.CURRENCIES_TABLE_NAME
 interface CurrencyDao {
 
     @Query("SELECT * FROM $CURRENCIES_TABLE_NAME")
-    fun getAll(): List<Currency>?
+    suspend fun getAll(): List<Currency>?
 
     @Query("SELECT * FROM $CURRENCIES_TABLE_NAME WHERE id = :id")
-    fun getCurrency(id: Long): Currency?
+    suspend fun getCurrency(id: Long): Currency?
 
     @Query("SELECT * FROM $CURRENCIES_TABLE_NAME WHERE char = :char")
-    fun getCurrency(char: Char): Currency?
+    suspend fun getCurrency(char: Char): Currency?
 
     @Query("SELECT * FROM $CURRENCIES_TABLE_NAME WHERE name = :name")
-    fun getCurrency(name: String): Currency?
+    suspend fun getCurrency(name: String): Currency?
 
     @Insert
-    fun insert(employee: Currency)
+    suspend fun insert(currency: Currency)
 
     @Update
-    fun update(employee: Currency)
+    suspend fun update(currency: Currency)
 
     @Delete
-    fun delete(employee: Currency)
+    suspend fun delete(currency: Currency)
 }

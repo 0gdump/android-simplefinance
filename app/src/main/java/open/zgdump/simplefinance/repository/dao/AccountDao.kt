@@ -9,20 +9,20 @@ import open.zgdump.simplefinance.global.RoomTablesNames.ACCOUNTS_TABLE_NAME
 interface AccountDao {
 
     @Query("SELECT * FROM $ACCOUNTS_TABLE_NAME")
-    fun getAll(): List<Account>?
+    suspend fun getAll(): List<Account>?
 
     @Query("SELECT * FROM $ACCOUNTS_TABLE_NAME WHERE id = :id")
-    fun getAccount(id: Long): Account?
+    suspend fun getAccount(id: Long): Account?
 
     @Query("SELECT * FROM $ACCOUNTS_TABLE_NAME WHERE name = :name")
-    fun getAccount(name: String): Account?
+    suspend fun getAccount(name: String): Account?
 
     @Insert
-    fun insert(employee: Account)
+    suspend fun insert(account: Account)
 
     @Update
-    fun update(employee: Account)
+    suspend fun update(account: Account)
 
     @Delete
-    fun delete(employee: Account)
+    suspend fun delete(account: Account)
 }

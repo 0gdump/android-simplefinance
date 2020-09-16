@@ -8,17 +8,17 @@ import open.zgdump.simplefinance.global.RoomTablesNames.RECORDS_TABLE_NAME
 interface RecordDao {
 
     @Query("SELECT * FROM $RECORDS_TABLE_NAME")
-    fun getAll(): List<Record>?
+    suspend fun getAll(): List<Record>?
 
     @Query("SELECT * FROM $RECORDS_TABLE_NAME WHERE id = :id")
-    fun getAccount(id: Long): Record?
+    suspend fun getAccount(id: Long): Record?
 
     @Insert
-    fun insert(employee: Record)
+    suspend fun insert(record: Record)
 
     @Update
-    fun update(employee: Record)
+    suspend fun update(record: Record)
 
     @Delete
-    fun delete(employee: Record)
+    suspend fun delete(record: Record)
 }
