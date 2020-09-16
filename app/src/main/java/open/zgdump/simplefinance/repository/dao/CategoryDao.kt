@@ -10,9 +10,6 @@ interface CategoryDao {
     @Query("SELECT * FROM $CATEGORIES_TABLE_NAME")
     suspend fun getAll(): List<Category>?
 
-    @Query("SELECT * FROM $CATEGORIES_TABLE_NAME WHERE id = :id")
-    suspend fun getCategory(id: Long): Category?
-
     @Query("SELECT * FROM $CATEGORIES_TABLE_NAME WHERE name = :name")
     suspend fun getCategory(name: String): Category?
 

@@ -11,9 +11,6 @@ interface AccountDao {
     @Query("SELECT * FROM $ACCOUNTS_TABLE_NAME")
     suspend fun getAll(): List<Account>?
 
-    @Query("SELECT * FROM $ACCOUNTS_TABLE_NAME WHERE id = :id")
-    suspend fun getAccount(id: Long): Account?
-
     @Query("SELECT * FROM $ACCOUNTS_TABLE_NAME WHERE name = :name")
     suspend fun getAccount(name: String): Account?
 
