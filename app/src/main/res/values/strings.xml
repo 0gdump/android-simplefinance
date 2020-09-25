@@ -17,4 +17,13 @@
     <string name="navCurrencies">Валюта</string>
     <string name="navMore">Прочее</string>
 
+    <string name="EmptyView_defaultErrorTitle">Ошибка</string>
+    <string name="EmptyView_defaultErrorContent">Не удалось загрузить данные</string>
+    <string name="EmptyView_defaultEmptyTitle">Пусто</string>
+    <string name="EmptyView_defaultEmptyContent">Нет данных</string>
+
+    <string name="EmptyView_stubTitle">Заголовок</string>
+    <string name="EmptyView_stubContent">Контент</string>
+    <string name="EmptyView_refresh">Обновить</string>
+
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EmptyView">
+
+        <attr name="errorImage" format="integer" />
+        <attr name="errorTitle" format="string" />
+        <attr name="errorContent" format="string" />
+
+        <attr name="emptyImage" format="integer" />
+        <attr name="emptyTitle" format="string" />
+        <attr name="emptyContent" format="string" />
+
+    </declare-styleable>
+</resources>
