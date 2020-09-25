@@ -10,8 +10,14 @@ interface CurrencyDao {
     @Query("SELECT * FROM $CURRENCIES_TABLE_NAME")
     suspend fun getAll(): List<Currency>?
 
+    @Query("SELECT * FROM $CURRENCIES_TABLE_NAME WHERE id >= :id LIMIT :count")
+    suspend fun getCurrenciesFromId(id: Int, count: Int): List<Currency>?
+
+    @Query("SELECT * FROM $CURRENCIES_TABLE_NAME WHERE id = :id")
+    suspend fun getById(id: Int): Currency?
+
     @Query("SELECT * FROM $CURRENCIES_TABLE_NAME WHERE name = :k OR designation = :k")
-    suspend fun getCurrency(k: String): Currency?
+    suspend fun getByCriteria(k: String): Currency?
 
     @Insert
     suspend fun insert(currency: Currency)

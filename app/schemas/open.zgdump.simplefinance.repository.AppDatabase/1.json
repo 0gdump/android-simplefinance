@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e7593e0144121c9812a5db4ac200f287",
+    "identityHash": "cf9f1f888fa056ff3a92fb9d2fdb99ad",
     "entities": [
       {
         "tableName": "accounts",
@@ -76,8 +76,14 @@
       },
       {
         "tableName": "currencies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`designation` TEXT NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`designation`, `name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `designation` TEXT NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`id`, `name`))",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "designation",
             "columnName": "designation",
@@ -93,7 +99,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "designation",
+            "id",
             "name"
           ],
           "autoGenerate": false
@@ -161,7 +167,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e7593e0144121c9812a5db4ac200f287')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cf9f1f888fa056ff3a92fb9d2fdb99ad')"
     ]
   }
 }

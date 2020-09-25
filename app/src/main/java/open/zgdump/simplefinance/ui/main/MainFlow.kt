@@ -19,7 +19,7 @@ import open.zgdump.simplefinance.ui.global.MvpFragmentX
 
 class MainFlow : MvpFragmentX(R.layout.fragment_main) {
 
-    private val defaultNavigationItem = R.id.navHome
+    private val defaultNavigationItem = R.id.navCurrencies
 
     private var needToNavigation = false
     private var previousSelectedNavigationItem: MenuItem? = null
