@@ -8,6 +8,7 @@ import open.zgdump.simplefinance.repository.AppDatabase
 import open.zgdump.simplefinance.util.kotlin.initOnce
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
+import timber.log.Timber
 
 
 class App : Application() {
@@ -57,5 +58,9 @@ class App : Application() {
                 "database"
             )
             .build()
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 }
