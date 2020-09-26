@@ -17,7 +17,6 @@ import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.ui.global.MvpFragmentX
 import open.zgdump.simplefinance.ui.global.paginal.PaginalAdapter
-import timber.log.Timber
 
 class CurrenciesScreen : MvpFragmentX(R.layout.fragment_currencies), CurrenciesScreenView {
 

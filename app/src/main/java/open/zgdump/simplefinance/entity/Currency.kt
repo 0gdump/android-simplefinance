@@ -1,7 +1,6 @@
 package open.zgdump.simplefinance.entity
 
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
 import open.zgdump.simplefinance.global.RoomTablesNames.CURRENCIES_TABLE_NAME
 

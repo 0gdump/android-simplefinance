@@ -1,6 +1,5 @@
 package open.zgdump.simplefinance.presentation.currencies
 
-import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
 import open.zgdump.simplefinance.App
