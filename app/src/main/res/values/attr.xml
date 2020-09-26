@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <attr name="errorImage" format="integer" />
+    <attr name="errorTitle" format="string" />
+    <attr name="errorContent" format="string" />
+
+    <attr name="emptyImage" format="integer" />
+    <attr name="emptyTitle" format="string" />
+    <attr name="emptyContent" format="string" />
+
+    <attr name="hasRefresh" format="boolean" />
+
     <declare-styleable name="EmptyView">
+        <attr name="errorImage" />
+        <attr name="errorTitle" />
+        <attr name="errorContent" />
 
-        <attr name="errorImage" format="integer" />
-        <attr name="errorTitle" format="string" />
-        <attr name="errorContent" format="string" />
+        <attr name="emptyImage" />
+        <attr name="emptyTitle" />
+        <attr name="emptyContent" />
 
-        <attr name="emptyImage" format="integer" />
-        <attr name="emptyTitle" format="string" />
-        <attr name="emptyContent" format="string" />
+        <attr name="hasRefresh" />
+    </declare-styleable>
+
+    <declare-styleable name="PaginalRenderView">
+        <attr name="errorImage" />
+        <attr name="errorTitle" />
+        <attr name="errorContent" />
+
+        <attr name="emptyImage" />
+        <attr name="emptyTitle" />
+        <attr name="emptyContent" />
+
+        <attr name="hasRefresh" />
+
+        <attr name="hasFab" format="boolean" />
+        <attr name="fabIcon" format="integer" />
+        <attr name="fabText" format="string" />
 
     </declare-styleable>
+
 </resources>

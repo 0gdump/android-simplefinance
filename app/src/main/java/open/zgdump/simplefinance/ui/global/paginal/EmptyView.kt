@@ -15,33 +15,41 @@ class EmptyView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    val errorImage: Drawable
-    val errorTitle: String
-    val errorContent: String
+    var errorImage: Drawable
+    var errorTitle: String
+    var errorContent: String
 
-    val emptyImage: Drawable
-    val emptyTitle: String
-    val emptyContent: String
+    var emptyImage: Drawable
+    var emptyTitle: String
+    var emptyContent: String
+
+    var hasRefresh: Boolean = true
+        set(value) {
+            refreshButton.visible(value)
+            field = value
+        }
 
     init {
+        inflate(context, R.layout.view_empty, this)
+
         val a = context.obtainStyledAttributes(attrs, R.styleable.EmptyView)
 
         errorImage = a.getDrawable(R.styleable.EmptyView_errorImage)
-            ?: App.res.getDrawable(R.drawable.ic_error)
+            ?: App.res.getDrawable(R.drawable.ic_error, App.appContext.theme)
         errorTitle = a.getString(R.styleable.EmptyView_errorTitle)
             ?: App.res.getString(R.string.EmptyView_defaultErrorTitle)
         errorContent = a.getString(R.styleable.EmptyView_errorContent)
             ?: App.res.getString(R.string.EmptyView_defaultErrorContent)
         emptyImage = a.getDrawable(R.styleable.EmptyView_emptyImage)
-            ?: App.res.getDrawable(R.drawable.ic_add)
+            ?: App.res.getDrawable(R.drawable.ic_add, App.appContext.theme)
         emptyTitle = a.getString(R.styleable.EmptyView_emptyTitle)
             ?: App.res.getString(R.string.EmptyView_defaultEmptyTitle)
         emptyContent = a.getString(R.styleable.EmptyView_emptyContent)
             ?: App.res.getString(R.string.EmptyView_defaultEmptyContent)
 
-        a.recycle()
+        hasRefresh = a.getBoolean(R.styleable.EmptyView_hasRefresh, true)
 
-        inflate(context, R.layout.view_empty, this)
+        a.recycle()
     }
 
     fun setRefreshButtonClickListener(listener: () -> Unit) {
@@ -49,12 +57,14 @@ class EmptyView @JvmOverloads constructor(
     }
 
     fun showEmptyData() {
+        zeroImage.setImageDrawable(emptyImage)
         titleText.text = emptyTitle
         descriptionText.text = emptyContent
         visible(true)
     }
 
     fun showEmptyError(msg: String? = null) {
+        zeroImage.setImageDrawable(errorImage)
         titleText.text = errorTitle
         descriptionText.text = msg ?: errorContent
         visible(true)
