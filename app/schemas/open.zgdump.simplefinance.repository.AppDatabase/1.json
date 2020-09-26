@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cf9f1f888fa056ff3a92fb9d2fdb99ad",
+    "identityHash": "332a52652ad5e9b6deb420e07bfb764a",
     "entities": [
       {
         "tableName": "accounts",
@@ -76,7 +76,7 @@
       },
       {
         "tableName": "currencies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `designation` TEXT NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`id`, `name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `designation` TEXT NOT NULL, `name` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -99,10 +99,9 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id",
-            "name"
+            "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -167,7 +166,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cf9f1f888fa056ff3a92fb9d2fdb99ad')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '332a52652ad5e9b6deb420e07bfb764a')"
     ]
   }
 }

@@ -1,10 +1,9 @@
 <resources>
 
+    <!-- Общее -->
     <string name="appName">Simple Finance</string>
 
-    <string name="drawerOpen">drawer_open</string>
-    <string name="drawerClose">drawer_close</string>
-
+    <!-- Навигация -->
     <string name="navHome">Главная</string>
     <string name="navAccounts">Счета</string>
     <string name="navCategories">Категории</string>
@@ -14,9 +13,20 @@
     <string name="navLoan">Кредиты, займы</string>
     <string name="navSms">СМС</string>
     <string name="navChart">Графики</string>
-    <string name="navCurrencies">Валюта</string>
+    <string name="navCurrencies">Валюты</string>
     <string name="navMore">Прочее</string>
 
+    <!-- Экраны -->
+    <!-- Main Flow -->
+    <string name="drawerOpen">drawer_open</string>
+    <string name="drawerClose">drawer_close</string>
+
+    <!-- Currencies Screen -->
+    <string name="CurrencyScreen_newCurrencyDialogTitle">Создать</string>
+    <string name="CurrencyScreen_editCurrencyDialogTitle">Редактировать</string>
+
+    <!-- Custom View -->
+    <!-- EmptyView -->
     <string name="EmptyView_defaultErrorTitle">Ошибка</string>
     <string name="EmptyView_defaultErrorContent">Не удалось загрузить данные</string>
     <string name="EmptyView_defaultEmptyTitle">Пусто</string>
@@ -25,5 +35,8 @@
     <string name="EmptyView_stubTitle">Заголовок</string>
     <string name="EmptyView_stubContent">Контент</string>
     <string name="EmptyView_refresh">Обновить</string>
+
+    <!-- PaginalRenderView -->
+    <string name="PaginalRenderView_defaultFabText">Добавить</string>
 
 </resources>

@@ -32,8 +32,7 @@ class CurrencyAdapterDelegate(
         fun bind(currency: Currency) {
             itemView.setOnClickListener { clickListener(currency) }
 
-            itemView.currencyName.text = currency.name
-            itemView.currencyDesignation.text = currency.designation
+            itemView.currency.text = ("${currency.name}, ${currency.designation}")
         }
     }
 }

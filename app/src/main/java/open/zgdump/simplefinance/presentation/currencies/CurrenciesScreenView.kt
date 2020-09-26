@@ -4,6 +4,7 @@ import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
+import open.zgdump.simplefinance.entity.Currency
 import open.zgdump.simplefinance.presentation.global.Paginator
 
 interface CurrenciesScreenView : MvpView {
@@ -13,4 +14,8 @@ interface CurrenciesScreenView : MvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showMessage(message: String)
+
+
+    @StateStrategyType(OneExecutionStateStrategy::class)
+    fun newCurrencyDialog(currency: Currency?)
 }
