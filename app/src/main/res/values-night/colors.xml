@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Основные -->
+    <color name="primary">#BB68F6</color>
+    <color name="primaryDark">#7C47A5</color>
+    <color name="accent">#F7CE34</color>
+
     <!-- Текст -->
     <color name="primary_text">#ffe0e0e0</color>
     <color name="secondary_text">#aae0e0e0</color>

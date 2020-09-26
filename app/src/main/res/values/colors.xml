@@ -2,9 +2,9 @@
 <resources>
 
     <!-- Основные -->
-    <color name="primary">#6200EE</color>
-    <color name="primaryDark">#3700B3</color>
-    <color name="accent">#03DAC5</color>
+    <color name="primary">#8C56B6</color>
+    <color name="primaryDark">#754999</color>
+    <color name="accent">#F7CE34</color>
 
     <!-- Текст -->
     <color name="primary_text">#ff1f1f1f</color>
@@ -14,11 +14,13 @@
     <color name="subtitle_text">#55000000</color>
 
     <!-- Базовые -->
+    <color name="black">#00000000</color>
     <color name="black_20">#32000000</color>
     <color name="white">#ffffff</color>
     <color name="white_50">#80ffffff</color>
     <color name="divider">#ffe0e6ea</color>
 
+    <color name="dark_dark_grey">#1F1F1F</color>
     <color name="silver">#6A8398</color>
     <color name="lightGrey">#f1f1f1</color>
     <color name="grey">#757575</color>
