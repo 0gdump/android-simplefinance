@@ -29,11 +29,7 @@ object Paginator {
     }
 
     sealed class SideEffect {
-        data class LoadPage(
-            val currentPage: Int,
-            val currentPageLastItem: Any? = null
-        ) : SideEffect()
-
+        data class LoadPage(val currentPage: Int) : SideEffect()
         data class ErrorEvent(val error: Throwable) : SideEffect()
     }
 
@@ -72,12 +68,7 @@ object Paginator {
             is Action.LoadMore -> {
                 when (state) {
                     is State.Data<*> -> {
-                        sideEffectListener(
-                            SideEffect.LoadPage(
-                                state.pageCount + 1,
-                                state.data.last() as T
-                            )
-                        )
+                        sideEffectListener(SideEffect.LoadPage(state.pageCount + 1))
                         State.NewPageProgress(state.pageCount, state.data as List<T>)
                     }
                     else -> state

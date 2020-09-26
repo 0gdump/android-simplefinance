@@ -18,7 +18,7 @@ class CurrenciesScreenPresenter : MvpPresenterX<CurrenciesScreenView>() {
             paginator.sideEffects.consumeEach { effect ->
                 when (effect) {
                     is Paginator.SideEffect.LoadPage -> {
-                        loadNewPage(effect.currentPage, effect.currentPageLastItem as Currency?)
+                        loadNewPage(effect.currentPage)
                     }
                     is Paginator.SideEffect.ErrorEvent -> {
                         viewState.showMessage(effect.error.message.orEmpty())
