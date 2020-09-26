@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.global
+package open.zgdump.simplefinance.ui.global.recyclerview
 
 import android.content.Context
 import android.graphics.Canvas
