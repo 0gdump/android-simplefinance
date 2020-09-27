@@ -8,7 +8,6 @@ class DummyDiffItemCallback(
 ) : DiffUtil.ItemCallback<Any>() {
 
     override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {
-        if (oldItem === newItem) return true
         return itemDiff.invoke(oldItem, newItem)
     }
 

@@ -27,7 +27,7 @@ class CurrenciesScreen : MvpFragmentX(R.layout.fragment_currencies), CurrenciesS
             { presenter.loadMore() },
             { o, n ->
                 if (o is Currency && n is Currency)
-                    o.id == n.id
+                    o.hashCode() == n.hashCode()
                 else
                     false
             },
