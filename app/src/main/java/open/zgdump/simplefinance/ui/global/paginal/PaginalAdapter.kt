@@ -18,6 +18,7 @@ class PaginalAdapter(
 ) {
 
     var fullData = false
+    private var nextPageCaught = false
 
     init {
         items = mutableListOf()
@@ -27,6 +28,7 @@ class PaginalAdapter(
     }
 
     fun update(data: List<Any>, isPageProgress: Boolean) {
+        nextPageCaught = false
         items = mutableListOf<Any>().apply {
             addAll(data)
             if (isPageProgress) add(ProgressItem)
@@ -39,6 +41,11 @@ class PaginalAdapter(
         payloads: MutableList<Any?>
     ) {
         super.onBindViewHolder(holder, position, payloads)
-        if (!fullData && position >= items.size - 10) nextPageCallback.invoke()
+        if (!fullData && position >= items.size - 10) {
+            if (!nextPageCaught) {
+                nextPageCaught = true
+                nextPageCallback.invoke()
+            }
+        }
     }
 }
