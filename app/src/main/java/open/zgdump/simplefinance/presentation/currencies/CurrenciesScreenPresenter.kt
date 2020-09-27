@@ -6,6 +6,7 @@ import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.entity.Currency
 import open.zgdump.simplefinance.presentation.global.MvpPresenterX
 import open.zgdump.simplefinance.presentation.global.Paginator
+import timber.log.Timber
 
 class CurrenciesScreenPresenter : MvpPresenterX<CurrenciesScreenView>() {
 
@@ -41,7 +42,7 @@ class CurrenciesScreenPresenter : MvpPresenterX<CurrenciesScreenView>() {
                 pageSize
             ) ?: emptyList()
 
-            paginator.proceed(Paginator.Action.NewPage(page + 1, currencies))
+            paginator.proceed(Paginator.Action.NewPage(page, currencies))
         }
     }
 
@@ -61,18 +62,19 @@ class CurrenciesScreenPresenter : MvpPresenterX<CurrenciesScreenView>() {
         enteredName: String,
         enteredDesignation: String
     ) {
-        launch {
-            if (originalCurrency == null) {
-                App.db.currencyDao().insert(
-                    Currency(0, enteredDesignation, enteredName)
-                )
-            } else {
-                App.db.currencyDao().update(
-                    Currency(originalCurrency.id, enteredDesignation, enteredName)
-                )
+        if (originalCurrency == null) {
+            val currency = Currency(0, enteredDesignation, enteredName)
+            launch {
+                App.db.currencyDao().insert(currency)
             }
+            paginator.proceed(Paginator.Action.Insert(currency))
+        } else {
+            val id = originalCurrency.id
+            val currency = Currency(id, enteredDesignation, enteredName)
+            launch {
+                App.db.currencyDao().update(currency)
+            }
+            paginator.proceed(Paginator.Action.Update(currency, id - 1))
         }
-
-        // TODO Update list!
     }
 }
