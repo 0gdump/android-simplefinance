@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Resources
 import androidx.room.Room
+import com.cioccarellia.ksprefs.KsPrefs
 import open.zgdump.simplefinance.repository.AppDatabase
 import open.zgdump.simplefinance.util.kotlin.initOnce
 import ru.terrakok.cicerone.Cicerone
@@ -15,6 +16,15 @@ class App : Application() {
 
     companion object {
 
+        // App
+
+        var isFirstRun: Boolean
+            get() = prefs.pull("firstRun", true)
+            set(value) = prefs.push("firstRun", value)
+
+        val isDebugRun
+            get() = BuildConfig.DEBUG
+
         // Android
 
         var appContext: Context by initOnce()
@@ -25,6 +35,8 @@ class App : Application() {
 
         var res: Resources by initOnce()
             private set
+
+        val prefs by lazy { KsPrefs(appContext) }
 
         // Navigation
 
@@ -45,6 +57,14 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        initialize()
+
+        if (isDebugRun) debugRun()
+        if (isFirstRun) firstRun()
+    }
+
+    private fun initialize() {
+
         appContext = applicationContext
         instance = this
         res = resources
@@ -52,15 +72,15 @@ class App : Application() {
         cicerone = Cicerone.create()
 
         db = Room
-            .databaseBuilder(
-                appContext,
-                AppDatabase::class.java,
-                "database"
-            )
+            .databaseBuilder(appContext, AppDatabase::class.java, "database")
             .build()
+    }
 
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
+    private fun debugRun() {
+        Timber.plant(Timber.DebugTree())
+    }
+
+    private fun firstRun() {
+        isFirstRun = false
     }
 }
