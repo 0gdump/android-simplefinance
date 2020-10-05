@@ -149,6 +149,10 @@ object Paginator {
         }
         is Action.Insert<*> -> {
             when (state) {
+                is State.Empty -> State.FullData(
+                    1,
+                    listOf(action.item)
+                )
                 is State.Data<*> -> State.Data(
                     state.pageCount,
                     state.data + action.item
