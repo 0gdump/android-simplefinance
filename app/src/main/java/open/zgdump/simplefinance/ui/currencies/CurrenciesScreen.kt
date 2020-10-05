@@ -1,10 +1,7 @@
 package open.zgdump.simplefinance.ui.currencies
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.view.ActionMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.ModalDialog
 import com.afollestad.materialdialogs.customview.customView

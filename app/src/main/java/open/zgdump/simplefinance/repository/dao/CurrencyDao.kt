@@ -1,6 +1,9 @@
 package open.zgdump.simplefinance.repository.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import open.zgdump.simplefinance.entity.Currency
 import open.zgdump.simplefinance.global.RoomTablesNames.CURRENCIES_TABLE_NAME
 

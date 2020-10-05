@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.Screens
 import open.zgdump.simplefinance.global.CiceroneNavigator
+import open.zgdump.simplefinance.global.Screens
 
 class MainActivity : AppCompatActivity() {
 

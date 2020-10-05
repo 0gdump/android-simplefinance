@@ -2,7 +2,6 @@ package open.zgdump.simplefinance.ui.global.recyclerview
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import timber.log.Timber
 
 class ItemTouchHelperCallback(
     private val contract: ItemTouchHelperContract?

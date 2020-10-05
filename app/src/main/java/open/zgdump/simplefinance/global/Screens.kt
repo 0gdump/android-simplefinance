@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance
+package open.zgdump.simplefinance.global
 
 import open.zgdump.simplefinance.ui.accounts.AccountsScreen
 import open.zgdump.simplefinance.ui.budget.BudgetScreen

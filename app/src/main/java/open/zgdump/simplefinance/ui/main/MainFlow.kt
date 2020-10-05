@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main_container.*
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.Screens
 import open.zgdump.simplefinance.global.CiceroneNavigator
+import open.zgdump.simplefinance.global.Screens
 import open.zgdump.simplefinance.ui.global.MvpFragmentX
 
 
