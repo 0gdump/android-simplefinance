@@ -3,32 +3,39 @@ package open.zgdump.simplefinance.ui.global.paginal
 import android.content.Context
 import android.util.AttributeSet
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.view_paginal_render.view.*
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.ui.global.recyclerview.DividerItemDecorator
+import open.zgdump.simplefinance.ui.global.recyclerview.ItemTouchHelperCallback
 import open.zgdump.simplefinance.util.android.inflate
 import open.zgdump.simplefinance.util.android.visible
 
-/**
- * Created by Konstantin Tskhovrebov (aka @terrakok) on 2019-06-22.
- */
 class PaginalRenderView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : CoordinatorLayout(context, attrs, defStyleAttr) {
 
+    var itemMoved: ((fromPosition: Int, toPosition: Int) -> Unit)? = null
+    var itemRemoved: ((position: Int) -> Unit)? = null
+
     var refreshCallback: (() -> Unit)? = null
     var fabClickCallback: (() -> Unit)? = null
 
     var adapter: PaginalAdapter? = null
         set(value) {
+            value?.itemMoved = itemMoved
+            value?.itemRemoved = itemRemoved
             recyclerView.adapter = value
             field = value
+            linkItemTouchHelper()
         }
+
+    var itemTouchHelper: ItemTouchHelper? = null
 
     init {
         inflate(R.layout.view_paginal_render, true)
@@ -71,6 +78,12 @@ class PaginalRenderView @JvmOverloads constructor(
 
         a.recycle()
 
+    }
+
+    private fun linkItemTouchHelper() {
+        itemTouchHelper?.attachToRecyclerView(null)
+        itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
+        itemTouchHelper?.attachToRecyclerView(recyclerView)
     }
 
     fun render(state: Paginator.State) {
