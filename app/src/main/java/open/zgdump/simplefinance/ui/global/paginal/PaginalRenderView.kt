@@ -92,8 +92,8 @@ class PaginalRenderView @JvmOverloads constructor(
                 is Paginator.State.Empty -> {
                     swipeToRefresh.isRefreshing = false
                     fullscreenProgressView.visible(false)
-                    adapter?.fullData = true
                     adapter?.update(emptyList(), false)
+                    adapter?.fullData = true
                     emptyView.showEmptyData()
                     swipeToRefresh.visible(true)
                 }
@@ -101,32 +101,33 @@ class PaginalRenderView @JvmOverloads constructor(
                     fab.visible(true)
                     swipeToRefresh.isRefreshing = false
                     fullscreenProgressView.visible(true)
-                    adapter?.fullData = false
                     adapter?.update(emptyList(), false)
+                    adapter?.fullData = false
                     emptyView.hide()
                     swipeToRefresh.visible(false)
                 }
                 is Paginator.State.EmptyError -> {
                     swipeToRefresh.isRefreshing = false
                     fullscreenProgressView.visible(false)
-                    adapter?.fullData = false
                     adapter?.update(emptyList(), false)
+                    adapter?.fullData = false
                     emptyView.showEmptyError()
                     swipeToRefresh.visible(true)
                 }
                 is Paginator.State.Data<*> -> {
                     swipeToRefresh.isRefreshing = false
                     fullscreenProgressView.visible(false)
-                    adapter?.fullData = false
                     adapter?.update(state.data as List<Any>, false)
+                    adapter?.fullData = false
                     emptyView.hide()
                     swipeToRefresh.visible(true)
                 }
                 is Paginator.State.Refresh<*> -> {
                     swipeToRefresh.isRefreshing = true
                     fullscreenProgressView.visible(false)
-                    adapter?.fullData = false
                     adapter?.update(state.data as List<Any>, false)
+                    adapter?.fullData = false
+                    adapter?.refreshStarted = true
                     emptyView.hide()
                     swipeToRefresh.visible(true)
                 }
@@ -141,8 +142,8 @@ class PaginalRenderView @JvmOverloads constructor(
                 is Paginator.State.FullData<*> -> {
                     swipeToRefresh.isRefreshing = false
                     fullscreenProgressView.visible(false)
-                    adapter?.fullData = true
                     adapter?.update(state.data as List<Any>, false)
+                    adapter?.fullData = true
                     emptyView.hide()
                     swipeToRefresh.visible(true)
                 }
