@@ -3,22 +3,21 @@ package open.zgdump.simplefinance.ui.global.paginal
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
+import open.zgdump.simplefinance.ui.global.recyclerview.ItemTouchHelperContract
 
-/**
- * Created by petrova_alena on 2019-12-05.
- */
 class PaginalAdapter(
     private val nextPageCallback: () -> Unit,
     itemDiff: (old: Any, new: Any) -> Boolean,
     vararg delegate: AdapterDelegate<MutableList<Any>>
-) : AsyncListDifferDelegationAdapter<Any>(
-    DummyDiffItemCallback(
-        itemDiff
-    )
-) {
+) : AsyncListDifferDelegationAdapter<Any>(DummyDiffItemCallback(itemDiff)),
+    ItemTouchHelperContract {
+
+    var itemMoved: ((fromPosition: Int, toPosition: Int) -> Unit)? = null
+    var itemRemoved: ((position: Int) -> Unit)? = null
 
     var fullData = false
-    private var nextPageCaught = false
+    var nextPageCaught = false
+    var refreshStarted = false
 
     init {
         items = mutableListOf()
@@ -29,9 +28,15 @@ class PaginalAdapter(
 
     fun update(data: List<Any>, isPageProgress: Boolean) {
         nextPageCaught = false
+
         items = mutableListOf<Any>().apply {
             addAll(data)
             if (isPageProgress) add(ProgressItem)
+        }
+
+        if (refreshStarted) {
+            refreshStarted = false
+            nextPageCallback.invoke()
         }
     }
 
@@ -41,11 +46,21 @@ class PaginalAdapter(
         payloads: MutableList<Any?>
     ) {
         super.onBindViewHolder(holder, position, payloads)
-        if (!fullData && position >= items.size - 10) {
-            if (!nextPageCaught) {
-                nextPageCaught = true
-                nextPageCallback.invoke()
-            }
+        if (!fullData && !nextPageCaught && position >= items.size - 10) {
+            nextPageCaught = true
+            nextPageCallback.invoke()
         }
+    }
+
+    override fun onRowMoved(fromPosition: Int, toPosition: Int) {
+        itemMoved?.invoke(fromPosition, toPosition)
+    }
+
+    override fun onRowSelected(viewHolder: RecyclerView.ViewHolder) {}
+
+    override fun onRowClear(viewHolder: RecyclerView.ViewHolder) {}
+
+    override fun onRowSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        itemRemoved?.invoke(viewHolder.adapterPosition)
     }
 }
