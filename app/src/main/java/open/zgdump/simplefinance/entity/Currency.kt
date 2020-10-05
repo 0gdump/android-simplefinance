@@ -8,6 +8,6 @@ import open.zgdump.simplefinance.global.RoomTablesNames.CURRENCIES_TABLE_NAME
 data class Currency(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val name: String,
     val designation: String,
-    val name: String
 )

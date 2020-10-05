@@ -76,7 +76,7 @@
       },
       {
         "tableName": "currencies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `designation` TEXT NOT NULL, `name` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `designation` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -85,14 +85,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "designation",
-            "columnName": "designation",
+            "fieldPath": "name",
+            "columnName": "name",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "name",
-            "columnName": "name",
+            "fieldPath": "designation",
+            "columnName": "designation",
             "affinity": "TEXT",
             "notNull": true
           }
