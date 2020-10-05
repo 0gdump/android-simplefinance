@@ -11,7 +11,7 @@ import open.zgdump.simplefinance.util.android.inflate
 
 
 class CurrencyAdapterDelegate(
-    private val clickListener: (Currency) -> Unit
+    private val clickListener: (Int) -> Unit
 ) : AdapterDelegate<MutableList<Any>>() {
 
     override fun isForViewType(items: MutableList<Any>, position: Int) =
@@ -30,8 +30,7 @@ class CurrencyAdapterDelegate(
     private inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(currency: Currency) {
-            itemView.setOnClickListener { clickListener(currency) }
-
+            itemView.setOnClickListener { clickListener(adapterPosition) }
             itemView.currency.text = ("${currency.name}, ${currency.designation}")
         }
     }
