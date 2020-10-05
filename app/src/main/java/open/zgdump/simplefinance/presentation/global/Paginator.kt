@@ -4,10 +4,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
+import open.zgdump.simplefinance.util.android.swap
 
-/**
- * Created by Konstantin Tskhovrebov (aka @terrakok) on 2019-06-21.
- */
 object Paginator {
 
     sealed class State {
@@ -26,6 +24,8 @@ object Paginator {
         object LoadMore : Action()
         data class NewPage<T>(val pageNumber: Int, val items: List<T>) : Action()
         data class Update<T>(val item: T, val index: Int) : Action()
+        data class Move(val from: Int, val to: Int) : Action()
+        data class Remove(val index: Int) : Action()
         data class Insert<T>(val item: T) : Action()
         data class PageError(val error: Throwable) : Action()
     }
@@ -113,6 +113,38 @@ object Paginator {
                     state.data.toMutableList().apply { set(action.index, action.item) }
                 )
                 else -> state
+            }
+        }
+        is Action.Move -> {
+            when (state) {
+                is State.Data<*> -> State.Data(
+                    state.pageCount,
+                    state.data.toMutableList().apply { swap(action.from, action.to) }
+                )
+                is State.FullData<*> -> State.FullData(
+                    state.pageCount,
+                    state.data.toMutableList().apply { swap(action.from, action.to) }
+                )
+                else -> state
+            }
+        }
+        is Action.Remove -> {
+            if (state is State.Data<*> && state.data.size > 1) {
+                State.Data(
+                    state.pageCount,
+                    state.data.toMutableList().apply { removeAt(action.index) }
+                )
+            } else if (state is State.Data<*>) {
+                State.Empty
+            } else if (state is State.FullData<*> && state.data.size > 1) {
+                State.FullData(
+                    state.pageCount,
+                    state.data.toMutableList().apply { removeAt(action.index) }
+                )
+            } else if (state is State.FullData<*>) {
+                State.Empty
+            } else {
+                state
             }
         }
         is Action.Insert<*> -> {
