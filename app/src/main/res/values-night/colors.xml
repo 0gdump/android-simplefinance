@@ -13,4 +13,7 @@
     <color name="subhead_text">#DEffffff</color>
     <color name="subtitle_text">#55ffffff</color>
 
+    <!-- Прочее -->
+    <color name="separator">#222222</color>
+
 </resources>
