@@ -6,6 +6,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.ModalDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_currencies.*
 import kotlinx.android.synthetic.main.fragment_new_currency.view.*
@@ -15,36 +16,20 @@ import open.zgdump.simplefinance.entity.Currency
 import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenPresenter
 import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
-import open.zgdump.simplefinance.ui.global.MvpFragmentX
-import open.zgdump.simplefinance.ui.global.paginal.PaginalAdapter
+import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 
-class CurrenciesScreen : MvpFragmentX(R.layout.fragment_currencies), CurrenciesScreenView {
+class CurrenciesScreen :
+    PaginalFragment<CurrenciesScreenView, Currency>(R.layout.fragment_currencies),
+    CurrenciesScreenView {
 
-    private val presenter by moxyPresenter { CurrenciesScreenPresenter() }
+    override val mainPresenter by moxyPresenter { CurrenciesScreenPresenter() }
 
-    private val adapter by lazy {
-        PaginalAdapter(
-            { presenter.loadMore() },
-            { o, n ->
-                if (o is Currency && n is Currency)
-                    o.hashCode() == n.hashCode()
-                else
-                    false
-            },
-            CurrencyAdapterDelegate { presenter.onCurrencyClicked(it) }
-        )
-    }
+    override val adapterDelegate: AdapterDelegate<MutableList<Any>>
+        get() = CurrencyAdapterDelegate(mainPresenter::itemClicked)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        paginalRenderView.apply {
-            refreshCallback = presenter::refresh
-            fabClickCallback = presenter::onFabClicked
-            itemMoved = presenter::onMove
-            itemRemoved = presenter::onRemove
-            adapter = this@CurrenciesScreen.adapter
-        }
+        setupPaginalRenderView(paginalRenderView)
     }
 
     override fun renderPaginatorState(state: Paginator.State) {
@@ -93,7 +78,7 @@ class CurrenciesScreen : MvpFragmentX(R.layout.fragment_currencies), CurrenciesS
         dialogView: View,
         originalCurrency: Currency?
     ) {
-        presenter.currencyDialogComplete(
+        mainPresenter.currencyDialogComplete(
             originalCurrency,
             dialogView.nameEditText.text.toString(),
             dialogView.designationEditText.text.toString(),

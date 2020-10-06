@@ -1,20 +1,11 @@
 package open.zgdump.simplefinance.presentation.currencies
 
-import moxy.MvpView
-import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
 import open.zgdump.simplefinance.entity.Currency
-import open.zgdump.simplefinance.presentation.global.Paginator
+import open.zgdump.simplefinance.presentation.global.paginal.PaginalView
 
-interface CurrenciesScreenView : MvpView {
-
-    @StateStrategyType(AddToEndSingleStrategy::class)
-    fun renderPaginatorState(state: Paginator.State)
-
-    @StateStrategyType(OneExecutionStateStrategy::class)
-    fun showMessage(message: String)
-
+interface CurrenciesScreenView : PaginalView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun newCurrencyDialog(currency: Currency?)
