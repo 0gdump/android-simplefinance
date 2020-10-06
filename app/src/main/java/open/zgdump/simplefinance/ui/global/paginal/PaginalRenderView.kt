@@ -70,14 +70,13 @@ class PaginalRenderView @JvmOverloads constructor(
 
         fab.visible(a.getBoolean(R.styleable.PaginalRenderView_hasFab, true))
         fab.icon = a.getDrawable(R.styleable.PaginalRenderView_fabIcon)
-            ?: App.res.getDrawable(R.drawable.ic_add)
+            ?: App.res.getDrawable(R.drawable.ic_add, App.appContext.theme)
         fab.text = a.getString(R.styleable.PaginalRenderView_fabText)
             ?: App.res.getString(R.string.PaginalRenderView_defaultFabText)
 
         emptyView.hasRefresh = a.getBoolean(R.styleable.PaginalRenderView_hasRefresh, true)
 
         a.recycle()
-
     }
 
     private fun linkItemTouchHelper() {

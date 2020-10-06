@@ -8,7 +8,7 @@ import open.zgdump.simplefinance.ui.global.recyclerview.ItemTouchHelperContract
 class PaginalAdapter(
     private val nextPageCallback: () -> Unit,
     itemDiff: (old: Any, new: Any) -> Boolean,
-    vararg delegate: AdapterDelegate<MutableList<Any>>
+    delegate: AdapterDelegate<MutableList<Any>>
 ) : AsyncListDifferDelegationAdapter<Any>(DummyDiffItemCallback(itemDiff)),
     ItemTouchHelperContract {
 
@@ -23,7 +23,7 @@ class PaginalAdapter(
         items = mutableListOf()
 
         delegatesManager.addDelegate(ProgressAdapterDelegate())
-        delegate.forEach { delegatesManager.addDelegate(it) }
+        delegatesManager.addDelegate(delegate)
     }
 
     fun update(data: List<Any>, isPageProgress: Boolean) {

@@ -9,7 +9,7 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_currencies.*
-import kotlinx.android.synthetic.main.fragment_new_currency.view.*
+import kotlinx.android.synthetic.main.dialog_new_currency.view.*
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Currency
@@ -40,9 +40,7 @@ class CurrenciesScreen :
         Toasty.info(activity, message).show()
     }
 
-    override fun newCurrencyDialog(
-        currency: Currency?
-    ) {
+    override fun newCurrencyDialog(currency: Currency?) {
         MaterialDialog(activity, ModalDialog).show {
 
             val isEdit = currency != null
@@ -55,7 +53,7 @@ class CurrenciesScreen :
             // Содержимое
             title(title)
             customView(
-                R.layout.fragment_new_currency,
+                R.layout.dialog_new_currency,
                 scrollable = true,
                 horizontalPadding = true
             )
