@@ -14,12 +14,11 @@ class AccountsPagerAdapter(
     override fun getCount(): Int = 2
 
     override fun getItem(i: Int) = when (i) {
-        0 -> AccountScreen()
-        1 -> AccountScreen()
+        0 -> AccountScreen.create(isSaving = false)
+        1 -> AccountScreen.create(isSaving = true)
         else -> throw IllegalStateException()
     }
 
-    // FIXME Hardcoded strings
     override fun getPageTitle(position: Int) = when(position) {
         0 -> "Текущие"
         1 -> "Сберегательные"

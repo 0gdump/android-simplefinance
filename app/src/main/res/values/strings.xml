@@ -24,6 +24,10 @@
     <!-- Accounts Screen -->
     <string name="AccountScreen_totalTitle">Итого: </string>
 
+    <!-- Account Screen -->
+    <string name="AccountScreen_newCurrencyDialogTitle">Создать</string>
+    <string name="AccountScreen_editCurrencyDialogTitle">Редактировать</string>
+
     <!-- Currencies Screen -->
     <string name="CurrencyScreen_newCurrencyDialogTitle">Создать</string>
     <string name="CurrencyScreen_editCurrencyDialogTitle">Редактировать</string>
