@@ -10,6 +10,9 @@ import open.zgdump.simplefinance.global.RoomTablesNames.CURRENCIES_TABLE_NAME
 @Dao
 abstract class CurrencyDao {
 
+    @Query("SELECT * FROM $CURRENCIES_TABLE_NAME")
+    abstract suspend fun getCurrencies(): List<Currency>?
+
     @Query(
         """
         SELECT *
