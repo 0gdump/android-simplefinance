@@ -7,7 +7,6 @@ import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.Currency
 import open.zgdump.simplefinance.entity.Record
-import open.zgdump.simplefinance.repository.converter.AccountTypeConverter
 import open.zgdump.simplefinance.repository.converter.DateConverter
 import open.zgdump.simplefinance.repository.converter.OperationsTypeConverter
 import open.zgdump.simplefinance.repository.dao.AccountDao
@@ -26,7 +25,6 @@ import open.zgdump.simplefinance.repository.dao.RecordDao
 )
 @TypeConverters(
     DateConverter::class,
-    AccountTypeConverter::class,
     OperationsTypeConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {

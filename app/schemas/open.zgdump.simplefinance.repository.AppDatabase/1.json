@@ -2,12 +2,18 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "332a52652ad5e9b6deb420e07bfb764a",
+    "identityHash": "d1a410623708bd6767627a5125a51238",
     "entities": [
       {
         "tableName": "accounts",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `currency` TEXT NOT NULL, `type` TEXT NOT NULL, `closed` INTEGER NOT NULL, PRIMARY KEY(`name`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `amount` REAL NOT NULL, `currencyDesignation` TEXT NOT NULL, `isSaving` INTEGER NOT NULL, `isClosed` INTEGER NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "name",
             "columnName": "name",
@@ -15,29 +21,35 @@
             "notNull": true
           },
           {
-            "fieldPath": "currency",
-            "columnName": "currency",
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencyDesignation",
+            "columnName": "currencyDesignation",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "type",
-            "columnName": "type",
-            "affinity": "TEXT",
+            "fieldPath": "isSaving",
+            "columnName": "isSaving",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "closed",
-            "columnName": "closed",
+            "fieldPath": "isClosed",
+            "columnName": "isClosed",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "name"
+            "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -166,7 +178,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '332a52652ad5e9b6deb420e07bfb764a')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd1a410623708bd6767627a5125a51238')"
     ]
   }
 }
