@@ -11,19 +11,24 @@
             android:title="@string/navHome" />
 
         <item
-            android:id="@+id/navAccounts"
-            android:icon="@drawable/ic_wallet"
-            android:title="@string/navAccounts" />
-
-        <item
             android:id="@+id/navBudget"
             android:icon="@drawable/ic_cash"
             android:title="@string/navBudget" />
+
+        <item
+            android:id="@+id/navChart"
+            android:icon="@drawable/ic_bar_chart"
+            android:title="@string/navChart" />
     </group>
 
     <group
         android:id="@+id/navGroupMoney"
         android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navHistory"
+            android:icon="@drawable/ic_history"
+            android:title="История" />
 
         <item
             android:id="@+id/navIncome"
@@ -42,7 +47,7 @@
     </group>
 
     <group
-        android:id="@+id/navGroupOther"
+        android:id="@+id/navGroupAutomatization"
         android:checkableBehavior="single">
 
         <item
@@ -51,14 +56,19 @@
             android:title="@string/navSms" />
 
         <item
-            android:id="@+id/navChart"
-            android:icon="@drawable/ic_bar_chart"
-            android:title="@string/navChart" />
+            android:id="@+id/navWizard"
+            android:icon="@drawable/ic_star"
+            android:title="Волшебник" />
     </group>
 
     <group
-        android:id="@+id/navGroupOptions"
+        android:id="@+id/navGroupOrder"
         android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/navAccounts"
+            android:icon="@drawable/ic_wallet"
+            android:title="@string/navAccounts" />
 
         <item
             android:id="@+id/navCurrencies"
@@ -69,6 +79,11 @@
             android:id="@+id/navCategories"
             android:icon="@drawable/ic_list"
             android:title="@string/navCategories" />
+    </group>
+
+    <group
+        android:id="@+id/navGroupOther"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/navMore"
