@@ -12,6 +12,7 @@ import open.zgdump.simplefinance.ui.loans.LoansScreen
 import open.zgdump.simplefinance.ui.main.MainFlow
 import open.zgdump.simplefinance.ui.more.MoreScreen
 import open.zgdump.simplefinance.ui.sms.SmsScreen
+import open.zgdump.simplefinance.ui.unimplemented.UnimplementedScreen
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 object Screens {
@@ -72,5 +73,9 @@ object Screens {
 
     object SmsScreen : SupportAppScreen() {
         override fun getFragment() = SmsScreen()
+    }
+
+    object UnimplementedScreen : SupportAppScreen() {
+        override fun getFragment() = UnimplementedScreen()
     }
 }
