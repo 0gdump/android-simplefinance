@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.fragment_main_container.*
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.global.CiceroneNavigator
-import open.zgdump.simplefinance.global.Screens
 import open.zgdump.simplefinance.ui.global.MvpFragmentX
 
 
@@ -124,42 +123,7 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
             throw IllegalStateException()
         }
 
-        when (selectedNavigationItem!!.itemId) {
-            R.id.navHome -> {
-                App.router.navigateTo(Screens.HomeScreen)
-            }
-            R.id.navAccounts -> {
-                App.router.navigateTo(Screens.AccountsScreen)
-            }
-            R.id.navBudget -> {
-                App.router.navigateTo(Screens.BudgetScreen)
-            }
-            R.id.navIncome -> {
-                App.router.navigateTo(Screens.IncomesScreen)
-            }
-            R.id.navExpense -> {
-                App.router.navigateTo(Screens.ExpensesScreen)
-            }
-            R.id.navLoan -> {
-                App.router.navigateTo(Screens.LoansScreen)
-            }
-            R.id.navSms -> {
-                App.router.navigateTo(Screens.SmsScreen)
-            }
-            R.id.navChart -> {
-                App.router.navigateTo(Screens.ChartsScreen)
-            }
-            R.id.navCurrencies -> {
-                App.router.navigateTo(Screens.CurrenciesScreen)
-            }
-            R.id.navCategories -> {
-                App.router.navigateTo(Screens.CategoriesScreen)
-            }
-            R.id.navMore -> {
-                App.router.navigateTo(Screens.MoreScreen)
-            }
-            else -> throw IllegalArgumentException()
-        }
+        MainMenuScreens[selectedNavigationItem?.itemId]?.let { App.router.navigateTo(it) }
 
         crossFade(fragmentContainer, progressStub, false)
         needToNavigation = false
