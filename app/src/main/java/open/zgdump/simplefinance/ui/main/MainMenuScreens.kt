@@ -15,6 +15,6 @@ val MainMenuScreens = mapOf(
     R.id.navWizard to Screens.UnimplementedScreen,
     R.id.navAccounts to Screens.AccountsScreen,
     R.id.navCurrencies to Screens.CurrenciesScreen,
-    R.id.navCategories to Screens.UnimplementedScreen,
+    R.id.navCategories to Screens.CategoriesScreen,
     R.id.navMore to Screens.UnimplementedScreen,
 )
