@@ -1,30 +1,70 @@
 package open.zgdump.simplefinance.repository.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import open.zgdump.simplefinance.entity.Category
-import open.zgdump.simplefinance.global.RoomTablesNames.CATEGORIES_TABLE_NAME
+import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 
 @Dao
-interface CategoryDao {
+abstract class CategoryDao {
 
-    @Query("SELECT * FROM $CATEGORIES_TABLE_NAME")
-    suspend fun getAll(): List<Category>?
+    @Query(
+        """
+        SELECT *
+        FROM categories
+        WHERE rowid in (
+            SELECT rowid 
+            FROM categories
+            WHERE type = :type
+            LIMIT :count
+            OFFSET :offset
+        )
+        """
+    )
+    abstract suspend fun getCategories(
+        offset: Int,
+        count: Int,
+        type: FinancialTypeTransaction
+    ): List<Category>?
 
-    @Query("SELECT * FROM $CATEGORIES_TABLE_NAME WHERE name = :name")
-    suspend fun getCategory(name: String): Category?
-
-    @Query("SELECT * FROM $CATEGORIES_TABLE_NAME WHERE parent = :parent")
-    suspend fun getChildren(parent: String): List<Category>?
-
-    @Query("SELECT * FROM $CATEGORIES_TABLE_NAME WHERE parent = NULL")
-    suspend fun getRootCategories(): List<Category>?
+    @Query(
+        """
+        SELECT *
+        FROM categories
+        WHERE rowid = (
+            SELECT rowid 
+            FROM categories
+            WHERE type = :type
+            LIMIT 1
+            OFFSET :index
+        )
+    """
+    )
+    abstract suspend fun getCategory(
+        index: Int,
+        type: FinancialTypeTransaction
+    ): Category?
 
     @Insert
-    suspend fun insert(category: Category)
+    abstract suspend fun insert(currency: Category)
 
     @Update
-    suspend fun update(category: Category)
+    abstract suspend fun update(currency: Category)
 
-    @Delete
-    suspend fun delete(category: Category)
+    @Query(
+        """
+        DELETE 
+        FROM categories
+        WHERE rowid = (
+            SELECT rowid 
+            FROM categories
+            WHERE type = :type
+            LIMIT 1 
+            OFFSET :index
+        )
+    """
+    )
+    abstract fun delete(index: Int, type: FinancialTypeTransaction)
 }
