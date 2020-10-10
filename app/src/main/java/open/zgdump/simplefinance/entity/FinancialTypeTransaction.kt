@@ -1,5 +1,5 @@
 package open.zgdump.simplefinance.entity
 
-enum class OperationsType {
+enum class FinancialTypeTransaction {
     Income, Expense
 }
