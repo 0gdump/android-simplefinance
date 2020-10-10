@@ -1,15 +1,15 @@
 package open.zgdump.simplefinance.repository.converter
 
 import androidx.room.TypeConverter
-import open.zgdump.simplefinance.entity.OperationsType
+import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 
 object OperationsTypeConverter {
 
     @JvmStatic
     @TypeConverter
-    fun toOperationsType(value: String) = enumValueOf<OperationsType>(value)
+    fun toOperationsType(value: String) = enumValueOf<FinancialTypeTransaction>(value)
 
     @JvmStatic
     @TypeConverter
-    fun fromOperationsType(value: OperationsType) = value.name
+    fun fromOperationsType(value: FinancialTypeTransaction) = value.name
 }

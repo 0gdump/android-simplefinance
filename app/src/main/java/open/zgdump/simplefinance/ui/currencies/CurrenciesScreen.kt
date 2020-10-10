@@ -8,8 +8,8 @@ import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_currencies.*
 import kotlinx.android.synthetic.main.dialog_new_currency.view.*
+import kotlinx.android.synthetic.main.fragment_currencies.*
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Currency

@@ -26,8 +26,8 @@
         android:id="@+id/amountTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
         android:layout_marginTop="8dp"
+        android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
         android:text="Сумма"
@@ -37,9 +37,9 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/amountEditText"
         android:layout_width="match_parent"
-        android:inputType="number"
         android:layout_height="wrap_content"
-        android:hint="Сумма" />
+        android:hint="Сумма"
+        android:inputType="number" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/currencyTitle"

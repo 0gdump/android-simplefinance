@@ -1,8 +1,5 @@
 package open.zgdump.simplefinance.ui.global.paginal
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter

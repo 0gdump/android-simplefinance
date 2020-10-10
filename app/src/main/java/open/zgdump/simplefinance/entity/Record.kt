@@ -13,5 +13,5 @@ data class Record(
     val amount: Int,
     val date: Date,
     val comment: String,
-    val type: OperationsType
+    val type: FinancialTypeTransaction
 )

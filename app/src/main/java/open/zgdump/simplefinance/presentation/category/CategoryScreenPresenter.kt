@@ -38,7 +38,9 @@ class CategoryScreenPresenter(
     override fun itemClicked(index: Int) {
         editableCurrencyIndex = index
 
-        viewState.categoryDialog(runBlocking { App.db.categoryDao().getCategory(editableCurrencyIndex, operationsType) })
+        viewState.categoryDialog(runBlocking {
+            App.db.categoryDao().getCategory(editableCurrencyIndex, operationsType)
+        })
     }
 
     override fun provideRemove(index: Int) {

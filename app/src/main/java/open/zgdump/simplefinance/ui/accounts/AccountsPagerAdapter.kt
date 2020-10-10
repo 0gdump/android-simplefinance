@@ -19,7 +19,7 @@ class AccountsPagerAdapter(
         else -> throw IllegalStateException()
     }
 
-    override fun getPageTitle(position: Int) = when(position) {
+    override fun getPageTitle(position: Int) = when (position) {
         0 -> "Текущие"
         1 -> "Сберегательные"
         else -> throw IllegalStateException()
