@@ -35,7 +35,7 @@ class PaginalRenderView @JvmOverloads constructor(
             linkItemTouchHelper()
         }
 
-    var itemTouchHelper: ItemTouchHelper? = null
+    private var itemTouchHelper: ItemTouchHelper? = null
 
     init {
         inflate(R.layout.view_paginal_render, true)
