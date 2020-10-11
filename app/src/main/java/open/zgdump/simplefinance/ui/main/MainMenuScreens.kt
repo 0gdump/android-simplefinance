@@ -8,7 +8,7 @@ val MainMenuScreens = mapOf(
     R.id.navBudget to Screens.UnimplementedScreen,
     R.id.navChart to Screens.UnimplementedScreen,
     R.id.navHistory to Screens.UnimplementedScreen,
-    R.id.navIncome to Screens.UnimplementedScreen,
+    R.id.navIncome to Screens.IncomesScreen,
     R.id.navExpense to Screens.UnimplementedScreen,
     R.id.navLoan to Screens.UnimplementedScreen,
     R.id.navSms to Screens.UnimplementedScreen,
