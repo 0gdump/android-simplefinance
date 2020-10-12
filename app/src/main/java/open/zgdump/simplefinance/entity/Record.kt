@@ -7,11 +7,13 @@ import java.util.*
 
 @Entity(tableName = RECORDS_TABLE_NAME)
 data class Record(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
+    val date: Date,
     val account: String,
     val category: String,
-    val amount: Int,
-    val date: Date,
+    val value: Int,
+    val currencyDesignation: String,
     val comment: String,
     val type: FinancialTypeTransaction
 )
