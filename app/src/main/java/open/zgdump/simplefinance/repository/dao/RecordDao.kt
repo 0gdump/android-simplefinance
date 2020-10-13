@@ -1,24 +1,66 @@
 package open.zgdump.simplefinance.repository.dao
 
 import androidx.room.*
+import open.zgdump.simplefinance.entity.Account
+import open.zgdump.simplefinance.entity.Category
+import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.entity.Record
+import open.zgdump.simplefinance.global.RoomTablesNames
 import open.zgdump.simplefinance.global.RoomTablesNames.RECORDS_TABLE_NAME
 
 @Dao
-interface RecordDao {
+abstract class RecordDao {
 
-    @Query("SELECT * FROM $RECORDS_TABLE_NAME")
-    suspend fun getAll(): List<Record>?
+    @Query(
+        """
+        SELECT *
+        FROM records
+        WHERE rowid = (
+            SELECT rowid 
+            FROM records
+            LIMIT 1
+            OFFSET :index
+        )
+    """
+    )
+    abstract suspend fun getRecord(index: Int): Record?
 
-    @Query("SELECT * FROM $RECORDS_TABLE_NAME WHERE id = :id")
-    suspend fun getAccount(id: Long): Record?
+    @Query(
+        """
+        SELECT *
+        FROM records
+        WHERE rowid in (
+            SELECT rowid 
+            FROM records
+            WHERE type = :type
+            LIMIT :count
+            OFFSET :offset
+        )
+        """
+    )
+    abstract suspend fun getRecords(
+        offset: Int,
+        count: Int,
+        type: FinancialTypeTransaction
+    ): List<Record>?
 
     @Insert
-    suspend fun insert(record: Record)
+    abstract suspend fun insert(record: Record)
 
     @Update
-    suspend fun update(record: Record)
+    abstract suspend fun update(record: Record)
 
-    @Delete
-    suspend fun delete(record: Record)
+    @Query(
+        """
+        DELETE 
+        FROM records
+        WHERE rowid = (
+            SELECT rowid 
+            FROM records
+            LIMIT 1 
+            OFFSET :index
+        )
+    """
+    )
+    abstract fun delete(index: Int)
 }
