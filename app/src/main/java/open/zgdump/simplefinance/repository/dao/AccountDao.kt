@@ -10,6 +10,9 @@ import open.zgdump.simplefinance.global.RoomTablesNames.ACCOUNTS_TABLE_NAME
 @Dao
 abstract class AccountDao {
 
+    @Query("SELECT * FROM $ACCOUNTS_TABLE_NAME")
+    abstract suspend fun getAccounts(): List<Account>?
+
     @Query(
         """
         SELECT *

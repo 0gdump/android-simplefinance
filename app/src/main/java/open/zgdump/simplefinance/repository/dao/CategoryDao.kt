@@ -4,11 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.global.RoomTablesNames
 
 @Dao
 abstract class CategoryDao {
+
+    @Query("SELECT * FROM categories WHERE type = :type")
+    abstract suspend fun getCategories(type: FinancialTypeTransaction): List<Category>?
 
     @Query(
         """
