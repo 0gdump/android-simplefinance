@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_record.view.*
+import kotlinx.datetime.toJavaLocalDate
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.util.android.inflate
@@ -34,9 +35,9 @@ class RecordsAdapterDelegate(
 
         fun bind(record: Record) {
             itemView.container.setOnClickListener { clickListener(adapterPosition) }
-            itemView.date.text = dateFormatter.format(record.date)
+            //itemView.date.text = dateFormatter.format(record.date.toJavaLocalDate())
             itemView.comment.text = record.comment
-            itemView.category.text = record.category
+            itemView.category.text = record.categoryName
             itemView.value.text = ("${record.value} ${record.currencyDesignation}")
         }
     }
