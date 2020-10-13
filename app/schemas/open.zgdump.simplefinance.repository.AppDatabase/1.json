@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1e8467a6a8ef1730d8eb4bbcc1ae8b46",
+    "identityHash": "b489744908d67b2dfcec68f9cf2db44a",
     "entities": [
       {
         "tableName": "accounts",
@@ -120,7 +120,7 @@
       },
       {
         "tableName": "records",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER NOT NULL, `account` TEXT NOT NULL, `category` TEXT NOT NULL, `value` INTEGER NOT NULL, `currencyDesignation` TEXT NOT NULL, `comment` TEXT NOT NULL, `type` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER NOT NULL, `categoryName` TEXT NOT NULL, `categoryId` INTEGER NOT NULL, `account` TEXT NOT NULL, `accountId` INTEGER NOT NULL, `currencyDesignation` TEXT NOT NULL, `value` REAL NOT NULL, `comment` TEXT NOT NULL, `type` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -135,20 +135,26 @@
             "notNull": true
           },
           {
+            "fieldPath": "categoryName",
+            "columnName": "categoryName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoryId",
+            "columnName": "categoryId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "account",
             "columnName": "account",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "category",
-            "columnName": "category",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "value",
-            "columnName": "value",
+            "fieldPath": "accountId",
+            "columnName": "accountId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -156,6 +162,12 @@
             "fieldPath": "currencyDesignation",
             "columnName": "currencyDesignation",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "REAL",
             "notNull": true
           },
           {
@@ -184,7 +196,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1e8467a6a8ef1730d8eb4bbcc1ae8b46')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b489744908d67b2dfcec68f9cf2db44a')"
     ]
   }
 }

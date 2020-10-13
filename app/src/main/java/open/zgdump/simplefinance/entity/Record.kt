@@ -2,6 +2,7 @@ package open.zgdump.simplefinance.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.global.RoomTablesNames.RECORDS_TABLE_NAME
 import java.util.*
 
@@ -9,11 +10,13 @@ import java.util.*
 data class Record(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    val date: Date,
+    val date: LocalDate,
+    val categoryName: String,
+    val categoryId: Int,
     val account: String,
-    val category: String,
-    val value: Int,
+    val accountId: Int,
     val currencyDesignation: String,
+    val value: Float,
     val comment: String,
     val type: FinancialTypeTransaction
 )
