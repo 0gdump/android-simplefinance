@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.global.RoomTablesNames.RECORDS_TABLE_NAME
-import java.util.*
 
 @Entity(tableName = RECORDS_TABLE_NAME)
 data class Record(

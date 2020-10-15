@@ -18,11 +18,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nameEditText"
+        style="@style/TextHeadline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="00.00.00"
-        style="@style/TextHeadline"
-        android:padding="2dp"/>
+        android:padding="2dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/categoryTitle"
