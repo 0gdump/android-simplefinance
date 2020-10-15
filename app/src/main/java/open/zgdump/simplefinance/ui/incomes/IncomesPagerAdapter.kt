@@ -1,8 +1,10 @@
 package open.zgdump.simplefinance.ui.incomes
 
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import open.zgdump.simplefinance.ui.records.RecordsScreen
+import open.zgdump.simplefinance.ui.records.range.RecordsScreen
+import open.zgdump.simplefinance.ui.records.sum_per_day.SumOfRecordsPerDayScreen
 
 class IncomesPagerAdapter(
     fm: FragmentManager
@@ -10,9 +12,9 @@ class IncomesPagerAdapter(
 
     override fun getCount(): Int = 3
 
-    override fun getItem(i: Int) = when (i) {
+    override fun getItem(i: Int): Fragment = when (i) {
         0 -> RecordsScreen()
-        1 -> RecordsScreen()
+        1 -> SumOfRecordsPerDayScreen()
         2 -> RecordsScreen()
         else -> throw IllegalStateException()
     }
