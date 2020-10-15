@@ -1,11 +1,14 @@
-package open.zgdump.simplefinance.ui.records
+package open.zgdump.simplefinance.ui.records.range
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_record.view.*
-import kotlinx.datetime.toJavaLocalDate
+import kotlinx.android.synthetic.main.item_record.view.container
+import kotlinx.android.synthetic.main.item_record.view.date
+import kotlinx.android.synthetic.main.item_record.view.value
+import kotlinx.android.synthetic.main.item_sum_of_records_per_day.view.*
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.util.android.inflate
@@ -35,7 +38,7 @@ class RecordsAdapterDelegate(
 
         fun bind(record: Record) {
             itemView.container.setOnClickListener { clickListener(adapterPosition) }
-            //itemView.date.text = dateFormatter.format(record.date.toJavaLocalDate())
+            itemView.date.text = record.date.run { "$dayOfMonth.$monthNumber.${year % 100}" }
             itemView.comment.text = record.comment
             itemView.category.text = record.categoryName
             itemView.value.text = ("${record.value} ${record.currencyDesignation}")

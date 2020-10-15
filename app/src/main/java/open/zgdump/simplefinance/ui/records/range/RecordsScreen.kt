@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.records
+package open.zgdump.simplefinance.ui.records.range
 
 import android.os.Bundle
 import android.view.View
@@ -21,8 +21,8 @@ import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.presentation.global.Paginator
-import open.zgdump.simplefinance.presentation.records.RecordsScreenPresenter
-import open.zgdump.simplefinance.presentation.records.RecordsScreenView
+import open.zgdump.simplefinance.presentation.records.range.RecordsScreenPresenter
+import open.zgdump.simplefinance.presentation.records.range.RecordsScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 
 class RecordsScreen :
