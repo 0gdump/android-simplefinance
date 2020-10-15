@@ -1,6 +1,7 @@
 package open.zgdump.simplefinance.repository.dao
 
 import androidx.room.*
+import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
@@ -41,6 +42,27 @@ abstract class RecordDao {
     abstract suspend fun getRecords(
         offset: Int,
         count: Int,
+        type: FinancialTypeTransaction
+    ): List<Record>?
+
+    @Query(
+        """
+        SELECT *
+        FROM records
+        WHERE rowid in (
+            SELECT rowid 
+            FROM records
+            WHERE type = :type AND date >= :minDate AND date <= :maxDate
+            LIMIT :count
+            OFFSET :offset
+        )
+        """
+    )
+    abstract suspend fun getRecords(
+        offset: Int,
+        count: Int,
+        minDate: LocalDate,
+        maxDate: LocalDate,
         type: FinancialTypeTransaction
     ): List<Record>?
 
