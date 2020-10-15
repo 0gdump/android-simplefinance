@@ -1,8 +1,9 @@
 package open.zgdump.simplefinance
 
-import android.app.Application
 import android.content.Context
 import android.content.res.Resources
+import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
 import androidx.room.Room
 import com.cioccarellia.ksprefs.KsPrefs
 import open.zgdump.simplefinance.repository.AppDatabase
@@ -12,7 +13,7 @@ import ru.terrakok.cicerone.Router
 import timber.log.Timber
 
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     companion object {
 
@@ -52,6 +53,11 @@ class App : Application() {
 
         var db: AppDatabase by initOnce()
             private set
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        MultiDex.install(this)
+        super.attachBaseContext(base)
     }
 
     override fun onCreate() {
