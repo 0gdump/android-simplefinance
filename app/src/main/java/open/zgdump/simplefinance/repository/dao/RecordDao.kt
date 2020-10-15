@@ -7,6 +7,7 @@ import androidx.room.Update
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.entity.Record
+import open.zgdump.simplefinance.entity.SumOfRecordsPerCategory
 import open.zgdump.simplefinance.entity.SumOfRecordsPerDay
 
 @Dao
@@ -39,6 +40,35 @@ abstract class RecordDao {
         maxDate: LocalDate,
         type: FinancialTypeTransaction
     ): List<SumOfRecordsPerDay>?
+
+    @Query(
+        """
+        SELECT 
+            SUM(value) as sum,
+            currencyDesignation,
+            categoryId,
+            categoryName
+        FROM
+            records
+        WHERE 
+            type = :type AND 
+            date >= :minDate AND 
+            date <= :maxDate
+        GROUP BY
+            categoryId
+        LIMIT
+            :count
+        OFFSET
+            :offset
+        """
+    )
+    abstract suspend fun getSumOfRecordsPerCategories(
+        offset: Int,
+        count: Int,
+        minDate: LocalDate,
+        maxDate: LocalDate,
+        type: FinancialTypeTransaction
+    ): List<SumOfRecordsPerCategory>?
 
     @Query(
         """
