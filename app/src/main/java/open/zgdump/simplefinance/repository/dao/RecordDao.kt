@@ -1,16 +1,44 @@
 package open.zgdump.simplefinance.repository.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 import kotlinx.datetime.LocalDate
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.entity.Record
-import open.zgdump.simplefinance.global.RoomTablesNames
-import open.zgdump.simplefinance.global.RoomTablesNames.RECORDS_TABLE_NAME
+import open.zgdump.simplefinance.entity.SumOfRecordsPerDay
 
 @Dao
 abstract class RecordDao {
+
+    @Query(
+        """
+        SELECT 
+            SUM(value) as sum,
+            date,
+            currencyDesignation
+        FROM
+            records
+        WHERE 
+            type = :type AND 
+            date >= :minDate AND 
+            date <= :maxDate
+        GROUP BY
+            date
+        LIMIT
+            :count
+        OFFSET
+            :offset
+        """
+    )
+    abstract suspend fun getSumOfRecordsPerDays(
+        offset: Int,
+        count: Int,
+        minDate: LocalDate,
+        maxDate: LocalDate,
+        type: FinancialTypeTransaction
+    ): List<SumOfRecordsPerDay>?
 
     @Query(
         """
