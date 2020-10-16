@@ -1,7 +1,5 @@
 package open.zgdump.simplefinance.ui.main
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -10,13 +8,21 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_main_container.*
+import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.global.CiceroneNavigator
+import open.zgdump.simplefinance.presentation.main.MainFlowPresenter
+import open.zgdump.simplefinance.presentation.main.MainFlowView
 import open.zgdump.simplefinance.ui.global.MvpFragmentX
+import open.zgdump.simplefinance.util.android.DrawerListener
+import open.zgdump.simplefinance.util.android.crossFade
 
 
-class MainFlow : MvpFragmentX(R.layout.fragment_main) {
+class MainFlow : MvpFragmentX(R.layout.fragment_main), MainFlowView {
+
+    private val presenter by moxyPresenter { MainFlowPresenter() }
+    private val navigator by lazy { CiceroneNavigator(activity, R.id.fragmentContainer) }
 
     private val defaultNavigationItem = R.id.navCategories
 
@@ -28,12 +34,7 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
             field = value
         }
 
-    private val drawerListener = object : DrawerLayout.DrawerListener {
-
-        override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
-        override fun onDrawerOpened(drawerView: View) {}
-        override fun onDrawerStateChanged(newState: Int) {}
-
+    private val drawerListener = object : DrawerListener() {
         override fun onDrawerClosed(drawerView: View) {
             if (needToNavigation) {
                 navigateToSelected()
@@ -41,34 +42,23 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
         }
     }
 
-    private var coldStart = true
-    private val navigator by lazy {
-        CiceroneNavigator(activity, R.id.fragmentContainer)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        coldStart = savedInstanceState == null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         drawerLayout.addDrawerListener(drawerListener)
-        navigationView.setNavigationItemSelectedListener {
-            navigationItemSelectedListener(it)
-            true
-        }
+        navigationView.setNavigationItemSelectedListener(::navigationItemSelectedListener)
     }
 
     override fun onResume() {
         super.onResume()
 
-        App.navigationHolder.setNavigator(navigator)
-
-        setupNavigation()
         setupToolbar()
+        App.navigationHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
         super.onPause()
+
         activity.setSupportActionBar(null)
         App.navigationHolder.removeNavigator()
     }
@@ -87,20 +77,19 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
         }
     }
 
-    private fun setupNavigation() {
-        if (coldStart) {
-            navigationView.post {
-                navigationView.setCheckedItem(defaultNavigationItem)
-                startNavigationWith(navigationView.menu.findItem(defaultNavigationItem))
-                navigateToSelected()
-            }
+    override fun setupNavigation() {
+        navigationView.post {
+            navigationView.setCheckedItem(defaultNavigationItem)
+            startNavigationWith(navigationView.menu.findItem(defaultNavigationItem))
+            navigateToSelected()
         }
     }
 
-    private fun navigationItemSelectedListener(menuItem: MenuItem) {
-        // Навигация произойдёт после закрытия drawer внутри drawerListener
+    // Navigation will occur after closing drawer inside drawerListener
+    private fun navigationItemSelectedListener(menuItem: MenuItem): Boolean {
         startNavigationWith(menuItem)
         drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 
     private fun startNavigationWith(menuItem: MenuItem) {
@@ -127,36 +116,5 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main) {
 
         crossFade(fragmentContainer, progressStub, false)
         needToNavigation = false
-    }
-
-    // From: https://stackoverflow.com/questions/36351141/
-    private fun crossFade(viewIn: View, viewOut: View, animateViewOut: Boolean = true) {
-        val crossFadeDuration = 200L
-
-        // Set the content view to 0% opacity but visible, so that it is visible
-        // (but fully transparent) during the animation.
-        viewIn.alpha = 0f
-        viewIn.visibility = View.VISIBLE
-        viewIn.bringToFront()
-
-        // Animate the in view to 100% opacity, and clear any animation
-        // listener set on the view.
-        viewIn.animate()
-            .alpha(1f)
-            .setDuration(crossFadeDuration)
-            .setListener(null)
-
-        // Animate the out view to 0% opacity. After the animation ends,
-        // set its visibility to GONE as an optimization step (it won't
-        // participate in layout passes, etc.)
-        viewOut.animate()
-            .alpha(0f)
-            .setDuration(if (animateViewOut) crossFadeDuration else 0)
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    viewOut.visibility = View.GONE
-                }
-            })
-
     }
 }
