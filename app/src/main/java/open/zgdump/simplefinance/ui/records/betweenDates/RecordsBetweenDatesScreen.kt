@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.records.range
+package open.zgdump.simplefinance.ui.records.betweenDates
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +10,7 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.dialog_new_record.view.*
-import kotlinx.android.synthetic.main.fragment_records.*
+import kotlinx.android.synthetic.main.fragment_records_per_range.*
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone.Companion.currentSystemDefault
 import kotlinx.datetime.todayAt
@@ -25,16 +25,17 @@ import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetwee
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 
-class RecordsScreen :
-    PaginalFragment<RecordsBetweenDatesScreenView, Record>(R.layout.fragment_records),
+class RecordsBetweenDatesScreen(
+    financialType: FinancialTypeTransaction
+) : PaginalFragment<RecordsBetweenDatesScreenView, Record>(R.layout.fragment_records_per_range),
     RecordsBetweenDatesScreenView {
 
     override val mainPresenter by moxyPresenter {
-        RecordsBetweenDatesScreenPresenter(FinancialTypeTransaction.Income)
+        RecordsBetweenDatesScreenPresenter(financialType)
     }
 
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>
-        get() = RecordsAdapterDelegate(mainPresenter::itemClicked)
+        get() = RecordsBetweenDatesScreenAdapterDelegate(mainPresenter::itemClicked)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

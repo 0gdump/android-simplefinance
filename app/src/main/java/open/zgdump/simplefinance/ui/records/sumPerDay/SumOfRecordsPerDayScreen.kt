@@ -10,7 +10,7 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.dialog_new_record.view.*
-import kotlinx.android.synthetic.main.fragment_records.*
+import kotlinx.android.synthetic.main.fragment_sum_of_records_per_day.*
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone.Companion.currentSystemDefault
 import kotlinx.datetime.todayAt
@@ -22,12 +22,13 @@ import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerD
 import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 
-class SumOfRecordsPerDayScreen :
-    PaginalFragment<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>(R.layout.fragment_records),
+class SumOfRecordsPerDayScreen(
+    financialType: FinancialTypeTransaction
+) : PaginalFragment<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>(R.layout.fragment_records_per_range),
     SumOfRecordsPerDayScreenView {
 
     override val mainPresenter by moxyPresenter {
-        SumOfRecordsPerDayScreenPresenter(FinancialTypeTransaction.Income)
+        SumOfRecordsPerDayScreenPresenter(financialType)
     }
 
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>

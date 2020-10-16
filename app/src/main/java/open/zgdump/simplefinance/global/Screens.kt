@@ -1,16 +1,16 @@
 package open.zgdump.simplefinance.global
 
+import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.ui.accounts.AccountsScreen
 import open.zgdump.simplefinance.ui.budget.BudgetScreen
 import open.zgdump.simplefinance.ui.categories.CategoriesScreen
 import open.zgdump.simplefinance.ui.charts.ChartsScreen
 import open.zgdump.simplefinance.ui.currencies.CurrenciesScreen
-import open.zgdump.simplefinance.ui.expenses.ExpensesScreen
 import open.zgdump.simplefinance.ui.home.HomeScreen
-import open.zgdump.simplefinance.ui.incomes.IncomesScreen
 import open.zgdump.simplefinance.ui.loans.LoansScreen
 import open.zgdump.simplefinance.ui.main.MainFlow
 import open.zgdump.simplefinance.ui.more.MoreScreen
+import open.zgdump.simplefinance.ui.records.RecordsScreen
 import open.zgdump.simplefinance.ui.sms.SmsScreen
 import open.zgdump.simplefinance.ui.unimplemented.UnimplementedScreen
 import ru.terrakok.cicerone.android.support.SupportAppScreen
@@ -47,7 +47,7 @@ object Screens {
 
 
     object ExpensesScreen : SupportAppScreen() {
-        override fun getFragment() = ExpensesScreen()
+        override fun getFragment() = RecordsScreen(FinancialTypeTransaction.Expense)
     }
 
 
@@ -57,7 +57,7 @@ object Screens {
 
 
     object IncomesScreen : SupportAppScreen() {
-        override fun getFragment() = IncomesScreen()
+        override fun getFragment() = RecordsScreen(FinancialTypeTransaction.Income)
     }
 
 

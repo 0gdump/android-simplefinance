@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.records.range
+package open.zgdump.simplefinance.ui.records.betweenDates
 
 import android.view.View
 import android.view.ViewGroup
@@ -8,14 +8,13 @@ import kotlinx.android.synthetic.main.item_record.view.*
 import kotlinx.android.synthetic.main.item_record.view.container
 import kotlinx.android.synthetic.main.item_record.view.date
 import kotlinx.android.synthetic.main.item_record.view.value
-import kotlinx.android.synthetic.main.item_sum_of_records_per_day.view.*
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.util.android.inflate
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RecordsAdapterDelegate(
+class RecordsBetweenDatesScreenAdapterDelegate(
     private val clickListener: (Int) -> Unit
 ) : AdapterDelegate<MutableList<Any>>() {
 
