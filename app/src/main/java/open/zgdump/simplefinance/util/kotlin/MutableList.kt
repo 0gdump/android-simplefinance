@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.util.android
+package open.zgdump.simplefinance.util.kotlin
 
 fun <T> MutableList<T>.swap(fromPosition: Int, toPosition: Int) {
     val item = this[fromPosition]

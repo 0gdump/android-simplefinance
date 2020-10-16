@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
-import open.zgdump.simplefinance.util.android.swap
+import open.zgdump.simplefinance.util.kotlin.swap
 
 object Paginator {
 
