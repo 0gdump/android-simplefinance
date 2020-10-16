@@ -9,7 +9,6 @@ import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 
 class CurrenciesScreenPresenter : PaginalPresenter<CurrenciesScreenView, Currency>() {
 
-    private val pageSize = 10
     private var editableCurrencyIndex = -1
 
     override fun diffItems(old: Any, new: Any): Boolean {

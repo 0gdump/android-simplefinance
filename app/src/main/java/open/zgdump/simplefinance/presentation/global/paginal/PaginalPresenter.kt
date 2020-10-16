@@ -10,7 +10,8 @@ import timber.log.Timber
 
 abstract class PaginalPresenter<V : PaginalView, D> : MvpPresenterX<V>() {
 
-    protected val paginator = Paginator.Store<D>()
+    protected open val pageSize = 10
+    protected val paginator by lazy { Paginator.Store<D>(pageSize) }
 
     init {
         paginator.render = viewState::renderPaginatorState
@@ -50,7 +51,7 @@ abstract class PaginalPresenter<V : PaginalView, D> : MvpPresenterX<V>() {
 
     fun move(from: Int, to: Int) {
         Timber.e("Unimplemented")
-        // launch(Dispatchers.IO) {  provideMove(from, to)  }
+        //launch(Dispatchers.IO) {  provideMove(from, to)  }
         //paginator.proceed(Paginator.Action.Move(from, to))
     }
 

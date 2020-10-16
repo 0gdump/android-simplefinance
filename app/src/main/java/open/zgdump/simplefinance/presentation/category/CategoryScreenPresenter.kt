@@ -13,7 +13,6 @@ class CategoryScreenPresenter(
     private val operationsType: FinancialTypeTransaction
 ) : PaginalPresenter<CategoryScreenView, Category>() {
 
-    private val pageSize = 10
     private var editableCurrencyIndex = -1
 
     override fun diffItems(old: Any, new: Any): Boolean {

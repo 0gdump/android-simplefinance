@@ -16,7 +16,6 @@ class RecordsBetweenDatesScreenPresenter(
     private val type: FinancialTypeTransaction
 ) : PaginalPresenter<RecordsBetweenDatesScreenView, Record>() {
 
-    private val pageSize = 10
     private var editableCurrencyIndex = -1
 
     override fun diffItems(old: Any, new: Any): Boolean {
