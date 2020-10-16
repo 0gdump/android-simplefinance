@@ -21,6 +21,8 @@ import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenPresenter
 import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
+import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
+import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class SumOfRecordsPerDayScreen(
     financialType: FinancialTypeTransaction
@@ -32,10 +34,10 @@ class SumOfRecordsPerDayScreen(
     }
 
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>
-        get() = SumOfRecordsPerDayAdapterDelegate(mainPresenter::itemClicked)
+        get() = SumOfRecordsPerDayScreenAdapterDelegate(mainPresenter::itemClicked)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupPaginalRenderView(paginalRenderView)
     }
 

@@ -8,7 +8,9 @@ import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.presentation.records.RecordsScreenPresenter
 import open.zgdump.simplefinance.presentation.records.RecordsScreenView
+import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
 import open.zgdump.simplefinance.ui.global.MvpFragmentX
+import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class RecordsScreen(
     private val financialType: FinancialTypeTransaction

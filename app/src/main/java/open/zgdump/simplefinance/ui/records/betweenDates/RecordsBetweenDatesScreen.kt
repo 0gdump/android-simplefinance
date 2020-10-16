@@ -24,6 +24,8 @@ import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenPresenter
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
+import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
+import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class RecordsBetweenDatesScreen(
     financialType: FinancialTypeTransaction
@@ -37,8 +39,8 @@ class RecordsBetweenDatesScreen(
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>
         get() = RecordsBetweenDatesScreenAdapterDelegate(mainPresenter::itemClicked)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupPaginalRenderView(paginalRenderView)
     }
 
@@ -105,7 +107,7 @@ class RecordsBetweenDatesScreen(
         originalRecord,
         Clock.System.todayAt(currentSystemDefault()),
         categories[dialogView.categorySpinner.selectedItemPosition],
-        accounts[dialogView.categorySpinner.selectedItemPosition],
+        accounts[dialogView.accountSpinner.selectedItemPosition],
         dialogView.valueEditText.text.toString().toFloat(),
         dialogView.commentEditText.text.toString()
     )
