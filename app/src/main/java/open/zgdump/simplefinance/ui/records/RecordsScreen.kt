@@ -15,10 +15,14 @@ class RecordsScreen(
 ) : MvpFragmentX(R.layout.fragment_records),
     RecordsScreenView {
 
-    private val presenter by moxyPresenter { RecordsScreenPresenter() }
+    private val presenter by moxyPresenter { RecordsScreenPresenter(financialType) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         tabLayout.setupWithViewPager(viewPager)
         viewPager.adapter = RecordsScreenPagerAdapter(childFragmentManager, financialType)
+    }
+
+    override fun showSumOfRecords(sum: Float) {
+        monthTotalSum.text = sum.toString()
     }
 }

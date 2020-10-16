@@ -21,23 +21,36 @@
         android:layout_height="wrap_content"
         android:text="Январь 1970"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@id/monthTotal"
+        app:layout_constraintBottom_toTopOf="@id/monthTotalTitle"
         app:layout_constraintEnd_toStartOf="@id/navigateToNextMonth"
         app:layout_constraintStart_toEndOf="@id/navigateToPrevMonth"
         app:layout_constraintTop_toTopOf="@id/navigateToNextMonth" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/monthTotal"
+        android:id="@+id/monthTotalTitle"
         style="@style/TextSubtitle"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Итого: 0.0"
-        android:textAlignment="center"
+        android:text="Итого:"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="@id/navigateToPrevMonth"
-        app:layout_constraintEnd_toStartOf="@+id/navigateToNextMonth"
+        app:layout_constraintEnd_toStartOf="@+id/monthTotalSum"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/navigateToPrevMonth"
         app:layout_constraintTop_toBottomOf="@+id/dateTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/monthTotalSum"
+        style="@style/TextSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.0"
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/monthTotalTitle"
+        app:layout_constraintEnd_toStartOf="@+id/navigateToNextMonth"
+        app:layout_constraintStart_toEndOf="@id/monthTotalTitle"
+        app:layout_constraintTop_toTopOf="@+id/monthTotalTitle" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/navigateToNextMonth"
@@ -57,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/monthTotal">
+        app:layout_constraintTop_toBottomOf="@id/monthTotalTitle">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

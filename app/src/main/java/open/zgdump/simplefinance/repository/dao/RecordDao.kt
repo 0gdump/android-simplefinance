@@ -16,6 +16,24 @@ abstract class RecordDao {
     @Query(
         """
         SELECT 
+            SUM(value)
+        FROM
+            records
+        WHERE 
+            type = :type AND
+            date >= :minDate AND
+            date <= :maxDate
+        """
+    )
+    abstract suspend fun getSumOfRecords(
+        minDate: LocalDate,
+        maxDate: LocalDate,
+        type: FinancialTypeTransaction
+    ): Float?
+
+    @Query(
+        """
+        SELECT 
             SUM(value) as sum,
             date,
             currencyDesignation
