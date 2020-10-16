@@ -1,20 +1,17 @@
-package open.zgdump.simplefinance.presentation.records.range
+package open.zgdump.simplefinance.presentation.records.sumPerCategory
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.Category
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
-import open.zgdump.simplefinance.entity.Record
+import open.zgdump.simplefinance.entity.*
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 
-class RecordsScreenPresenter(
+class SumOfRecordsPerCategoryScreenPresenter(
     private val type: FinancialTypeTransaction
-) : PaginalPresenter<RecordsScreenView, Record>() {
+) : PaginalPresenter<SumOfRecordsPerCategoryScreenView, SumOfRecordsPerCategory>() {
 
     private val pageSize = 10
     private var editableCurrencyIndex = -1
@@ -23,10 +20,12 @@ class RecordsScreenPresenter(
         return true
     }
 
-    override suspend fun loadPage(page: Int): List<Record> {
-        return App.db.recordDao().getRecords(
+    override suspend fun loadPage(page: Int): List<SumOfRecordsPerCategory> {
+        return App.db.recordDao().getSumOfRecordsPerCategories(
             pageSize * (page - 1),
             pageSize,
+            LocalDate(2020, 10, 1),
+            LocalDate(2020, 10, 30),
             type
         ) ?: emptyList()
     }

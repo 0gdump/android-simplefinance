@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.records.sum_per_day
+package open.zgdump.simplefinance.ui.records.sumPerDay
 
 import android.view.View
 import android.view.ViewGroup

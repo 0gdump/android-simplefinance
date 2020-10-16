@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import open.zgdump.simplefinance.ui.records.range.RecordsScreen
-import open.zgdump.simplefinance.ui.records.sum_per_category.SumOfRecordsPerCategoryScreen
-import open.zgdump.simplefinance.ui.records.sum_per_day.SumOfRecordsPerDayScreen
+import open.zgdump.simplefinance.ui.records.sumPerCategory.SumOfRecordsPerCategoryScreen
+import open.zgdump.simplefinance.ui.records.sumPerDay.SumOfRecordsPerDayScreen
 
 class IncomesPagerAdapter(
     fm: FragmentManager

@@ -21,16 +21,16 @@ import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.presentation.global.Paginator
-import open.zgdump.simplefinance.presentation.records.range.RecordsScreenPresenter
-import open.zgdump.simplefinance.presentation.records.range.RecordsScreenView
+import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenPresenter
+import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 
 class RecordsScreen :
-    PaginalFragment<RecordsScreenView, Record>(R.layout.fragment_records),
-    RecordsScreenView {
+    PaginalFragment<RecordsBetweenDatesScreenView, Record>(R.layout.fragment_records),
+    RecordsBetweenDatesScreenView {
 
     override val mainPresenter by moxyPresenter {
-        RecordsScreenPresenter(FinancialTypeTransaction.Income)
+        RecordsBetweenDatesScreenPresenter(FinancialTypeTransaction.Income)
     }
 
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>

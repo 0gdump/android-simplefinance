@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.records.sum_per_category
+package open.zgdump.simplefinance.ui.records.sumPerCategory
 
 import android.os.Bundle
 import android.view.View
@@ -18,8 +18,8 @@ import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.*
 import open.zgdump.simplefinance.presentation.global.Paginator
-import open.zgdump.simplefinance.presentation.records.sum_per_category.SumOfRecordsPerCategoryScreenPresenter
-import open.zgdump.simplefinance.presentation.records.sum_per_category.SumOfRecordsPerCategoryScreenView
+import open.zgdump.simplefinance.presentation.records.sumPerCategory.SumOfRecordsPerCategoryScreenPresenter
+import open.zgdump.simplefinance.presentation.records.sumPerCategory.SumOfRecordsPerCategoryScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 
 class SumOfRecordsPerCategoryScreen :

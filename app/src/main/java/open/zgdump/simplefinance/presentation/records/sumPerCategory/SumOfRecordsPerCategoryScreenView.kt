@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.presentation.records.sum_per_day
+package open.zgdump.simplefinance.presentation.records.sumPerCategory
 
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType
@@ -7,7 +7,7 @@ import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalView
 
-interface SumOfRecordsPerDayScreenView : PaginalView {
+interface SumOfRecordsPerCategoryScreenView : PaginalView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun newRecordDialog(

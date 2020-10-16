@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.records.sum_per_category
+package open.zgdump.simplefinance.ui.records.sumPerCategory
 
 import android.view.View
 import android.view.ViewGroup

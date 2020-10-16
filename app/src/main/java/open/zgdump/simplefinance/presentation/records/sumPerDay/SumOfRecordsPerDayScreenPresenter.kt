@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.presentation.records.sum_per_day
+package open.zgdump.simplefinance.presentation.records.sumPerDay
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

@@ -1,18 +1,20 @@
-package open.zgdump.simplefinance.presentation.records.sum_per_category
+package open.zgdump.simplefinance.presentation.records.betweenDates
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.*
+import open.zgdump.simplefinance.entity.Account
+import open.zgdump.simplefinance.entity.Category
+import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
-import open.zgdump.simplefinance.presentation.records.sum_per_category.SumOfRecordsPerCategoryScreenView
 
-class SumOfRecordsPerCategoryScreenPresenter(
+class RecordsBetweenDatesScreenPresenter(
     private val type: FinancialTypeTransaction
-) : PaginalPresenter<SumOfRecordsPerCategoryScreenView, SumOfRecordsPerCategory>() {
+) : PaginalPresenter<RecordsBetweenDatesScreenView, Record>() {
 
     private val pageSize = 10
     private var editableCurrencyIndex = -1
@@ -21,12 +23,10 @@ class SumOfRecordsPerCategoryScreenPresenter(
         return true
     }
 
-    override suspend fun loadPage(page: Int): List<SumOfRecordsPerCategory> {
-        return App.db.recordDao().getSumOfRecordsPerCategories(
+    override suspend fun loadPage(page: Int): List<Record> {
+        return App.db.recordDao().getRecords(
             pageSize * (page - 1),
             pageSize,
-            LocalDate(2020, 10, 1),
-            LocalDate(2020, 10, 30),
             type
         ) ?: emptyList()
     }

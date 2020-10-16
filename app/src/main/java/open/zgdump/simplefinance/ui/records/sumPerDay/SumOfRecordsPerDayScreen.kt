@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.records.sum_per_day
+package open.zgdump.simplefinance.ui.records.sumPerDay
 
 import android.os.Bundle
 import android.view.View
@@ -18,8 +18,8 @@ import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.*
 import open.zgdump.simplefinance.presentation.global.Paginator
-import open.zgdump.simplefinance.presentation.records.sum_per_day.SumOfRecordsPerDayScreenPresenter
-import open.zgdump.simplefinance.presentation.records.sum_per_day.SumOfRecordsPerDayScreenView
+import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenPresenter
+import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 
 class SumOfRecordsPerDayScreen :
