@@ -8,12 +8,29 @@ import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.entity.*
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
+import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
+import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class SumOfRecordsPerDayScreenPresenter(
     private val type: FinancialTypeTransaction
-) : PaginalPresenter<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>() {
+) : PaginalPresenter<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>(),
+    Observer {
 
     private var editableCurrencyIndex = -1
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        RecordsUpdatedObservable.observers.add(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        RecordsUpdatedObservable.observers.remove(this)
+    }
+
+    override fun observableUpdated() {
+        refresh()
+    }
 
     override fun diffItems(old: Any, new: Any): Boolean {
         return true
@@ -88,5 +105,7 @@ class SumOfRecordsPerDayScreenPresenter(
             launch { App.db.recordDao().update(record) }
             paginator.proceed(Paginator.Action.Update(record, editableCurrencyIndex))
         }
+
+        RecordsUpdatedObservable.recordsUpdated(this)
     }
 }

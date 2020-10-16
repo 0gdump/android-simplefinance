@@ -5,14 +5,22 @@ import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.presentation.global.MvpPresenterX
+import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class RecordsScreenPresenter(
     private val type: FinancialTypeTransaction
-) : MvpPresenterX<RecordsScreenView>() {
+) : MvpPresenterX<RecordsScreenView>(),
+    Observer {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        RecordsUpdatedObservable.observers.add(this)
         showTotalSum()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        RecordsUpdatedObservable.observers.remove(this)
     }
 
     private fun showTotalSum() {
@@ -23,5 +31,9 @@ class RecordsScreenPresenter(
                 type
             ) ?: 0.0f
         })
+    }
+
+    override fun observableUpdated() {
+        showTotalSum()
     }
 }
