@@ -82,7 +82,7 @@ class AccountScreen :
             // Настройка содержимого
             getCustomView().apply {
                 nameEditText.setText(account?.name ?: "")
-                amountEditText.setText(account?.amount?.toString() ?: 0.0.toString())
+                amountEditText.setText(account?.value?.toString() ?: 0.0.toString())
                 currencySpinner.adapter = ArrayAdapter(
                     requireContext(),
                     android.R.layout.simple_spinner_dropdown_item,

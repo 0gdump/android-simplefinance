@@ -1,10 +1,8 @@
 package open.zgdump.simplefinance.repository.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import kotlinx.datetime.LocalDate
+import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.entity.SumOfRecordsPerCategory
@@ -143,10 +141,22 @@ abstract class RecordDao {
     ): List<Record>?
 
     @Insert
-    abstract suspend fun insert(record: Record)
+    abstract suspend fun rawInsert(record: Record)
+
+    @Transaction
+    open suspend fun insert(record: Record) {
+        rawInsert(record)
+        App.db.accountDao().updateValueForAccountById(record.accountId)
+    }
 
     @Update
-    abstract suspend fun update(record: Record)
+    abstract suspend fun rawUpdate(record: Record)
+
+    @Transaction
+    open suspend fun update(record: Record) {
+        rawUpdate(record)
+        App.db.accountDao().updateValueForAccountById(record.accountId)
+    }
 
     @Query(
         """

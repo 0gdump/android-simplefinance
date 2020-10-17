@@ -9,7 +9,7 @@ data class Account(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val amount: Float,
+    val value: Float,
     val currencyDesignation: String,
     val isSaving: Boolean,
     val isClosed: Boolean

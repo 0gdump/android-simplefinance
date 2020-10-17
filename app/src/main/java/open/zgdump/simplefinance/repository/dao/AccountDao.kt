@@ -50,6 +50,25 @@ abstract class AccountDao {
         isSaving: Boolean
     ): Account?
 
+    @Query(
+        """
+        UPDATE
+            accounts
+        SET
+            value = value + (
+                SELECT
+                    SUM(value)
+                FROM
+                    records
+                WHERE
+                    accountId = :accountId
+            )
+        WHERE
+            id = :accountId
+        """
+    )
+    abstract suspend fun updateValueForAccountById(accountId: Int): Int
+
     @Insert
     abstract suspend fun insert(currency: Account)
 

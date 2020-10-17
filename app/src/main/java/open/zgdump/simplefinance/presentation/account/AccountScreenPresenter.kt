@@ -59,7 +59,7 @@ class AccountScreenPresenter(
         isClosed: Boolean
     ) {
         val id = originalAccount?.id ?: 0
-        val amount = originalAccount?.amount ?: enteredAmount
+        val amount = originalAccount?.value ?: enteredAmount
         val account = Account(
             id,
             enteredName,
