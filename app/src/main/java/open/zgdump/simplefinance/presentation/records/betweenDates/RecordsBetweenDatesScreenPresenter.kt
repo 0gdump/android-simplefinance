@@ -99,14 +99,16 @@ class RecordsBetweenDatesScreenPresenter(
             type
         )
 
-        if (originalRecord == null) {
-            launch { App.db.recordDao().insert(record) }
-            paginator.proceed(Paginator.Action.Insert(record))
-        } else {
-            launch { App.db.recordDao().update(record) }
-            paginator.proceed(Paginator.Action.Update(record, editableCurrencyIndex))
-        }
+        launch {
+            if (originalRecord == null) {
+                paginator.proceed(Paginator.Action.Insert(record))
+                App.db.recordDao().insert(record)
+            } else {
+                paginator.proceed(Paginator.Action.Update(record, editableCurrencyIndex))
+                App.db.recordDao().update(record)
+            }
 
-        RecordsUpdatedObservable.recordsUpdated(this)
+            RecordsUpdatedObservable.recordsUpdated(this@RecordsBetweenDatesScreenPresenter)
+        }
     }
 }
