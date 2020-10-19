@@ -37,13 +37,13 @@ abstract class PaginalPresenter<V : PaginalView, D> : MvpPresenterX<V>() {
         }
     }
 
-    abstract fun diffItems(old: Any, new: Any): Boolean
+    open fun diffItems(old: Any, new: Any): Boolean = true
 
     protected abstract suspend fun loadPage(page: Int): List<D>
 
-    abstract fun fabClicked()
+    open fun fabClicked() {}
 
-    abstract fun itemClicked(index: Int)
+    open fun itemClicked(index: Int) {}
 
     fun refresh() = paginator.proceed(Paginator.Action.Refresh)
 
@@ -55,12 +55,12 @@ abstract class PaginalPresenter<V : PaginalView, D> : MvpPresenterX<V>() {
         //paginator.proceed(Paginator.Action.Move(from, to))
     }
 
-    // protected abstract fun provideMove(from: Int, to: Int)
+    open fun provideMove(from: Int, to: Int) {}
 
     fun remove(index: Int) {
         launch(Dispatchers.IO) { provideRemove(index) }
         paginator.proceed(Paginator.Action.Remove(index))
     }
 
-    protected abstract fun provideRemove(index: Int)
+    open fun provideRemove(index: Int) {}
 }
