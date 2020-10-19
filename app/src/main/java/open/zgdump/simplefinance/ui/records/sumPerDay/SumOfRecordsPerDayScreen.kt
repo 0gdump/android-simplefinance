@@ -21,12 +21,10 @@ import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenPresenter
 import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
-import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
-import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class SumOfRecordsPerDayScreen(
     financialType: FinancialTypeTransaction
-) : PaginalFragment<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>(R.layout.fragment_records_per_range),
+) : PaginalFragment<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>(R.layout.fragment_sum_of_records_per_day),
     SumOfRecordsPerDayScreenView {
 
     override val mainPresenter by moxyPresenter {

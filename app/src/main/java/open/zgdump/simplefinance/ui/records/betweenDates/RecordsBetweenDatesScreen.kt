@@ -10,7 +10,7 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.dialog_new_record.view.*
-import kotlinx.android.synthetic.main.fragment_records_per_range.*
+import kotlinx.android.synthetic.main.fragment_records_between_dates.*
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone.Companion.currentSystemDefault
 import kotlinx.datetime.todayAt
@@ -24,12 +24,10 @@ import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenPresenter
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
-import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
-import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class RecordsBetweenDatesScreen(
     financialType: FinancialTypeTransaction
-) : PaginalFragment<RecordsBetweenDatesScreenView, Record>(R.layout.fragment_records_per_range),
+) : PaginalFragment<RecordsBetweenDatesScreenView, Record>(R.layout.fragment_records_between_dates),
     RecordsBetweenDatesScreenView {
 
     override val mainPresenter by moxyPresenter {
