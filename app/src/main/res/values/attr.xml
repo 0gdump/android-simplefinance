@@ -37,7 +37,6 @@
         <attr name="hasFab" format="boolean" />
         <attr name="fabIcon" format="integer" />
         <attr name="fabText" format="string" />
-
     </declare-styleable>
 
 </resources>

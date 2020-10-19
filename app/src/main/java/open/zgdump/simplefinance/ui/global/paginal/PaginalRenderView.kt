@@ -1,18 +1,17 @@
 package open.zgdump.simplefinance.ui.global.paginal
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.view_paginal_render.view.*
-import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.ui.global.recyclerview.DividerItemDecorator
 import open.zgdump.simplefinance.ui.global.recyclerview.ItemTouchHelperCallback
-import open.zgdump.simplefinance.util.android.inflate
-import open.zgdump.simplefinance.util.android.visible
+import open.zgdump.simplefinance.util.android.*
 
 class PaginalRenderView @JvmOverloads constructor(
     context: Context,
@@ -20,11 +19,29 @@ class PaginalRenderView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : CoordinatorLayout(context, attrs, defStyleAttr) {
 
-    var itemMoved: ((fromPosition: Int, toPosition: Int) -> Unit)? = null
-    var itemRemoved: ((position: Int) -> Unit)? = null
+    val errorImage get() = emptyView.errorImage
+    val errorTitle get() = emptyView.errorTitle
+    val errorContent get() = emptyView.errorContent
+
+    val emptyImage get() = emptyView.emptyImage
+    val emptyTitle get() = emptyView.emptyTitle
+    val emptyContent get() = emptyView.emptyContent
+
+    var fabVisible: Boolean = false
+        private set
+    lateinit var fabIcon: Drawable
+        private set
+    lateinit var fabText: String
+        private set
+
+    var hasRefresh: Boolean = false
+        private set
 
     var refreshCallback: (() -> Unit)? = null
     var fabClickCallback: (() -> Unit)? = null
+
+    var itemMoved: ((fromPosition: Int, toPosition: Int) -> Unit)? = null
+    var itemRemoved: ((position: Int) -> Unit)? = null
 
     var adapter: PaginalAdapter? = null
         set(value) {
@@ -43,7 +60,7 @@ class PaginalRenderView @JvmOverloads constructor(
         parseAttrs(attrs)
 
         swipeToRefresh.setOnRefreshListener { refreshCallback?.invoke() }
-        emptyView.setRefreshButtonClickListener { refreshCallback?.invoke() }
+        emptyView.refreshCallback = refreshCallback
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -55,26 +72,29 @@ class PaginalRenderView @JvmOverloads constructor(
     private fun parseAttrs(attrs: AttributeSet?) {
         val a = context.obtainStyledAttributes(attrs, R.styleable.PaginalRenderView)
 
-        emptyView.errorImage = a.getDrawable(R.styleable.PaginalRenderView_errorImage)
-            ?: App.res.getDrawable(R.drawable.ic_error, App.appContext.theme)
-        emptyView.errorTitle = a.getString(R.styleable.PaginalRenderView_errorTitle)
-            ?: App.res.getString(R.string.EmptyView_defaultErrorTitle)
-        emptyView.errorContent = a.getString(R.styleable.PaginalRenderView_errorContent)
-            ?: App.res.getString(R.string.EmptyView_defaultErrorContent)
-        emptyView.emptyImage = a.getDrawable(R.styleable.PaginalRenderView_emptyImage)
-            ?: App.res.getDrawable(R.drawable.ic_add, App.appContext.theme)
-        emptyView.emptyTitle = a.getString(R.styleable.PaginalRenderView_emptyTitle)
-            ?: App.res.getString(R.string.EmptyView_defaultEmptyTitle)
-        emptyView.emptyContent = a.getString(R.styleable.PaginalRenderView_emptyContent)
-            ?: App.res.getString(R.string.EmptyView_defaultEmptyContent)
+        setErrorImage(a.getDrawable(R.styleable.PaginalRenderView_errorImage))
+        setErrorTitle(a.getString(R.styleable.PaginalRenderView_errorTitle))
+        setErrorContent(a.getString(R.styleable.PaginalRenderView_errorContent))
 
-        fab.visible(a.getBoolean(R.styleable.PaginalRenderView_hasFab, true))
-        fab.icon = a.getDrawable(R.styleable.PaginalRenderView_fabIcon)
-            ?: App.res.getDrawable(R.drawable.ic_add, App.appContext.theme)
-        fab.text = a.getString(R.styleable.PaginalRenderView_fabText)
-            ?: App.res.getString(R.string.PaginalRenderView_defaultFabText)
+        setEmptyImage(a.getDrawable(R.styleable.PaginalRenderView_emptyImage))
+        setEmptyTitle(a.getString(R.styleable.PaginalRenderView_emptyTitle))
+        setEmptyContent(a.getString(R.styleable.PaginalRenderView_emptyContent))
 
-        emptyView.hasRefresh = a.getBoolean(R.styleable.PaginalRenderView_hasRefresh, true)
+        setFabVisible(
+            a.getBoolean(
+                R.styleable.PaginalRenderView_hasFab,
+                getBoolean(R.bool.PaginalRenderView_hasFabDefault)
+            )
+        )
+        setFabIcon(a.getDrawable(R.styleable.PaginalRenderView_fabIcon))
+        setFabText(a.getString(R.styleable.PaginalRenderView_fabText))
+
+        setHasRefresh(
+            a.getBoolean(
+                R.styleable.PaginalRenderView_hasRefresh,
+                getBoolean(R.bool.PaginalRenderView_hasRefreshDefault)
+            )
+        )
 
         a.recycle()
     }
@@ -85,67 +105,108 @@ class PaginalRenderView @JvmOverloads constructor(
         itemTouchHelper?.attachToRecyclerView(recyclerView)
     }
 
-    fun render(state: Paginator.State) {
-        post {
-            when (state) {
-                is Paginator.State.Empty -> {
-                    swipeToRefresh.isRefreshing = false
-                    fullscreenProgressView.visible(false)
-                    adapter?.update(emptyList(), false)
-                    adapter?.fullData = true
-                    emptyView.showEmptyData()
-                    swipeToRefresh.visible(true)
-                }
-                is Paginator.State.EmptyProgress -> {
-                    fab.visible(true)
-                    swipeToRefresh.isRefreshing = false
-                    fullscreenProgressView.visible(true)
-                    adapter?.update(emptyList(), false)
-                    adapter?.fullData = false
-                    emptyView.hide()
-                    swipeToRefresh.visible(false)
-                }
-                is Paginator.State.EmptyError -> {
-                    swipeToRefresh.isRefreshing = false
-                    fullscreenProgressView.visible(false)
-                    adapter?.update(emptyList(), false)
-                    adapter?.fullData = false
-                    emptyView.showEmptyError()
-                    swipeToRefresh.visible(true)
-                }
-                is Paginator.State.Data<*> -> {
-                    swipeToRefresh.isRefreshing = false
-                    fullscreenProgressView.visible(false)
-                    adapter?.update(state.data as List<Any>, false)
-                    adapter?.fullData = false
-                    emptyView.hide()
-                    swipeToRefresh.visible(true)
-                }
-                is Paginator.State.Refresh<*> -> {
-                    swipeToRefresh.isRefreshing = true
-                    fullscreenProgressView.visible(false)
-                    adapter?.update(state.data as List<Any>, false)
-                    adapter?.fullData = false
-                    adapter?.refreshStarted = true
-                    emptyView.hide()
-                    swipeToRefresh.visible(true)
-                }
-                is Paginator.State.NewPageProgress<*> -> {
-                    swipeToRefresh.isRefreshing = false
-                    fullscreenProgressView.visible(false)
-                    adapter?.fullData = false
-                    adapter?.update(state.data as List<Any>, true)
-                    emptyView.hide()
-                    swipeToRefresh.visible(true)
-                }
-                is Paginator.State.FullData<*> -> {
-                    swipeToRefresh.isRefreshing = false
-                    fullscreenProgressView.visible(false)
-                    adapter?.update(state.data as List<Any>, false)
-                    adapter?.fullData = true
-                    emptyView.hide()
-                    swipeToRefresh.visible(true)
-                }
+    //region Setters for settings
+
+    fun setErrorImage(value: Drawable?) = emptyView.setErrorImage(value)
+
+    fun setErrorTitle(value: String?) = emptyView.setErrorTitle(value)
+
+    fun setErrorContent(value: String?) = emptyView.setErrorContent(value)
+
+    fun setEmptyImage(value: Drawable?) = emptyView.setEmptyImage(value)
+
+    fun setEmptyTitle(value: String?) = emptyView.setEmptyTitle(value)
+
+    fun setEmptyContent(value: String?) = emptyView.setEmptyContent(value)
+
+    fun setFabVisible(value: Boolean?) {
+        fabVisible = value ?: getBoolean(R.bool.PaginalRenderView_hasFabDefault)
+        fab.visible(fabVisible)
+    }
+
+    fun setFabIcon(value: Drawable?) {
+        fabIcon = value ?: getDrawable(R.drawable.ic_add)
+        fab.icon = fabIcon
+    }
+
+    fun setFabText(value: String?) {
+        fabText = value ?: getString(R.string.PaginalRenderView_defaultFabText)
+        fab.text = fabText
+    }
+
+    fun setHasRefresh(value: Boolean?) {
+        hasRefresh = value ?: getBoolean(R.bool.PaginalRenderView_hasRefreshDefault)
+        emptyView.setHasRefresh(hasRefresh)
+        swipeToRefresh.isEnabled = hasRefresh
+    }
+
+    //endregion
+
+    fun render(state: Paginator.State) = post {
+        when (state) {
+            is Paginator.State.Empty -> {
+                fullscreenProgressView.visible(false)
+                adapter?.update(emptyList(), false)
+                adapter?.fullData = true
+                emptyView.showEmptyData()
+                fab.visible(fabVisible)
+                swipeToRefresh.isRefreshing = false
+                swipeToRefresh.isEnabled = hasRefresh
+            }
+            is Paginator.State.EmptyProgress -> {
+                fullscreenProgressView.visible(true)
+                adapter?.update(emptyList(), false)
+                adapter?.fullData = false
+                emptyView.hide()
+                fab.visible(false)
+                swipeToRefresh.isRefreshing = false
+                swipeToRefresh.isEnabled = false
+            }
+            is Paginator.State.EmptyError -> {
+                fullscreenProgressView.visible(false)
+                adapter?.update(emptyList(), false)
+                adapter?.fullData = false
+                emptyView.showEmptyError()
+                fab.visible(fabVisible)
+                swipeToRefresh.isRefreshing = false
+                swipeToRefresh.isEnabled = hasRefresh
+            }
+            is Paginator.State.Data<*> -> {
+                fullscreenProgressView.visible(false)
+                adapter?.update(state.data as List<Any>, false)
+                adapter?.fullData = false
+                emptyView.hide()
+                fab.visible(fabVisible)
+                swipeToRefresh.isRefreshing = false
+                swipeToRefresh.isEnabled = hasRefresh
+            }
+            is Paginator.State.Refresh<*> -> {
+                fullscreenProgressView.visible(false)
+                adapter?.update(state.data as List<Any>, false)
+                adapter?.fullData = false
+                adapter?.refreshStarted = true
+                emptyView.hide()
+                fab.visible(fabVisible)
+                swipeToRefresh.isRefreshing = true
+                swipeToRefresh.isEnabled = hasRefresh
+            }
+            is Paginator.State.NewPageProgress<*> -> {
+                fullscreenProgressView.visible(false)
+                adapter?.fullData = false
+                adapter?.update(state.data as List<Any>, true)
+                emptyView.hide()
+                fab.visible(fabVisible)
+                swipeToRefresh.isRefreshing = false
+                swipeToRefresh.isEnabled = hasRefresh
+            }
+            is Paginator.State.FullData<*> -> {
+                fullscreenProgressView.visible(false)
+                adapter?.update(state.data as List<Any>, false)
+                adapter?.fullData = true
+                emptyView.hide()
+                fab.visible(fabVisible)
+                swipeToRefresh.isRefreshing = false
+                swipeToRefresh.isEnabled = hasRefresh
             }
         }
     }

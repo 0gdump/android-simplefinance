@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="PaginalRenderView_hasFabDefault">true</bool>
+    <bool name="PaginalRenderView_hasRefreshDefault">true</bool>
+
+    <bool name="EmptyView_hasRefreshDefault">true</bool>
+</resources>
