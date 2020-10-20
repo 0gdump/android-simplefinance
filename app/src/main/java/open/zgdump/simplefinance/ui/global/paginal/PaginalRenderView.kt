@@ -178,7 +178,7 @@ class PaginalRenderView @JvmOverloads constructor(
                 emptyView.hide()
                 fab.visible(fabVisible)
                 swipeToRefresh.isRefreshing = false
-                swipeToRefresh.isEnabled = hasRefresh
+                swipeToRefresh.isEnabled = true
             }
             is Paginator.State.Refresh<*> -> {
                 fullscreenProgressView.visible(false)
@@ -188,7 +188,7 @@ class PaginalRenderView @JvmOverloads constructor(
                 emptyView.hide()
                 fab.visible(fabVisible)
                 swipeToRefresh.isRefreshing = true
-                swipeToRefresh.isEnabled = hasRefresh
+                swipeToRefresh.isEnabled = true
             }
             is Paginator.State.NewPageProgress<*> -> {
                 fullscreenProgressView.visible(false)
@@ -197,7 +197,7 @@ class PaginalRenderView @JvmOverloads constructor(
                 emptyView.hide()
                 fab.visible(fabVisible)
                 swipeToRefresh.isRefreshing = false
-                swipeToRefresh.isEnabled = hasRefresh
+                swipeToRefresh.isEnabled = true
             }
             is Paginator.State.FullData<*> -> {
                 fullscreenProgressView.visible(false)
@@ -206,7 +206,7 @@ class PaginalRenderView @JvmOverloads constructor(
                 emptyView.hide()
                 fab.visible(fabVisible)
                 swipeToRefresh.isRefreshing = false
-                swipeToRefresh.isEnabled = hasRefresh
+                swipeToRefresh.isEnabled = true
             }
         }
     }

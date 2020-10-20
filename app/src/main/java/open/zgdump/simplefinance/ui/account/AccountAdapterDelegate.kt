@@ -33,8 +33,8 @@ class AccountAdapterDelegate(
         fun bind(account: Account) {
             itemView.container.setOnClickListener { clickListener(adapterPosition) }
             itemView.name.text = account.name
-            itemView.amount.text = account.value.toString()
-            itemView.currency.text = account.currencyDesignation.toUpperCase(Locale.ROOT)
+            itemView.value.text =
+                ("${account.value} ${account.currencyDesignation.toUpperCase(Locale.ROOT)}")
         }
     }
 }
