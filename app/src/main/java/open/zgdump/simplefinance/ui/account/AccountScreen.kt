@@ -42,8 +42,8 @@ class AccountScreen :
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>
         get() = AccountAdapterDelegate(mainPresenter::itemClicked)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupPaginalRenderView(paginalRenderView)
     }
 

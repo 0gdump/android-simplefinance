@@ -17,20 +17,16 @@ import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenPresent
 import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
+import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 
 class CurrenciesScreen :
-    PaginalFragment<CurrenciesScreenView, Currency>(R.layout.fragment_currencies),
+    StandardPaginalFragment<CurrenciesScreenView, Currency>(),
     CurrenciesScreenView {
 
     override val mainPresenter by moxyPresenter { CurrenciesScreenPresenter() }
 
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>
         get() = CurrencyAdapterDelegate(mainPresenter::itemClicked)
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setupPaginalRenderView(paginalRenderView)
-    }
 
     override fun renderPaginatorState(state: Paginator.State) {
         paginalRenderView.render(state)

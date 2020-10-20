@@ -21,10 +21,11 @@ import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenPresenter
 import open.zgdump.simplefinance.presentation.records.sumPerDay.SumOfRecordsPerDayScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
+import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 
 class SumOfRecordsPerDayScreen(
     financialType: FinancialTypeTransaction
-) : PaginalFragment<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>(R.layout.fragment_sum_of_records_per_day),
+) : StandardPaginalFragment<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>(),
     SumOfRecordsPerDayScreenView {
 
     override val mainPresenter by moxyPresenter {
@@ -36,7 +37,7 @@ class SumOfRecordsPerDayScreen(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupPaginalRenderView(paginalRenderView)
+        paginalRenderView.setFabVisible(false)
     }
 
     override fun renderPaginatorState(state: Paginator.State) {

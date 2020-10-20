@@ -12,15 +12,9 @@ import open.zgdump.simplefinance.util.android.inflate
 
 abstract class MvpFragmentX(
     private val layoutRes: Int
-) : MvpAppCompatFragment() {
+) : MvpFragment() {
 
     protected lateinit var layout: View
-
-    protected val activity: MainActivity
-        get() = super.getActivity() as MainActivity
-
-    protected val app: App
-        get() = activity.application as App
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,12 +27,4 @@ abstract class MvpFragmentX(
     }
 
     protected open fun setupLayoutOnCreate() {}
-
-    protected fun unimplemented() {
-        Toast.makeText(context, "\uD83D\uDE48 Unimplemented", Toast.LENGTH_LONG).show()
-    }
-
-    protected fun finish() {
-        App.router.exit()
-    }
 }

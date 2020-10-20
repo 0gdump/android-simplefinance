@@ -13,10 +13,11 @@ import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.sumPerCategory.SumOfRecordsPerCategoryScreenPresenter
 import open.zgdump.simplefinance.presentation.records.sumPerCategory.SumOfRecordsPerCategoryScreenView
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
+import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 
 class SumOfRecordsPerCategoryScreen(
     financialType: FinancialTypeTransaction
-) : PaginalFragment<SumOfRecordsPerCategoryScreenView, SumOfRecordsPerCategory>(R.layout.fragment_sum_of_records_per_categories),
+) : StandardPaginalFragment<SumOfRecordsPerCategoryScreenView, SumOfRecordsPerCategory>(),
     SumOfRecordsPerCategoryScreenView {
 
     override val mainPresenter by moxyPresenter {
@@ -28,7 +29,7 @@ class SumOfRecordsPerCategoryScreen(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupPaginalRenderView(paginalRenderView)
+        paginalRenderView.setFabVisible(false)
     }
 
     override fun renderPaginatorState(state: Paginator.State) {

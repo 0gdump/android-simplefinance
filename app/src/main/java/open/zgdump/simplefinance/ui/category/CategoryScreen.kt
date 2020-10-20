@@ -20,10 +20,11 @@ import open.zgdump.simplefinance.presentation.category.CategoryScreenPresenter
 import open.zgdump.simplefinance.presentation.category.CategoryScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
+import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 import open.zgdump.simplefinance.util.kotlin.argument
 
 class CategoryScreen :
-    PaginalFragment<CategoryScreenView, Category>(R.layout.fragment_category),
+    StandardPaginalFragment<CategoryScreenView, Category>(),
     CategoryScreenView {
 
     override val mainPresenter by moxyPresenter { CategoryScreenPresenter(transactionType) }
@@ -43,10 +44,6 @@ class CategoryScreen :
 
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>
         get() = CategoryAdapterDelegate(mainPresenter::itemClicked)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setupPaginalRenderView(paginalRenderView)
-    }
 
     override fun renderPaginatorState(state: Paginator.State) {
         paginalRenderView.render(state)
