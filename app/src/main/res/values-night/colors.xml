@@ -9,9 +9,7 @@
     <!-- Текст -->
     <color name="primary_text">#ffe0e0e0</color>
     <color name="secondary_text">#aae0e0e0</color>
-    <color name="secondary_light_text">#61ffffff</color>
     <color name="subhead_text">#DEffffff</color>
-    <color name="subtitle_text">#55ffffff</color>
 
     <!-- Прочее -->
     <color name="separator">#222222</color>

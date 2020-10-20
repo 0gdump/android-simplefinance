@@ -15,18 +15,9 @@
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="TextSubhead" parent="TextAppearance.AppCompat.Subhead">
-        <item name="android:textColor">@color/subhead_text</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
     <style name="TextSubtitle" parent="TextAppearance.AppCompat.Subhead">
         <item name="android:textColor">@color/subhead_text</item>
         <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="TextCaption" parent="TextAppearance.AppCompat.Caption">
-        <item name="android:textColor">@color/secondary_text</item>
     </style>
 
 </resources>

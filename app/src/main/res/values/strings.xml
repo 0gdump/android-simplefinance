@@ -22,7 +22,6 @@
     <string name="drawerClose">drawer_close</string>
 
     <!-- Accounts Screen -->
-    <string name="AccountScreen_totalTitle">Итого: </string>
 
     <!-- Account Screen -->
     <string name="AccountScreen_newCurrencyDialogTitle">Создать</string>
