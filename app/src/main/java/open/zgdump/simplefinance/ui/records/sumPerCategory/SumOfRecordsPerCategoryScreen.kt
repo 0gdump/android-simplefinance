@@ -6,13 +6,11 @@ import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_sum_of_records_per_categories.*
 import moxy.ktx.moxyPresenter
-import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.entity.SumOfRecordsPerCategory
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.sumPerCategory.SumOfRecordsPerCategoryScreenPresenter
 import open.zgdump.simplefinance.presentation.records.sumPerCategory.SumOfRecordsPerCategoryScreenView
-import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 
 class SumOfRecordsPerCategoryScreen(

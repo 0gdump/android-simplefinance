@@ -1,6 +1,5 @@
 package open.zgdump.simplefinance.ui.category
 
-import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
@@ -19,7 +18,6 @@ import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.presentation.category.CategoryScreenPresenter
 import open.zgdump.simplefinance.presentation.category.CategoryScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
-import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 import open.zgdump.simplefinance.util.kotlin.argument
 

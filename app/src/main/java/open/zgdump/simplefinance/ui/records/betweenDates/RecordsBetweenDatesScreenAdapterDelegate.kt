@@ -5,9 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_record.view.*
-import kotlinx.android.synthetic.main.item_record.view.container
-import kotlinx.android.synthetic.main.item_record.view.date
-import kotlinx.android.synthetic.main.item_record.view.value
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.util.android.inflate

@@ -1,7 +1,6 @@
 package open.zgdump.simplefinance.entity
 
 import androidx.room.Entity
-import kotlinx.datetime.LocalDate
 
 @Entity
 data class SumOfRecordsPerCategory(

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_account.view.*
-import kotlinx.android.synthetic.main.item_currency.view.currency
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.util.android.inflate

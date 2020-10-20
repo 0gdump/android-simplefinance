@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.global.RoomTablesNames.ACCOUNTS_TABLE_NAME
 
 @Dao

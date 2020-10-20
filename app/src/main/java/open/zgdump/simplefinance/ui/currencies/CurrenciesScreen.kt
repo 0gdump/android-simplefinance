@@ -1,6 +1,5 @@
 package open.zgdump.simplefinance.ui.currencies
 
-import android.os.Bundle
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.ModalDialog
@@ -16,7 +15,6 @@ import open.zgdump.simplefinance.entity.Currency
 import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenPresenter
 import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
-import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 
 class CurrenciesScreen :

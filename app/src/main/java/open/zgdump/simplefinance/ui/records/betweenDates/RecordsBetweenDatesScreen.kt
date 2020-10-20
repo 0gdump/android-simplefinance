@@ -1,6 +1,5 @@
 package open.zgdump.simplefinance.ui.records.betweenDates
 
-import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import com.afollestad.materialdialogs.MaterialDialog
@@ -22,7 +21,6 @@ import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenPresenter
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenView
-import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 
 class RecordsBetweenDatesScreen(

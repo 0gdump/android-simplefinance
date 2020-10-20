@@ -1,7 +1,6 @@
 package open.zgdump.simplefinance.util.kotlin
 
 import kotlinx.datetime.LocalDate
-import java.time.temporal.ChronoField
 
 private const val DAYS_PER_CYCLE = 146097
 private const val DAYS_0000_TO_1970 = DAYS_PER_CYCLE * 5 - (30 * 365 + 7)

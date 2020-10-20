@@ -1,12 +1,9 @@
 package open.zgdump.simplefinance.presentation.records.sumPerCategory
 
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.*
-import open.zgdump.simplefinance.presentation.global.Paginator
+import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.SumOfRecordsPerCategory
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
 import open.zgdump.simplefinance.util.pattern.observer.Observer
