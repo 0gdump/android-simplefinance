@@ -53,17 +53,19 @@ class AccountScreenPresenter(
     fun accountDialogComplete(
         originalAccount: Account?,
         enteredName: String,
-        enteredAmount: Float,
+        enteredValue: Float,
         selectedCurrency: Currency,
         isSaving: Boolean,
         isClosed: Boolean
     ) {
         val id = originalAccount?.id ?: 0
-        val amount = originalAccount?.value ?: enteredAmount
+        val value = originalAccount?.value ?: enteredValue
+        val initValue = originalAccount?.initialValue ?: enteredValue
         val account = Account(
             id,
             enteredName,
-            amount,
+            value,
+            initValue,
             selectedCurrency.designation,
             isSaving,
             isClosed

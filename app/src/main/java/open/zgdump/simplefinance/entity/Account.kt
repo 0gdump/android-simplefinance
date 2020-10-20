@@ -10,6 +10,7 @@ data class Account(
     val id: Int,
     val name: String,
     val value: Float,
+    val initialValue: Float,
     val currencyDesignation: String,
     val isSaving: Boolean,
     val isClosed: Boolean

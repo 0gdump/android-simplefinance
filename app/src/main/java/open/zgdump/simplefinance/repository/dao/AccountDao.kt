@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import open.zgdump.simplefinance.entity.Account
+import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.global.RoomTablesNames.ACCOUNTS_TABLE_NAME
 
 @Dao
@@ -55,13 +56,24 @@ abstract class AccountDao {
         UPDATE
             accounts
         SET
-            value = value + (
+            value = initialValue + 
+            (
                 SELECT
-                    SUM(value)
+                    TOTAL(value)
                 FROM
                     records
                 WHERE
-                    accountId = :accountId
+                    accountId = :accountId AND
+                    type = "Income" -- FinancialTypeTransaction.Income 
+            ) - 
+            (
+                SELECT
+                    TOTAL(value)
+                FROM
+                    records
+                WHERE
+                    accountId = :accountId AND
+                    type = "Expense" -- FinancialTypeTransaction.Expense 
             )
         WHERE
             id = :accountId
