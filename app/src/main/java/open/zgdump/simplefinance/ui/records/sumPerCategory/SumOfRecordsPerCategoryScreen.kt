@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
-import kotlinx.android.synthetic.main.fragment_sum_of_records_per_categories.*
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
 import open.zgdump.simplefinance.entity.SumOfRecordsPerCategory
