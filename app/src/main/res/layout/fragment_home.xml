@@ -1,7 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:text="HomeScreen"
-    android:textSize="24sp" />
+    android:padding="8dp">
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/topTextBarrier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="totalTopText,savingTopText,actualTopText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/totalTopText"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Общая сумма -->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/totalIcon"
+        style="@style/HomeScreen_Icon"
+        android:src="@drawable/ic_account_balance"
+        app:layout_constraintBottom_toBottomOf="@+id/totalTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/totalTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/totalTitle"
+        style="@style/HomeScreen_TitleText"
+        android:text="Общая сумма"
+        app:layout_constraintBottom_toBottomOf="@id/totalTopText"
+        app:layout_constraintEnd_toStartOf="@+id/totalTopText"
+        app:layout_constraintStart_toEndOf="@id/totalIcon"
+        app:layout_constraintTop_toTopOf="@id/totalTopText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/totalTopText"
+        style="@style/HomeScreen_StatisticsText"
+        android:text="0, Р"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/topTextBarrier"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Текущие счета -->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/actualIcon"
+        style="@style/HomeScreen_Icon"
+        android:src="@drawable/ic_actual_accounts_balance"
+        app:layout_constraintBottom_toBottomOf="@+id/actualTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/actualTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/actualTitle"
+        style="@style/HomeScreen_TitleText"
+        android:text="Текущие счета"
+        app:layout_constraintBottom_toBottomOf="@id/actualTopText"
+        app:layout_constraintEnd_toStartOf="@+id/actualTopText"
+        app:layout_constraintStart_toEndOf="@id/actualIcon"
+        app:layout_constraintTop_toTopOf="@id/actualTopText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/actualTopText"
+        style="@style/HomeScreen_StatisticsText"
+        android:text="0, Р\n0 $\n0 БР"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/topTextBarrier"
+        app:layout_constraintTop_toBottomOf="@id/totalTopText" />
+
+    <!-- Сбережения -->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/savingIcon"
+        style="@style/HomeScreen_Icon"
+        android:src="@drawable/ic_piggy_bank"
+        app:layout_constraintBottom_toBottomOf="@+id/savingTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/savingTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/savingTitle"
+        style="@style/HomeScreen_TitleText"
+        android:text="Сбережения"
+        app:layout_constraintBottom_toBottomOf="@id/savingTopText"
+        app:layout_constraintEnd_toStartOf="@+id/savingTopText"
+        app:layout_constraintStart_toEndOf="@id/savingIcon"
+        app:layout_constraintTop_toTopOf="@id/savingTopText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/savingTopText"
+        style="@style/HomeScreen_StatisticsText"
+        android:text="0, Р\n0 $\n0 БР"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/topTextBarrier"
+        app:layout_constraintTop_toBottomOf="@id/actualTopText" />
+
+    <!-- Доходы -->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/incomesIcon"
+        style="@style/HomeScreen_Icon"
+        android:src="@drawable/ic_cash"
+        app:layout_constraintBottom_toBottomOf="@+id/incomesTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/incomesTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/incomesTitle"
+        style="@style/HomeScreen_TitleText"
+        android:text="Доходы за %s"
+        app:layout_constraintBottom_toBottomOf="@id/incomesTopText"
+        app:layout_constraintEnd_toStartOf="@+id/incomesTopText"
+        app:layout_constraintStart_toEndOf="@id/incomesIcon"
+        app:layout_constraintTop_toTopOf="@id/incomesTopText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/incomesTopText"
+        style="@style/HomeScreen_StatisticsText"
+        android:text="0, Р\n0 $\n0 БР"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/topTextBarrier"
+        app:layout_constraintTop_toBottomOf="@id/savingTopText" />
+
+    <!-- Расходы -->
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/expensesIcon"
+        style="@style/HomeScreen_Icon"
+        android:src="@drawable/ic_shopping_cart"
+        app:layout_constraintBottom_toBottomOf="@+id/expensesTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/expensesTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/expensesTitle"
+        style="@style/HomeScreen_TitleText"
+        android:text="Расходы за %s"
+        app:layout_constraintBottom_toBottomOf="@id/expensesTopText"
+        app:layout_constraintEnd_toStartOf="@+id/expensesTopText"
+        app:layout_constraintStart_toEndOf="@id/expensesIcon"
+        app:layout_constraintTop_toTopOf="@id/expensesTopText" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/expensesTopText"
+        style="@style/HomeScreen_StatisticsText"
+        android:text="0, Р\n0 $\n0 БР"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/topTextBarrier"
+        app:layout_constraintTop_toBottomOf="@id/incomesTopText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

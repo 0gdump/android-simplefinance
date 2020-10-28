@@ -20,4 +20,29 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <!-- Домашний экран -->
+    <style name="HomeScreen_Icon">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+    </style>
+
+    <style name="HomeScreen_TitleText" parent="TextTitle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="HomeScreen_StatisticsText" parent="TextSubtitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:lines">3</item>
+    </style>
+
 </resources>
