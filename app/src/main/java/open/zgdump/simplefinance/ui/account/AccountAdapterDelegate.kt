@@ -2,6 +2,7 @@ package open.zgdump.simplefinance.ui.account
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_account.view.*
@@ -32,6 +33,7 @@ class AccountAdapterDelegate(
         fun bind(account: Account) {
             itemView.container.setOnClickListener { clickListener(adapterPosition) }
             itemView.name.text = account.name
+            itemView.lockedIndicator.isVisible = account.isClosed
             itemView.value.text =
                 ("${account.value} ${account.currencyDesignation.toUpperCase(Locale.ROOT)}")
         }
