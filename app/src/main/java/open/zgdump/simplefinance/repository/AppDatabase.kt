@@ -9,10 +9,7 @@ import open.zgdump.simplefinance.entity.Currency
 import open.zgdump.simplefinance.entity.Record
 import open.zgdump.simplefinance.repository.converter.LocalDateConverter
 import open.zgdump.simplefinance.repository.converter.OperationsTypeConverter
-import open.zgdump.simplefinance.repository.dao.AccountDao
-import open.zgdump.simplefinance.repository.dao.CategoryDao
-import open.zgdump.simplefinance.repository.dao.CurrencyDao
-import open.zgdump.simplefinance.repository.dao.RecordDao
+import open.zgdump.simplefinance.repository.dao.*
 
 @Database(
     entities = [
@@ -32,4 +29,5 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
     abstract fun currencyDao(): CurrencyDao
     abstract fun recordDao(): RecordDao
+    abstract fun statisticsDao(): StatisticsDao
 }
