@@ -10,7 +10,6 @@ import open.zgdump.simplefinance.presentation.categories.CategoriesUpdatedObserv
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 import open.zgdump.simplefinance.util.pattern.observer.Observer
-import timber.log.Timber
 
 class CategoryScreenPresenter(
     private val operationsType: FinancialTypeTransaction
@@ -31,7 +30,6 @@ class CategoryScreenPresenter(
 
     override fun observableUpdated() {
         refresh()
-        Timber.d("FCK")
     }
 
     override fun diffItems(old: Any, new: Any): Boolean {
@@ -78,15 +76,30 @@ class CategoryScreenPresenter(
         )
 
         launch {
-            if (originalCategory == null && type == operationsType) {
-                paginator.proceed(Paginator.Action.Insert(category))
-                App.db.categoryDao().insert(category)
-            } else if (originalCategory != null && type != operationsType) {
-                paginator.proceed(Paginator.Action.Remove(editableCurrencyIndex))
-                App.db.categoryDao().update(category)
-            } else {
-                paginator.proceed(Paginator.Action.Update(category, editableCurrencyIndex))
-                App.db.categoryDao().update(category)
+            when {
+
+                // Вставлен новый элемент
+                originalCategory == null && type == operationsType -> {
+                    paginator.proceed(Paginator.Action.Insert(category))
+                    App.db.categoryDao().insert(category)
+                }
+
+                // Вставлен элемент, но другого типа
+                originalCategory == null && type != operationsType -> {
+                    App.db.categoryDao().insert(category)
+                }
+
+                // Обновлён элемент
+                originalCategory != null && type == operationsType -> {
+                    paginator.proceed(Paginator.Action.Update(category, editableCurrencyIndex))
+                    App.db.categoryDao().update(category)
+                }
+
+                // Обновлён элемент, но изменился тип
+                originalCategory != null && type != operationsType -> {
+                    paginator.proceed(Paginator.Action.Remove(editableCurrencyIndex))
+                    App.db.categoryDao().update(category)
+                }
             }
 
             CategoriesUpdatedObservable.updated(this@CategoryScreenPresenter)
