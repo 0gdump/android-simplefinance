@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="start"
-        app:constraint_referenced_ids="totalTopText,savingTopText,actualTopText"
+        app:constraint_referenced_ids="totalTopText,actualTopText,savingTopText,incomesTopText,expensesTopText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/totalTopText"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,6 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/totalTopText"
         style="@style/HomeScreen_StatisticsText"
-        android:text="0, Р"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/topTextBarrier"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,7 +63,6 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/actualTopText"
         style="@style/HomeScreen_StatisticsText"
-        android:text="0, Р\n0 $\n0 БР"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/topTextBarrier"
         app:layout_constraintTop_toBottomOf="@id/totalTopText" />
@@ -91,7 +89,6 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/savingTopText"
         style="@style/HomeScreen_StatisticsText"
-        android:text="0, Р\n0 $\n0 БР"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/topTextBarrier"
         app:layout_constraintTop_toBottomOf="@id/actualTopText" />
@@ -118,7 +115,6 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/incomesTopText"
         style="@style/HomeScreen_StatisticsText"
-        android:text="0, Р\n0 $\n0 БР"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/topTextBarrier"
         app:layout_constraintTop_toBottomOf="@id/savingTopText" />
@@ -145,9 +141,19 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/expensesTopText"
         style="@style/HomeScreen_StatisticsText"
-        android:text="0, Р\n0 $\n0 БР"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/topTextBarrier"
         app:layout_constraintTop_toBottomOf="@id/incomesTopText" />
+
+    <!-- Поддержать -->
+    <!-- <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="💸 Поддержите нас"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" /> -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

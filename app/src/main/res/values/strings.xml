@@ -31,6 +31,10 @@
     <string name="CurrencyScreen_newCurrencyDialogTitle">Создать</string>
     <string name="CurrencyScreen_editCurrencyDialogTitle">Редактировать</string>
 
+    <!-- Home Screen -->
+    <string name="HomeScreen_incomesTitle">Доходы за %s</string>
+    <string name="HomeScreen_expensesTitle">Расходы за %s</string>
+
     <!-- Custom View -->
     <!-- EmptyView -->
     <string name="EmptyView_defaultErrorTitle">Ошибка</string>
