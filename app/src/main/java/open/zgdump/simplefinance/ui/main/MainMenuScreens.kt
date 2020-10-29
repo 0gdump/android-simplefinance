@@ -4,7 +4,7 @@ import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.global.Screens
 
 val MainMenuScreens = mapOf(
-    R.id.navHome to Screens.UnimplementedScreen,
+    R.id.navHome to Screens.HomeScreen,
     R.id.navBudget to Screens.UnimplementedScreen,
     R.id.navChart to Screens.UnimplementedScreen,
     R.id.navHistory to Screens.UnimplementedScreen,
