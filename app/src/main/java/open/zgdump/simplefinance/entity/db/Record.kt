@@ -1,11 +1,11 @@
-package open.zgdump.simplefinance.entity
+package open.zgdump.simplefinance.entity.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.datetime.LocalDate
-import open.zgdump.simplefinance.global.RoomTablesNames.RECORDS_TABLE_NAME
+import open.zgdump.simplefinance.entity.TransactionType
 
-@Entity(tableName = RECORDS_TABLE_NAME)
+@Entity(tableName = "records")
 data class Record(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
@@ -17,5 +17,5 @@ data class Record(
     val currencyDesignation: String,
     val value: Float,
     val comment: String,
-    val type: FinancialTypeTransaction
+    val type: TransactionType
 )

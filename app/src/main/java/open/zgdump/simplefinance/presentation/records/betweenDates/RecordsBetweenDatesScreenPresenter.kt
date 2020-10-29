@@ -5,17 +5,17 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.Category
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
-import open.zgdump.simplefinance.entity.Record
+import open.zgdump.simplefinance.entity.db.Account
+import open.zgdump.simplefinance.entity.db.Category
+import open.zgdump.simplefinance.entity.TransactionType
+import open.zgdump.simplefinance.entity.db.Record
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
 import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class RecordsBetweenDatesScreenPresenter(
-    private val type: FinancialTypeTransaction
+    private val type: TransactionType
 ) : PaginalPresenter<RecordsBetweenDatesScreenView, Record>(),
     Observer {
 

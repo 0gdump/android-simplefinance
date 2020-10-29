@@ -14,9 +14,9 @@ import kotlinx.android.synthetic.main.dialog_new_account.view.*
 import kotlinx.android.synthetic.main.fragment_account.*
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.Currency
-import open.zgdump.simplefinance.entity.FinancialValue
+import open.zgdump.simplefinance.entity.db.Account
+import open.zgdump.simplefinance.entity.db.Currency
+import open.zgdump.simplefinance.entity.helper.FinancialValue
 import open.zgdump.simplefinance.presentation.accounts.account.AccountScreenPresenter
 import open.zgdump.simplefinance.presentation.accounts.account.AccountScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator

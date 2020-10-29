@@ -10,7 +10,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.dialog_new_currency.view.*
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.Currency
+import open.zgdump.simplefinance.entity.db.Currency
 import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenPresenter
 import open.zgdump.simplefinance.presentation.currencies.CurrenciesScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator

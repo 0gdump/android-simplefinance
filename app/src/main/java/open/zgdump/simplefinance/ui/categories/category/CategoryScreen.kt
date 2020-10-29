@@ -12,8 +12,8 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.dialog_new_category.view.*
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.Category
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.db.Category
+import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.presentation.categories.category.CategoryScreenPresenter
 import open.zgdump.simplefinance.presentation.categories.category.CategoryScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
@@ -26,14 +26,14 @@ class CategoryScreen :
 
     override val mainPresenter by moxyPresenter { CategoryScreenPresenter(transactionType) }
 
-    private val transactionType: FinancialTypeTransaction by argument(
+    private val transactionType: TransactionType by argument(
         ARG_TYPE,
-        FinancialTypeTransaction.Expense
+        TransactionType.Expense
     )
 
     companion object {
         private const val ARG_TYPE = "type"
-        fun create(transactionType: FinancialTypeTransaction) =
+        fun create(transactionType: TransactionType) =
             CategoryScreen().apply {
                 arguments = bundleOf(ARG_TYPE to transactionType)
             }
@@ -80,7 +80,7 @@ class CategoryScreen :
                 operationTypeSpinner.adapter = ArrayAdapter(
                     requireContext(),
                     android.R.layout.simple_spinner_dropdown_item,
-                    FinancialTypeTransaction.values().map { it.name }
+                    TransactionType.values().map { it.name }
                 )
             }
         }
@@ -93,7 +93,7 @@ class CategoryScreen :
         mainPresenter.categoryDialogComplete(
             originalCategory,
             dialogView.nameEditText.text.toString(),
-            FinancialTypeTransaction.valueOf(dialogView.operationTypeSpinner.selectedItem.toString())
+            TransactionType.valueOf(dialogView.operationTypeSpinner.selectedItem.toString())
         )
     }
 }

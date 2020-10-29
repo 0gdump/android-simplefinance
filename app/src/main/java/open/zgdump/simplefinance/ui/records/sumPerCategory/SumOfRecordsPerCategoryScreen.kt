@@ -5,20 +5,20 @@ import android.view.View
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import es.dmoral.toasty.Toasty
 import moxy.ktx.moxyPresenter
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
-import open.zgdump.simplefinance.entity.SumOfRecordsPerCategory
+import open.zgdump.simplefinance.entity.TransactionType
+import open.zgdump.simplefinance.entity.helper.SumOfRecordsPerCategory
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.sumPerCategory.SumOfRecordsPerCategoryScreenPresenter
 import open.zgdump.simplefinance.presentation.records.sumPerCategory.SumOfRecordsPerCategoryScreenView
 import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 
 class SumOfRecordsPerCategoryScreen(
-    financialType: FinancialTypeTransaction
+    type: TransactionType
 ) : StandardPaginalFragment<SumOfRecordsPerCategoryScreenView, SumOfRecordsPerCategory>(),
     SumOfRecordsPerCategoryScreenView {
 
     override val mainPresenter by moxyPresenter {
-        SumOfRecordsPerCategoryScreenPresenter(financialType)
+        SumOfRecordsPerCategoryScreenPresenter(type)
     }
 
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>

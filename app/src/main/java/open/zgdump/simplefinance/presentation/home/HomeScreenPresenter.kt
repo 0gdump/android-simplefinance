@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.presentation.global.MvpPresenterX
 import java.util.*
 
@@ -55,7 +55,7 @@ class HomeScreenPresenter : MvpPresenterX<HomeScreenView>() {
         val r = App.db.statisticsDao().getSumOfRecordsForCurrencies(
             firstDayOfMonth,
             lastDayOfMonth,
-            FinancialTypeTransaction.Income,
+            TransactionType.Income,
             3
         )
         withContext(Dispatchers.Main) { viewState.showIncomesForMonth(r) }
@@ -65,7 +65,7 @@ class HomeScreenPresenter : MvpPresenterX<HomeScreenView>() {
         val r = App.db.statisticsDao().getSumOfRecordsForCurrencies(
             firstDayOfMonth,
             lastDayOfMonth,
-            FinancialTypeTransaction.Expense,
+            TransactionType.Expense,
             3
         )
         withContext(Dispatchers.Main) { viewState.showExpensesForMonth(r) }

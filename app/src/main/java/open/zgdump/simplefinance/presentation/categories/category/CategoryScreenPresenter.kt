@@ -3,16 +3,16 @@ package open.zgdump.simplefinance.presentation.categories.category
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.Category
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.db.Account
+import open.zgdump.simplefinance.entity.db.Category
+import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.presentation.categories.CategoriesUpdatedObservable
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class CategoryScreenPresenter(
-    private val operationsType: FinancialTypeTransaction
+    private val transactionType: TransactionType
 ) : PaginalPresenter<CategoryScreenView, Category>(),
     Observer {
 
@@ -43,7 +43,7 @@ class CategoryScreenPresenter(
         return App.db.categoryDao().getCategories(
             pageSize * (page - 1),
             pageSize,
-            operationsType
+            transactionType
         ) ?: emptyList()
     }
 
@@ -55,18 +55,18 @@ class CategoryScreenPresenter(
         editableCurrencyIndex = index
 
         viewState.categoryDialog(runBlocking {
-            App.db.categoryDao().getCategory(editableCurrencyIndex, operationsType)
+            App.db.categoryDao().getCategory(editableCurrencyIndex, transactionType)
         })
     }
 
     override fun provideRemove(index: Int) {
-        App.db.categoryDao().delete(index, operationsType)
+        App.db.categoryDao().delete(index, transactionType)
     }
 
     fun categoryDialogComplete(
         originalCategory: Category?,
         enteredName: String,
-        type: FinancialTypeTransaction
+        type: TransactionType
     ) {
         val id = originalCategory?.id ?: 0
         val category = Category(
@@ -79,24 +79,24 @@ class CategoryScreenPresenter(
             when {
 
                 // Вставлен новый элемент
-                originalCategory == null && type == operationsType -> {
+                originalCategory == null && type == transactionType -> {
                     paginator.proceed(Paginator.Action.Insert(category))
                     App.db.categoryDao().insert(category)
                 }
 
                 // Вставлен элемент, но другого типа
-                originalCategory == null && type != operationsType -> {
+                originalCategory == null && type != transactionType -> {
                     App.db.categoryDao().insert(category)
                 }
 
                 // Обновлён элемент
-                originalCategory != null && type == operationsType -> {
+                originalCategory != null && type == transactionType -> {
                     paginator.proceed(Paginator.Action.Update(category, editableCurrencyIndex))
                     App.db.categoryDao().update(category)
                 }
 
                 // Обновлён элемент, но изменился тип
-                originalCategory != null && type != operationsType -> {
+                originalCategory != null && type != transactionType -> {
                     paginator.proceed(Paginator.Action.Remove(editableCurrencyIndex))
                     App.db.categoryDao().update(category)
                 }

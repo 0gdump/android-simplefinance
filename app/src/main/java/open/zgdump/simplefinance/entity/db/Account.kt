@@ -1,10 +1,9 @@
-package open.zgdump.simplefinance.entity
+package open.zgdump.simplefinance.entity.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import open.zgdump.simplefinance.global.RoomTablesNames.ACCOUNTS_TABLE_NAME
 
-@Entity(tableName = ACCOUNTS_TABLE_NAME)
+@Entity(tableName = "accounts")
 data class Account(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

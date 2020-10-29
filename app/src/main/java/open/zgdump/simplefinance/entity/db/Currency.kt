@@ -1,10 +1,9 @@
-package open.zgdump.simplefinance.entity
+package open.zgdump.simplefinance.entity.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import open.zgdump.simplefinance.global.RoomTablesNames.CURRENCIES_TABLE_NAME
 
-@Entity(tableName = CURRENCIES_TABLE_NAME)
+@Entity(tableName = "currencies")
 data class Currency(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

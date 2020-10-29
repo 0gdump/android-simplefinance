@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.entity
+package open.zgdump.simplefinance.entity.helper
 
 import androidx.room.Entity
 import kotlinx.datetime.LocalDate

@@ -1,7 +1,7 @@
 package open.zgdump.simplefinance.ui.main
 
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.global.Screens
+import open.zgdump.simplefinance.Screens
 
 val MainMenuScreens = mapOf(
     R.id.navHome to Screens.HomeScreen,

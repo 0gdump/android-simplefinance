@@ -1,6 +1,6 @@
-package open.zgdump.simplefinance.global
+package open.zgdump.simplefinance
 
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.ui.accounts.AccountsScreen
 import open.zgdump.simplefinance.ui.budget.BudgetScreen
 import open.zgdump.simplefinance.ui.categories.CategoriesScreen
@@ -47,7 +47,7 @@ object Screens {
 
 
     object ExpensesScreen : SupportAppScreen() {
-        override fun getFragment() = RecordsScreen(FinancialTypeTransaction.Expense)
+        override fun getFragment() = RecordsScreen(TransactionType.Expense)
     }
 
 
@@ -57,7 +57,7 @@ object Screens {
 
 
     object IncomesScreen : SupportAppScreen() {
-        override fun getFragment() = RecordsScreen(FinancialTypeTransaction.Income)
+        override fun getFragment() = RecordsScreen(TransactionType.Income)
     }
 
 

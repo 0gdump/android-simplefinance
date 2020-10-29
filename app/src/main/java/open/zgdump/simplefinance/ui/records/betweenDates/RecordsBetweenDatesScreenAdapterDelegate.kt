@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_record.view.*
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.Record
+import open.zgdump.simplefinance.entity.db.Record
 import open.zgdump.simplefinance.util.android.inflate
 import java.text.SimpleDateFormat
 import java.util.*

@@ -2,7 +2,7 @@ package open.zgdump.simplefinance.ui.categories
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.ui.categories.category.CategoryScreen
 
 class CategoriesPagerAdapter(
@@ -12,8 +12,8 @@ class CategoriesPagerAdapter(
     override fun getCount(): Int = 2
 
     override fun getItem(i: Int) = when (i) {
-        0 -> CategoryScreen.create(FinancialTypeTransaction.Income)
-        1 -> CategoryScreen.create(FinancialTypeTransaction.Expense)
+        0 -> CategoryScreen.create(TransactionType.Income)
+        1 -> CategoryScreen.create(TransactionType.Expense)
         else -> throw IllegalStateException()
     }
 

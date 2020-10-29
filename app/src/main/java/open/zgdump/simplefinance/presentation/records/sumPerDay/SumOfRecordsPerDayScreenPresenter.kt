@@ -2,14 +2,14 @@ package open.zgdump.simplefinance.presentation.records.sumPerDay
 
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
-import open.zgdump.simplefinance.entity.SumOfRecordsPerDay
+import open.zgdump.simplefinance.entity.TransactionType
+import open.zgdump.simplefinance.entity.helper.SumOfRecordsPerDay
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 import open.zgdump.simplefinance.presentation.records.RecordsUpdatedObservable
 import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class SumOfRecordsPerDayScreenPresenter(
-    private val type: FinancialTypeTransaction
+    private val type: TransactionType
 ) : PaginalPresenter<SumOfRecordsPerDayScreenView, SumOfRecordsPerDay>(),
     Observer {
 

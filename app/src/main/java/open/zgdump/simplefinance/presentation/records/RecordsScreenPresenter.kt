@@ -3,12 +3,12 @@ package open.zgdump.simplefinance.presentation.records
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.presentation.global.MvpPresenterX
 import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class RecordsScreenPresenter(
-    private val type: FinancialTypeTransaction
+    private val type: TransactionType
 ) : MvpPresenterX<RecordsScreenView>(),
     Observer {
 

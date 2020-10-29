@@ -10,20 +10,20 @@ import kotlinx.android.synthetic.main.fragment_main_container.*
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.global.CiceroneNavigator
 import open.zgdump.simplefinance.presentation.main.MainFlowPresenter
 import open.zgdump.simplefinance.presentation.main.MainFlowView
 import open.zgdump.simplefinance.ui.global.MvpFragmentX
 import open.zgdump.simplefinance.util.android.DrawerListener
 import open.zgdump.simplefinance.util.android.crossFade
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
 
 
 class MainFlow : MvpFragmentX(R.layout.fragment_main), MainFlowView {
 
     private val presenter by moxyPresenter { MainFlowPresenter() }
-    private val navigator by lazy { CiceroneNavigator(activity, R.id.fragmentContainer) }
+    private val navigator by lazy { SupportAppNavigator(activity, R.id.fragmentContainer) }
 
-    private val defaultNavigationItem = R.id.navCategories
+    private val defaultNavigationItem = R.id.navAccounts
 
     private var needToNavigation = false
     private var previousSelectedNavigationItem: MenuItem? = null

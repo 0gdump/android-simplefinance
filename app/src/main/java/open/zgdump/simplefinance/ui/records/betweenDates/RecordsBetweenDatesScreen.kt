@@ -14,22 +14,22 @@ import kotlinx.datetime.TimeZone.Companion.currentSystemDefault
 import kotlinx.datetime.todayAt
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.Category
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
-import open.zgdump.simplefinance.entity.Record
+import open.zgdump.simplefinance.entity.db.Account
+import open.zgdump.simplefinance.entity.db.Category
+import open.zgdump.simplefinance.entity.TransactionType
+import open.zgdump.simplefinance.entity.db.Record
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenPresenter
 import open.zgdump.simplefinance.presentation.records.betweenDates.RecordsBetweenDatesScreenView
 import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 
 class RecordsBetweenDatesScreen(
-    financialType: FinancialTypeTransaction
+    type: TransactionType
 ) : StandardPaginalFragment<RecordsBetweenDatesScreenView, Record>(),
     RecordsBetweenDatesScreenView {
 
     override val mainPresenter by moxyPresenter {
-        RecordsBetweenDatesScreenPresenter(financialType)
+        RecordsBetweenDatesScreenPresenter(type)
     }
 
     override val adapterDelegate: AdapterDelegate<MutableList<Any>>

@@ -3,8 +3,8 @@ package open.zgdump.simplefinance.repository.dao
 import androidx.room.Dao
 import androidx.room.Query
 import kotlinx.datetime.LocalDate
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
-import open.zgdump.simplefinance.entity.FinancialValue
+import open.zgdump.simplefinance.entity.TransactionType
+import open.zgdump.simplefinance.entity.helper.FinancialValue
 
 @Dao
 abstract class StatisticsDao {
@@ -15,22 +15,19 @@ abstract class StatisticsDao {
         SELECT 
             SUM(value) as total,
             currencyDesignation
-        FROM
-            records
+        FROM records
         WHERE 
             type = :type AND
             date >= :minDate AND
             date <= :maxDate
-        GROUP BY
-            currencyDesignation
-        LIMIT
-            :limit
+        GROUP BY currencyDesignation
+        LIMIT :limit
         """
     )
     abstract suspend fun getSumOfRecordsForCurrencies(
         minDate: LocalDate,
         maxDate: LocalDate,
-        type: FinancialTypeTransaction,
+        type: TransactionType,
         limit: Int
     ): List<FinancialValue>
 
@@ -39,12 +36,9 @@ abstract class StatisticsDao {
         SELECT
             SUM(value) as total,
             currencyDesignation
-        FROM
-            accounts
-        GROUP BY
-            currencyDesignation
-        LIMIT
-            :limit
+        FROM accounts
+        GROUP BY currencyDesignation
+        LIMIT :limit
     """
     )
     abstract suspend fun getSumOfValuesForCurrencies(
@@ -56,14 +50,10 @@ abstract class StatisticsDao {
         SELECT
             SUM(value) as total,
             currencyDesignation
-        FROM
-            accounts
-        WHERE
-            isSaving = :isSaving
-        GROUP BY
-            currencyDesignation
-        LIMIT
-            :limit
+        FROM accounts
+        WHERE isSaving = :isSaving
+        GROUP BY currencyDesignation
+        LIMIT :limit
     """
     )
     abstract suspend fun getSumOfValuesForCurrenciesByCriteria(

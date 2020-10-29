@@ -3,7 +3,7 @@ package open.zgdump.simplefinance.ui.home
 import kotlinx.android.synthetic.main.fragment_home.*
 import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.FinancialValue
+import open.zgdump.simplefinance.entity.helper.FinancialValue
 import open.zgdump.simplefinance.presentation.home.HomeScreenPresenter
 import open.zgdump.simplefinance.presentation.home.HomeScreenView
 import open.zgdump.simplefinance.ui.global.MvpFragmentX

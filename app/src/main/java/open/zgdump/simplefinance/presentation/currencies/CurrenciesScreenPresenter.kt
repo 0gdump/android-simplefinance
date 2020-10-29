@@ -3,7 +3,7 @@ package open.zgdump.simplefinance.presentation.currencies
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.Currency
+import open.zgdump.simplefinance.entity.db.Currency
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 

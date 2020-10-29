@@ -4,22 +4,21 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import open.zgdump.simplefinance.entity.Currency
-import open.zgdump.simplefinance.global.RoomTablesNames.CURRENCIES_TABLE_NAME
+import open.zgdump.simplefinance.entity.db.Currency
 
 @Dao
 abstract class CurrencyDao {
 
-    @Query("SELECT * FROM $CURRENCIES_TABLE_NAME")
+    @Query("SELECT * FROM currencies")
     abstract suspend fun getCurrencies(): List<Currency>?
 
     @Query(
         """
         SELECT *
-        FROM $CURRENCIES_TABLE_NAME
+        FROM currencies
         WHERE rowid in (
             SELECT rowid 
-            FROM $CURRENCIES_TABLE_NAME
+            FROM currencies
             LIMIT :count
             OFFSET :offset
         )
@@ -30,10 +29,10 @@ abstract class CurrencyDao {
     @Query(
         """
         SELECT *
-        FROM $CURRENCIES_TABLE_NAME
+        FROM currencies
         WHERE rowid = (
             SELECT rowid 
-            FROM $CURRENCIES_TABLE_NAME
+            FROM currencies
             LIMIT 1
             OFFSET :index
         )
@@ -50,10 +49,10 @@ abstract class CurrencyDao {
     @Query(
         """
         DELETE 
-        FROM $CURRENCIES_TABLE_NAME
+        FROM currencies
         WHERE rowid = (
             SELECT rowid 
-            FROM $CURRENCIES_TABLE_NAME
+            FROM currencies
             LIMIT 1 
             OFFSET :index
         )

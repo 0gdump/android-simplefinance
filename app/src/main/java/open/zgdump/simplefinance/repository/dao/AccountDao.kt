@@ -4,22 +4,21 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.global.RoomTablesNames.ACCOUNTS_TABLE_NAME
+import open.zgdump.simplefinance.entity.db.Account
 
 @Dao
 abstract class AccountDao {
 
-    @Query("SELECT * FROM $ACCOUNTS_TABLE_NAME")
+    @Query("SELECT * FROM accounts")
     abstract suspend fun getAccounts(): List<Account>?
 
     @Query(
         """
         SELECT *
-        FROM $ACCOUNTS_TABLE_NAME
-        WHERE rowid in (
+        FROM accounts
+        WHERE rowid IN (
             SELECT rowid 
-            FROM $ACCOUNTS_TABLE_NAME
+            FROM accounts
             WHERE isSaving = :isSaving
             LIMIT :count
             OFFSET :offset
@@ -35,10 +34,10 @@ abstract class AccountDao {
     @Query(
         """
         SELECT *
-        FROM $ACCOUNTS_TABLE_NAME
+        FROM accounts
         WHERE rowid = (
             SELECT rowid 
-            FROM $ACCOUNTS_TABLE_NAME
+            FROM accounts
             WHERE isSaving = :isSaving
             LIMIT 1
             OFFSET :index
@@ -52,24 +51,17 @@ abstract class AccountDao {
 
     @Query(
         """
-        UPDATE
-            accounts
+        UPDATE accounts
         SET
-            value = initialValue + 
-            (
-                SELECT
-                    TOTAL(value)
-                FROM
-                    records
+            value = initialValue + (
+                SELECT TOTAL(value)
+                FROM records
                 WHERE
                     accountId = :accountId AND
                     type = "Income" -- FinancialTypeTransaction.Income 
-            ) - 
-            (
-                SELECT
-                    TOTAL(value)
-                FROM
-                    records
+            ) - (
+                SELECT TOTAL(value)
+                FROM records
                 WHERE
                     accountId = :accountId AND
                     type = "Expense" -- FinancialTypeTransaction.Expense 
@@ -89,10 +81,10 @@ abstract class AccountDao {
     @Query(
         """
         DELETE 
-        FROM $ACCOUNTS_TABLE_NAME
+        FROM accounts
         WHERE rowid = (
             SELECT rowid 
-            FROM $ACCOUNTS_TABLE_NAME
+            FROM accounts
             WHERE isSaving = :isSaving
             LIMIT 1 
             OFFSET :index

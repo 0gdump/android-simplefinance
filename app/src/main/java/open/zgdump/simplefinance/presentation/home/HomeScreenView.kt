@@ -2,7 +2,7 @@ package open.zgdump.simplefinance.presentation.home
 
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
-import open.zgdump.simplefinance.entity.FinancialValue
+import open.zgdump.simplefinance.entity.helper.FinancialValue
 
 @AddToEndSingle
 interface HomeScreenView : MvpView {

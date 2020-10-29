@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_account.view.*
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.Account
+import open.zgdump.simplefinance.entity.db.Account
 import open.zgdump.simplefinance.util.android.inflate
 import java.util.*
 

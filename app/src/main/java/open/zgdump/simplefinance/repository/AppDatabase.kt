@@ -3,10 +3,10 @@ package open.zgdump.simplefinance.repository
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.Category
-import open.zgdump.simplefinance.entity.Currency
-import open.zgdump.simplefinance.entity.Record
+import open.zgdump.simplefinance.entity.db.Account
+import open.zgdump.simplefinance.entity.db.Category
+import open.zgdump.simplefinance.entity.db.Currency
+import open.zgdump.simplefinance.entity.db.Record
 import open.zgdump.simplefinance.repository.converter.LocalDateConverter
 import open.zgdump.simplefinance.repository.converter.OperationsTypeConverter
 import open.zgdump.simplefinance.repository.dao.*

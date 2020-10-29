@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_category.view.*
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.Category
+import open.zgdump.simplefinance.entity.db.Category
 import open.zgdump.simplefinance.util.android.inflate
 
 class CategoryAdapterDelegate(

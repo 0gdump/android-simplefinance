@@ -4,14 +4,20 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import open.zgdump.simplefinance.entity.Category
-import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.entity.TransactionType
+import open.zgdump.simplefinance.entity.db.Category
 
 @Dao
 abstract class CategoryDao {
 
-    @Query("SELECT * FROM categories WHERE type = :type")
-    abstract suspend fun getCategories(type: FinancialTypeTransaction): List<Category>?
+    @Query(
+        """
+        SELECT * 
+        FROM categories
+        WHERE type = :type
+        """
+    )
+    abstract suspend fun getCategories(type: TransactionType): List<Category>?
 
     @Query(
         """
@@ -29,7 +35,7 @@ abstract class CategoryDao {
     abstract suspend fun getCategories(
         offset: Int,
         count: Int,
-        type: FinancialTypeTransaction
+        type: TransactionType
     ): List<Category>?
 
     @Query(
@@ -47,7 +53,7 @@ abstract class CategoryDao {
     )
     abstract suspend fun getCategory(
         index: Int,
-        type: FinancialTypeTransaction
+        type: TransactionType
     ): Category?
 
     @Insert
@@ -69,5 +75,5 @@ abstract class CategoryDao {
         )
     """
     )
-    abstract fun delete(index: Int, type: FinancialTypeTransaction)
+    abstract fun delete(index: Int, type: TransactionType)
 }

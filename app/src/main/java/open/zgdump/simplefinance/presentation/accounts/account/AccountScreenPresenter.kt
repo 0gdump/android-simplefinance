@@ -2,8 +2,8 @@ package open.zgdump.simplefinance.presentation.accounts.account
 
 import kotlinx.coroutines.*
 import open.zgdump.simplefinance.App
-import open.zgdump.simplefinance.entity.Account
-import open.zgdump.simplefinance.entity.Currency
+import open.zgdump.simplefinance.entity.db.Account
+import open.zgdump.simplefinance.entity.db.Currency
 import open.zgdump.simplefinance.presentation.accounts.AccountsUpdatedObservable
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter

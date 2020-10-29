@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import kotlinx.android.synthetic.main.item_sum_of_records_per_category.view.*
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.SumOfRecordsPerCategory
+import open.zgdump.simplefinance.entity.helper.SumOfRecordsPerCategory
 import open.zgdump.simplefinance.util.android.inflate
 
 class SumOfRecordsPerCategoryScreenAdapterDelegate(
