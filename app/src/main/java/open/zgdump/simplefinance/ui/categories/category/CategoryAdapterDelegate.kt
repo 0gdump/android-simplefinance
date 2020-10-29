@@ -1,41 +1,36 @@
-package open.zgdump.simplefinance.ui.account
+package open.zgdump.simplefinance.ui.categories.category
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
-import kotlinx.android.synthetic.main.item_account.view.*
+import kotlinx.android.synthetic.main.item_category.view.*
 import open.zgdump.simplefinance.R
-import open.zgdump.simplefinance.entity.Account
+import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.util.android.inflate
-import java.util.*
 
-class AccountAdapterDelegate(
+class CategoryAdapterDelegate(
     private val clickListener: (Int) -> Unit
 ) : AdapterDelegate<MutableList<Any>>() {
 
     override fun isForViewType(items: MutableList<Any>, position: Int) =
-        items[position] is Account
+        items[position] is Category
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder =
-        ViewHolder(parent.inflate(R.layout.item_account))
+        ViewHolder(parent.inflate(R.layout.item_category))
 
     override fun onBindViewHolder(
         items: MutableList<Any>,
         position: Int,
         viewHolder: RecyclerView.ViewHolder,
         payloads: MutableList<Any>
-    ) = (viewHolder as ViewHolder).bind(items[position] as Account)
+    ) = (viewHolder as ViewHolder).bind(items[position] as Category)
 
     private inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(account: Account) {
-            itemView.container.setOnClickListener { clickListener(adapterPosition) }
-            itemView.name.text = account.name
-            itemView.lockedIndicator.isVisible = account.isClosed
-            itemView.value.text =
-                ("${account.value} ${account.currencyDesignation.toUpperCase(Locale.ROOT)}")
+        fun bind(category: Category) {
+            itemView.category.setOnClickListener { clickListener(adapterPosition) }
+            itemView.category.text = category.name
         }
     }
 }

@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.category
+package open.zgdump.simplefinance.ui.categories.category
 
 import android.view.View
 import android.widget.ArrayAdapter

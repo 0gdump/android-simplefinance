@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.ui.account
+package open.zgdump.simplefinance.ui.accounts.account
 
 import android.os.Bundle
 import android.view.View

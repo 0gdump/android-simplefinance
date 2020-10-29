@@ -3,7 +3,7 @@ package open.zgdump.simplefinance.ui.accounts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import open.zgdump.simplefinance.ui.account.AccountScreen
+import open.zgdump.simplefinance.ui.accounts.account.AccountScreen
 
 class AccountsPagerAdapter(
     fm: FragmentManager

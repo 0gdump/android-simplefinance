@@ -3,7 +3,7 @@ package open.zgdump.simplefinance.ui.categories
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
-import open.zgdump.simplefinance.ui.category.CategoryScreen
+import open.zgdump.simplefinance.ui.categories.category.CategoryScreen
 
 class CategoriesPagerAdapter(
     fm: FragmentManager
