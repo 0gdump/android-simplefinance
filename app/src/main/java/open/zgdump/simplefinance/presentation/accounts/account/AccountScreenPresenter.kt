@@ -1,13 +1,10 @@
 package open.zgdump.simplefinance.presentation.accounts.account
 
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.entity.Currency
 import open.zgdump.simplefinance.presentation.accounts.AccountsUpdatedObservable
-import open.zgdump.simplefinance.presentation.categories.CategoriesUpdatedObservable
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
 import open.zgdump.simplefinance.util.pattern.observer.Observer
@@ -21,6 +18,7 @@ class AccountScreenPresenter(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        updateTotal()
         AccountsUpdatedObservable.observers.add(this)
     }
 
@@ -30,7 +28,13 @@ class AccountScreenPresenter(
     }
 
     override fun observableUpdated() {
+        updateTotal()
         refresh()
+    }
+
+    private fun updateTotal() = launch {
+        val r = App.db.statisticsDao().getSumOfValuesForCurrenciesByCriteria(3, isSaving)
+        withContext(Dispatchers.Main) { viewState.updateTotal(r) }
     }
 
     override fun diffItems(old: Any, new: Any): Boolean {
@@ -116,6 +120,7 @@ class AccountScreenPresenter(
                 }
             }
 
+            updateTotal()
             AccountsUpdatedObservable.updated(this@AccountScreenPresenter)
         }
     }

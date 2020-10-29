@@ -16,6 +16,7 @@ import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.entity.Currency
+import open.zgdump.simplefinance.entity.FinancialValue
 import open.zgdump.simplefinance.presentation.accounts.account.AccountScreenPresenter
 import open.zgdump.simplefinance.presentation.accounts.account.AccountScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
@@ -53,6 +54,14 @@ class AccountScreen :
 
     override fun showMessage(message: String) {
         Toasty.info(activity, message).show()
+    }
+
+    override fun updateTotal(top: List<FinancialValue>) {
+        totalText.text = if (top.isEmpty()) {
+           "☹️"
+        } else {
+            top.joinToString { "${it.total}${it.currencyDesignation}" }
+        }
     }
 
     override fun newAccountDialog(account: Account?, currencies: List<Currency>) {
