@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.presentation.category
+package open.zgdump.simplefinance.presentation.categories.category
 
 import moxy.viewstate.strategy.OneExecutionStateStrategy
 import moxy.viewstate.strategy.StateStrategyType

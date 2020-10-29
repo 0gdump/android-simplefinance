@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.presentation.category
+package open.zgdump.simplefinance.presentation.categories.category
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -6,14 +6,33 @@ import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
+import open.zgdump.simplefinance.presentation.categories.CategoriesUpdatedObservable
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
+import open.zgdump.simplefinance.util.pattern.observer.Observer
+import timber.log.Timber
 
 class CategoryScreenPresenter(
     private val operationsType: FinancialTypeTransaction
-) : PaginalPresenter<CategoryScreenView, Category>() {
+) : PaginalPresenter<CategoryScreenView, Category>(),
+    Observer {
 
     private var editableCurrencyIndex = -1
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        CategoriesUpdatedObservable.observers.add(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        CategoriesUpdatedObservable.observers.remove(this)
+    }
+
+    override fun observableUpdated() {
+        refresh()
+        Timber.d("FCK")
+    }
 
     override fun diffItems(old: Any, new: Any): Boolean {
         return if (old is Account && new is Account)
@@ -58,12 +77,19 @@ class CategoryScreenPresenter(
             type
         )
 
-        if (originalCategory == null) {
-            launch { App.db.categoryDao().insert(category) }
-            paginator.proceed(Paginator.Action.Insert(category))
-        } else {
-            launch { App.db.categoryDao().update(category) }
-            paginator.proceed(Paginator.Action.Update(category, editableCurrencyIndex))
+        launch {
+            if (originalCategory == null && type == operationsType) {
+                paginator.proceed(Paginator.Action.Insert(category))
+                App.db.categoryDao().insert(category)
+            } else if (originalCategory != null && type != operationsType) {
+                paginator.proceed(Paginator.Action.Remove(editableCurrencyIndex))
+                App.db.categoryDao().update(category)
+            } else {
+                paginator.proceed(Paginator.Action.Update(category, editableCurrencyIndex))
+                App.db.categoryDao().update(category)
+            }
+
+            CategoriesUpdatedObservable.updated(this@CategoryScreenPresenter)
         }
     }
 }

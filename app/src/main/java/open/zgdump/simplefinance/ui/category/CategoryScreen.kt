@@ -14,8 +14,8 @@ import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Category
 import open.zgdump.simplefinance.entity.FinancialTypeTransaction
-import open.zgdump.simplefinance.presentation.category.CategoryScreenPresenter
-import open.zgdump.simplefinance.presentation.category.CategoryScreenView
+import open.zgdump.simplefinance.presentation.categories.category.CategoryScreenPresenter
+import open.zgdump.simplefinance.presentation.categories.category.CategoryScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.ui.global.paginal.StandardPaginalFragment
 import open.zgdump.simplefinance.util.kotlin.argument
