@@ -16,8 +16,8 @@ import moxy.ktx.moxyPresenter
 import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.entity.Currency
-import open.zgdump.simplefinance.presentation.account.AccountScreenPresenter
-import open.zgdump.simplefinance.presentation.account.AccountScreenView
+import open.zgdump.simplefinance.presentation.accounts.account.AccountScreenPresenter
+import open.zgdump.simplefinance.presentation.accounts.account.AccountScreenView
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.ui.global.paginal.PaginalFragment
 import open.zgdump.simplefinance.util.kotlin.argument

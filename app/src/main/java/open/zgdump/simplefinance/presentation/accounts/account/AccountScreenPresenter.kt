@@ -1,4 +1,4 @@
-package open.zgdump.simplefinance.presentation.account
+package open.zgdump.simplefinance.presentation.accounts.account
 
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -6,14 +6,32 @@ import kotlinx.coroutines.runBlocking
 import open.zgdump.simplefinance.App
 import open.zgdump.simplefinance.entity.Account
 import open.zgdump.simplefinance.entity.Currency
+import open.zgdump.simplefinance.presentation.accounts.AccountsUpdatedObservable
+import open.zgdump.simplefinance.presentation.categories.CategoriesUpdatedObservable
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
+import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class AccountScreenPresenter(
     private val isSaving: Boolean
-) : PaginalPresenter<AccountScreenView, Account>() {
+) : PaginalPresenter<AccountScreenView, Account>(),
+    Observer {
 
     private var editableCurrencyIndex = -1
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        AccountsUpdatedObservable.observers.add(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AccountsUpdatedObservable.observers.remove(this)
+    }
+
+    override fun observableUpdated() {
+        refresh()
+    }
 
     override fun diffItems(old: Any, new: Any): Boolean {
         return if (old is Account && new is Account)
@@ -71,12 +89,34 @@ class AccountScreenPresenter(
             isClosed
         )
 
-        if (originalAccount == null) {
-            launch { App.db.accountDao().insert(account) }
-            paginator.proceed(Paginator.Action.Insert(account))
-        } else {
-            launch { App.db.accountDao().update(account) }
-            paginator.proceed(Paginator.Action.Update(account, editableCurrencyIndex))
+        launch {
+            when {
+
+                // Вставлен новый элемент
+                originalAccount == null && isSaving == this@AccountScreenPresenter.isSaving -> {
+                    paginator.proceed(Paginator.Action.Insert(account))
+                    App.db.accountDao().insert(account)
+                }
+
+                // Вставлен элемент, но другого типа
+                originalAccount == null && isSaving != this@AccountScreenPresenter.isSaving -> {
+                    App.db.accountDao().insert(account)
+                }
+
+                // Обновлён элемент
+                originalAccount != null && isSaving == this@AccountScreenPresenter.isSaving -> {
+                    paginator.proceed(Paginator.Action.Update(account, editableCurrencyIndex))
+                    App.db.accountDao().update(account)
+                }
+
+                // Обновлён элемент, но изменился тип
+                originalAccount != null && isSaving != this@AccountScreenPresenter.isSaving -> {
+                    paginator.proceed(Paginator.Action.Remove(editableCurrencyIndex))
+                    App.db.accountDao().update(account)
+                }
+            }
+
+            AccountsUpdatedObservable.updated(this@AccountScreenPresenter)
         }
     }
 }
