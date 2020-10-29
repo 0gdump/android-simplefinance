@@ -108,7 +108,7 @@ class RecordsBetweenDatesScreenPresenter(
                 App.db.recordDao().update(record)
             }
 
-            RecordsUpdatedObservable.recordsUpdated(this@RecordsBetweenDatesScreenPresenter)
+            RecordsUpdatedObservable.updated(this@RecordsBetweenDatesScreenPresenter)
         }
     }
 }
