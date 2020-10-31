@@ -5,9 +5,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.LocalDate
 import open.zgdump.simplefinance.App
+import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.entity.db.Account
 import open.zgdump.simplefinance.entity.db.Category
-import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.entity.db.Record
 import open.zgdump.simplefinance.presentation.global.Paginator
 import open.zgdump.simplefinance.presentation.global.paginal.PaginalPresenter
@@ -16,8 +16,10 @@ import open.zgdump.simplefinance.util.pattern.observer.Observer
 
 class RecordsBetweenDatesScreenPresenter(
     private val type: TransactionType
-) : PaginalPresenter<RecordsBetweenDatesScreenView, Record>(),
+) : PaginalPresenter<RecordsBetweenDatesScreenView, Record>(true),
     Observer {
+
+    override val pageSize: Int = 5
 
     private var editableCurrencyIndex = -1
 
@@ -36,7 +38,11 @@ class RecordsBetweenDatesScreenPresenter(
     }
 
     override fun diffItems(old: Any, new: Any): Boolean {
-        return true
+        return if (old is Record && new is Record) {
+            old.id == new.id
+        } else {
+            false
+        }
     }
 
     override suspend fun loadPage(page: Int): List<Record> {

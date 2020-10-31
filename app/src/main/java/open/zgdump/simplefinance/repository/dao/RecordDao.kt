@@ -83,6 +83,7 @@ abstract class RecordDao {
         WHERE rowid = (
             SELECT rowid 
             FROM records
+            ORDER BY rowid DESC
             LIMIT 1
             OFFSET :index
         )
@@ -98,9 +99,11 @@ abstract class RecordDao {
             SELECT rowid 
             FROM records
             WHERE type = :type
+            ORDER BY rowid DESC
             LIMIT :count
             OFFSET :offset
         )
+        ORDER BY rowid DESC
         """
     )
     abstract suspend fun getRecords(
