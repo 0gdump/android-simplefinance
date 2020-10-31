@@ -3,37 +3,44 @@ package open.zgdump.simplefinance.presentation.global.paginal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import open.zgdump.simplefinance.presentation.global.MvpPresenterX
 import open.zgdump.simplefinance.presentation.global.Paginator
+import open.zgdump.simplefinance.util.kotlin.initOnce
 import timber.log.Timber
 
-abstract class PaginalPresenter<V : PaginalView, D> : MvpPresenterX<V>() {
+abstract class PaginalPresenter<V : PaginalView, D>(
+    private val reversedStore: Boolean = false
+) : MvpPresenterX<V>() {
 
     protected open val pageSize = 10
-    protected val paginator by lazy { Paginator.Store<D>(pageSize) }
-
-    init {
-        paginator.render = viewState::renderPaginatorState
-        launch { paginator.sideEffects.consumeEach(::sideEffectConsumer) }
-    }
+    protected var paginator: Paginator.Store<D> by initOnce()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        setupPaginator()
         refresh()
     }
 
-    private fun sideEffectConsumer(effect: Paginator.SideEffect) = when (effect) {
-        is Paginator.SideEffect.LoadPage -> {
-            paginator.proceed(
-                Paginator.Action.NewPage(
-                    effect.currentPage,
-                    runBlocking { loadPage(effect.currentPage) }
+    private fun setupPaginator() {
+        paginator = Paginator.Store(pageSize, reversedStore)
+        paginator.render = viewState::renderPaginatorState
+
+        launch { paginator.sideEffects.consumeEach(::sideEffectConsumer) }
+    }
+
+    private fun sideEffectConsumer(effect: Paginator.SideEffect) {
+        when (effect) {
+            is Paginator.SideEffect.LoadPage -> launch {
+                paginator.proceed(
+                    Paginator.Action.NewPage(
+                        effect.currentPage,
+                        loadPage(effect.currentPage)
+                    )
                 )
-            )
-        }
-        is Paginator.SideEffect.ErrorEvent -> {
-            viewState.showMessage(effect.error.message.orEmpty())
+            }
+            is Paginator.SideEffect.ErrorEvent -> {
+                viewState.showMessage(effect.error.message.orEmpty())
+            }
         }
     }
 
