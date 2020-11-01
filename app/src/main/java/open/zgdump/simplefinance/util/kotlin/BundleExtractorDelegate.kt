@@ -1,22 +1,9 @@
 package open.zgdump.simplefinance.util.kotlin
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
-
-inline fun <reified T> extra(
-    key: String,
-    defaultValue: T? = null
-): ReadWriteProperty<Activity, T> =
-    BundleExtractorDelegate { thisRef ->
-        extractFromBundle(
-            bundle = thisRef.intent?.extras,
-            key = key,
-            defaultValue = defaultValue
-        )
-    }
 
 inline fun <reified T> argument(
     key: String,

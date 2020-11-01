@@ -23,7 +23,7 @@ class MainFlow : MvpFragmentX(R.layout.fragment_main), MainFlowView {
     private val presenter by moxyPresenter { MainFlowPresenter() }
     private val navigator by lazy { SupportAppNavigator(activity, R.id.fragmentContainer) }
 
-    private val defaultNavigationItem = R.id.navAccounts
+    private val defaultNavigationItem = R.id.navExpense
 
     private var needToNavigation = false
     private var previousSelectedNavigationItem: MenuItem? = null

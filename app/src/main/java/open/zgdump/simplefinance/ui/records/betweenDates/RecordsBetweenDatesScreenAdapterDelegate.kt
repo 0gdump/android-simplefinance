@@ -15,8 +15,6 @@ class RecordsBetweenDatesScreenAdapterDelegate(
     private val clickListener: (Int) -> Unit
 ) : AdapterDelegate<MutableList<Any>>() {
 
-    val dateFormatter = SimpleDateFormat("dd.mm.yy", Locale.US)
-
     override fun isForViewType(items: MutableList<Any>, position: Int) =
         items[position] is Record
 
