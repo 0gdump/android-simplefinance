@@ -39,9 +39,9 @@ class CurrenciesScreen :
             val isEdit = currency != null
             val title =
                 if (isEdit)
-                    R.string.CurrencyScreen_editCurrencyDialogTitle
+                    R.string.CurrenciesScreen_editCurrencyDialogTitle
                 else
-                    R.string.CurrencyScreen_newCurrencyDialogTitle
+                    R.string.CurrenciesScreen_newCurrencyDialogTitle
 
             // Содержимое
             title(title)

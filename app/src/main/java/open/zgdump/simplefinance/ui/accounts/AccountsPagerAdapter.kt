@@ -3,7 +3,9 @@ package open.zgdump.simplefinance.ui.accounts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.ui.accounts.account.AccountScreen
+import open.zgdump.simplefinance.util.android.getString
 
 class AccountsPagerAdapter(
     fm: FragmentManager
@@ -20,8 +22,8 @@ class AccountsPagerAdapter(
     }
 
     override fun getPageTitle(position: Int) = when (position) {
-        0 -> "Текущие"
-        1 -> "Сберегательные"
+        0 -> getString(R.string.AccountsScreen_CurrentAccountsTab)
+        1 -> getString(R.string.AccountsScreen_SavingAccountsTab)
         else -> throw IllegalStateException()
     }
 }

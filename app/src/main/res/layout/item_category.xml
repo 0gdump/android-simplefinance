@@ -10,4 +10,4 @@
     android:focusable="true"
     android:lines="1"
     android:padding="16dp"
-    android:text="Категория" />
+    android:text="Category" />

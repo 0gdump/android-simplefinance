@@ -28,7 +28,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/totalTitle"
         style="@style/HomeScreen_TitleText"
-        android:text="Общая сумма"
+        android:text="@string/HomeScreen_totalTitle"
         app:layout_constraintBottom_toBottomOf="@id/totalTopText"
         app:layout_constraintEnd_toStartOf="@+id/totalTopText"
         app:layout_constraintStart_toEndOf="@id/totalIcon"
@@ -54,7 +54,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/actualTitle"
         style="@style/HomeScreen_TitleText"
-        android:text="Текущие счета"
+        android:text="@string/HomeScreen_actualTitle"
         app:layout_constraintBottom_toBottomOf="@id/actualTopText"
         app:layout_constraintEnd_toStartOf="@+id/actualTopText"
         app:layout_constraintStart_toEndOf="@id/actualIcon"
@@ -80,7 +80,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/savingTitle"
         style="@style/HomeScreen_TitleText"
-        android:text="Сбережения"
+        android:text="@string/HomeScreen_savingsTitle"
         app:layout_constraintBottom_toBottomOf="@id/savingTopText"
         app:layout_constraintEnd_toStartOf="@+id/savingTopText"
         app:layout_constraintStart_toEndOf="@id/savingIcon"

@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="2dp"
-        android:text="Итого:"
+        android:text="@string/RecordsScreen_totalTitle"
         app:layout_constraintBottom_toBottomOf="@id/navigateToPrevMonth"
         app:layout_constraintEnd_toStartOf="@+id/monthTotalSum"
         app:layout_constraintHorizontal_chainStyle="packed"

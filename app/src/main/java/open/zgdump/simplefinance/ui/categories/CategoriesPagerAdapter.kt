@@ -2,8 +2,10 @@ package open.zgdump.simplefinance.ui.categories
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import open.zgdump.simplefinance.R
 import open.zgdump.simplefinance.entity.TransactionType
 import open.zgdump.simplefinance.ui.categories.category.CategoryScreen
+import open.zgdump.simplefinance.util.android.getString
 
 class CategoriesPagerAdapter(
     fm: FragmentManager
@@ -18,8 +20,8 @@ class CategoriesPagerAdapter(
     }
 
     override fun getPageTitle(position: Int) = when (position) {
-        0 -> "Доходы"
-        1 -> "Расходы"
+        0 -> getString(R.string.CategoriesScreen_IncomeCategoriesTab)
+        1 -> getString(R.string.CategoriesScreen_ExpenseCategoriesTab)
         else -> throw IllegalStateException()
     }
 }

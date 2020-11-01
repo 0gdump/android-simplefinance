@@ -58,7 +58,7 @@ class AccountScreen :
 
     override fun updateTotal(top: List<FinancialValue>) {
         totalText.text = if (top.isEmpty()) {
-           "☹️"
+           getString(R.string.sad)
         } else {
             top.joinToString { "${it.total}${it.currencyDesignation}" }
         }

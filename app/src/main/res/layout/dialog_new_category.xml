@@ -12,7 +12,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Название"
+        android:text="@string/NewCategoryDialog_Name"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 
@@ -20,7 +20,7 @@
         android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Название" />
+        android:hint="@string/NewCategoryDialog_Name" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/operationTypeTitle"
@@ -30,7 +30,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Тип"
+        android:text="@string/NewCategoryDialog_Type"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 

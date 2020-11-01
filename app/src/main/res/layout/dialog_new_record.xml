@@ -12,7 +12,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Дата"
+        android:text="@string/NewRecordDialog_Date"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 
@@ -32,7 +32,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Категория"
+        android:text="@string/NewRecordDialog_Category"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 
@@ -50,7 +50,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Счёт"
+        android:text="@string/NewRecordDialog_Account"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 
@@ -68,7 +68,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Сумма"
+        android:text="@string/NewRecordDialog_Value"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 
@@ -76,8 +76,8 @@
         android:id="@+id/valueEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Сумма"
-        android:inputType="number" />
+        android:hint="@string/NewRecordDialog_Value"
+        android:inputType="numberDecimal" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/commentTitle"
@@ -87,7 +87,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Комментарий"
+        android:text="@string/NewRecordDialog_Comment"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 
@@ -95,7 +95,7 @@
         android:id="@+id/commentEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Комментарий"
+        android:hint="@string/NewRecordDialog_Comment"
         android:inputType="textMultiLine" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

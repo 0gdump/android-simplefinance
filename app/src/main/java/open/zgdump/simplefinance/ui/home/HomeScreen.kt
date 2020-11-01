@@ -39,11 +39,9 @@ class HomeScreen : MvpFragmentX(R.layout.fragment_home), HomeScreenView {
 
     private fun formatTopToString(top: List<FinancialValue>): String {
         return if (top.isEmpty()) {
-            "☹️"
+            getString(R.string.sad)
         } else {
-            val sb = StringBuilder()
-            top.forEach { sb.append("${it.total}${it.currencyDesignation}\n") }
-            sb.trim().toString()
+            top.joinToString(separator = "\n") { "${it.total}${it.currencyDesignation}" }
         }
     }
 }

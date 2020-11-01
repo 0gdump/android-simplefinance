@@ -12,7 +12,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Название"
+        android:text="@string/NewCurrencyDialog_Name"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 
@@ -20,7 +20,7 @@
         android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Название" />
+        android:hint="@string/NewCurrencyDialog_Name" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/designationTitle"
@@ -30,7 +30,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:padding="2dp"
-        android:text="Обозначение"
+        android:text="@string/NewCurrencyDialog_Designation"
         android:textColor="@color/primary"
         android:textSize="14sp" />
 
@@ -38,6 +38,6 @@
         android:id="@+id/designationEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Обозначение" />
+        android:hint="@string/NewCurrencyDialog_Designation" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

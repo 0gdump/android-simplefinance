@@ -56,9 +56,9 @@ class CategoryScreen :
             val isEdit = category != null
             val title =
                 if (isEdit)
-                    R.string.AccountScreen_editCurrencyDialogTitle
+                    R.string.CategoryScreen_editCurrencyDialogTitle
                 else
-                    R.string.AccountScreen_newCurrencyDialogTitle
+                    R.string.CategoryScreen_newCurrencyDialogTitle
 
             // Содержимое
             title(title)

@@ -12,7 +12,7 @@
         android:layout_marginStart="2dp"
         android:paddingHorizontal="8dp"
         android:paddingVertical="16dp"
-        android:text="Итого"
+        android:text="@string/AccountScreen_totalTitle"
         app:layout_constraintBottom_toTopOf="@id/separator"
         app:layout_constraintEnd_toStartOf="@id/totalText"
         app:layout_constraintStart_toStartOf="parent"

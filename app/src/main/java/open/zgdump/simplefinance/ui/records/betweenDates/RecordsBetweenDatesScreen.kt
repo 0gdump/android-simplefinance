@@ -53,9 +53,9 @@ class RecordsBetweenDatesScreen(
             val isEdit = record != null
             val title =
                 if (isEdit)
-                    R.string.AccountScreen_editCurrencyDialogTitle
+                    R.string.RecordsScreen_newCurrencyDialogTitle
                 else
-                    R.string.AccountScreen_newCurrencyDialogTitle
+                    R.string.RecordsScreen_editCurrencyDialogTitle
 
             // Содержимое
             title(title)

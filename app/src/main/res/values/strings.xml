@@ -1,11 +1,8 @@
 <resources>
 
-    <!-- Общее -->
+    <!-- Глобальные -->
     <string name="appName">Simple Finance</string>
-
-    <!-- Enums -->
-    <string name="income">Доходы</string>
-    <string name="expense">Расходы</string>
+    <string name="sad">☹️</string>
 
     <!-- Навигация -->
     <string name="navHome">Главная</string>
@@ -20,26 +17,84 @@
     <string name="navCurrencies">Валюты</string>
     <string name="navMore">Прочее</string>
 
+    <!-- Enums -->
+    <string name="income">Доходы</string>
+    <string name="expense">Расходы</string>
+
     <!-- Экраны -->
+
     <!-- Main Flow -->
     <string name="drawerOpen">drawer_open</string>
     <string name="drawerClose">drawer_close</string>
 
-    <!-- Accounts Screen -->
-
-    <!-- Account Screen -->
-    <string name="AccountScreen_newCurrencyDialogTitle">Создать</string>
-    <string name="AccountScreen_editCurrencyDialogTitle">Редактировать</string>
-
-    <!-- Currencies Screen -->
-    <string name="CurrencyScreen_newCurrencyDialogTitle">Создать</string>
-    <string name="CurrencyScreen_editCurrencyDialogTitle">Редактировать</string>
-
     <!-- Home Screen -->
+    <string name="HomeScreen_totalTitle">Общая сумма</string>
+    <string name="HomeScreen_actualTitle">Текущие счета</string>
+    <string name="HomeScreen_savingsTitle">Сбережения</string>
     <string name="HomeScreen_incomesTitle">Доходы за %s</string>
     <string name="HomeScreen_expensesTitle">Расходы за %s</string>
 
+    <!-- Accounts Screen -->
+    <string name="AccountsScreen_CurrentAccountsTab">Текущие</string>
+    <string name="AccountsScreen_SavingAccountsTab">Сберегательные</string>
+
+    <!-- Account Screen -->
+    <string name="AccountScreen_totalTitle">Итого</string>
+    <string name="AccountScreen_newCurrencyDialogTitle">Создать</string>
+    <string name="AccountScreen_editCurrencyDialogTitle">Редактировать</string>
+
+    <!-- Categories Screen -->
+    <string name="CategoriesScreen_IncomeCategoriesTab">Доходы</string>
+    <string name="CategoriesScreen_ExpenseCategoriesTab">Расходы</string>
+
+    <!-- Category Screen -->
+    <string name="CategoryScreen_newCurrencyDialogTitle">Создать</string>
+    <string name="CategoryScreen_editCurrencyDialogTitle">Редактировать</string>
+
+    <!-- Currencies Screen -->
+    <string name="CurrenciesScreen_newCurrencyDialogTitle">Создать</string>
+    <string name="CurrenciesScreen_editCurrencyDialogTitle">Редактировать</string>
+
+    <!-- Records Screen -->
+    <string name="RecordsScreen_AllTab">Все</string>
+    <string name="RecordsScreen_SumPerDayTab">По дням</string>
+    <string name="RecordsScreen_SumPerCategoryTab">По категориям</string>
+
+    <string name="RecordsScreen_totalTitle">Итого:</string>
+
+    <string name="RecordsScreen_newCurrencyDialogTitle">Добавить</string>
+    <string name="RecordsScreen_editCurrencyDialogTitle">Редактировать</string>
+
+    <!-- Unimplemented Screen -->
+    <string name="UnimplementedScreen_emoji">✍</string>
+    <string name="UnimplementedScreen_text">Я ещё работаю над этим…</string>
+
+    <!-- Диалоги -->
+
+    <!-- New Account -->
+    <string name="NewAccountDialog_Name">Название</string>
+    <string name="NewAccountDialog_Value">Сумма</string>
+    <string name="NewAccountDialog_Currency">Валюта</string>
+    <string name="NewAccountDialog_IsSaving">Сберегательный</string>
+    <string name="NewAccountDialog_IsClosed">Закрытый</string>
+
+    <!-- New Category -->
+    <string name="NewCategoryDialog_Name">Название</string>
+    <string name="NewCategoryDialog_Type">Тип</string>
+
+    <!-- New Currency -->
+    <string name="NewCurrencyDialog_Name">Название</string>
+    <string name="NewCurrencyDialog_Designation">Обозначение</string>
+
+    <!-- New Record -->
+    <string name="NewRecordDialog_Date">Дата</string>
+    <string name="NewRecordDialog_Category">Категория</string>
+    <string name="NewRecordDialog_Account">Счёт</string>
+    <string name="NewRecordDialog_Value">Сумма</string>
+    <string name="NewRecordDialog_Comment">Комментарий</string>
+
     <!-- Custom View -->
+
     <!-- EmptyView -->
     <string name="EmptyView_defaultErrorTitle">Ошибка</string>
     <string name="EmptyView_defaultErrorContent">Не удалось загрузить данные</string>
