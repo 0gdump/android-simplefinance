@@ -3,6 +3,10 @@
     <!-- Общее -->
     <string name="appName">Simple Finance</string>
 
+    <!-- Enums -->
+    <string name="income">Доходы</string>
+    <string name="expense">Расходы</string>
+
     <!-- Навигация -->
     <string name="navHome">Главная</string>
     <string name="navAccounts">Счета</string>

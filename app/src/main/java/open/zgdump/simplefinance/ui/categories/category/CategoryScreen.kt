@@ -80,7 +80,7 @@ class CategoryScreen :
                 operationTypeSpinner.adapter = ArrayAdapter(
                     requireContext(),
                     android.R.layout.simple_spinner_dropdown_item,
-                    TransactionType.values().map { it.name }
+                    TransactionType.values().map { getString(it.value) }
                 )
             }
         }
